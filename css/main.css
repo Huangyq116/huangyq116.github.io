@@ -3024,9 +3024,3 @@ mark.search-keyword {
     margin-bottom: 10px;
   }
 }
-.fireworks {
-  left: 0;
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-}
