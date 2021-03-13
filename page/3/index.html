@@ -251,7 +251,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Jenkins/Jenkins%E8%87%AA%E5%8A%A8%E6%9D%80%E6%8E%89%E8%A1%8D%E7%94%9F%E7%A8%8B%E5%BA%8F/">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Jenkins/Jenkins%E6%9B%B4%E6%96%B0%E4%B8%BB%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -264,7 +264,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/4.ToolsNotes/Jenkins/Jenkins%E8%87%AA%E5%8A%A8%E6%9D%80%E6%8E%89%E8%A1%8D%E7%94%9F%E7%A8%8B%E5%BA%8F/" class="post-title-link" itemprop="url">Jenkins自动杀掉衍生程序</a>
+          <a href="/4.ToolsNotes/Jenkins/Jenkins%E6%9B%B4%E6%96%B0%E4%B8%BB%E9%A2%98/" class="post-title-link" itemprop="url">Jenkins更新主题</a>
         </h2>
 
         <div class="post-meta-container">
@@ -275,14 +275,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2019-12-26 11:30:00" itemprop="dateCreated datePublished" datetime="2019-12-26T11:30:00+08:00">2019-12-26</time>
+      <time title="创建时间：2020-09-10 11:42:00" itemprop="dateCreated datePublished" datetime="2020-09-10T11:42:00+08:00">2020-09-10</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-07 12:44:35" itemprop="dateModified" datetime="2021-03-07T12:44:35+08:00">2021-03-07</time>
+        <time title="修改时间：2021-03-12 11:40:03" itemprop="dateModified" datetime="2021-03-12T11:40:03+08:00">2021-03-12</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -308,100 +308,43 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>在执行 shell输入框中加入<code>BUILD_ID=dontKillMe</code> ，即可防止jenkins杀死启动的进程</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">export BUILD_ID=dontKillMe</span><br><span class="line">PROJECT_LOCATION=&quot;/usr/local/project/&quot;</span><br><span class="line">HOST=$HOST</span><br><span class="line"></span><br><span class="line">rsync -avz --delete --progress --exclude &quot;config*&quot; --exclude &quot;db&quot; $&#123;WORKSPACE&#125;/  root@$&#123;HOST&#125;:$PROJECT_LOCATION</span><br><span class="line"> </span><br><span class="line">ssh -tt root@$&#123;HOST&#125;  &quot;    </span><br><span class="line">     cd $PROJECT_LOCATION</span><br><span class="line">     nohup ./server &gt;server.log 2&gt;&amp;1 &amp;</span><br><span class="line">     sleep 10</span><br><span class="line">     exit     </span><br><span class="line">&quot;</span><br></pre></td></tr></table></figure>
+          <h2 id="选择主题"><a href="#选择主题" class="headerlink" title="选择主题"></a>选择主题</h2><p>主题制作网站 jenkins-material-theme</p>
+<p><strong>1、选择主题颜色</strong><br>可以选择自己喜欢的任何颜色,这里紫色只做演示</p>
+<p><img src="/images/20200910-1.png" alt="color"></p>
+<p><strong>2、上传logo</strong></p>
+<p>要求png格式图片,最小高度40px</p>
+<p><img src="/images/20200910-2.png" alt="color"></p>
+<p><strong>3、下载主题</strong></p>
+<p>上传好logo后就可以下载插件主题</p>
+<ol>
+<li>下载的主题文件名为: <code>jenkins-material-theme.css</code></li>
+</ol>
+<p><img src="/images/20200910-3.png" alt="color"></p>
+<p><strong>4、配置css文件</strong></p>
+<p>在Jenkins安装路径的userContent目录下新建layout文件夹</p>
+<ol>
+<li>将<code>jenkins-material-theme.css</code>文件复制到该目录下</li>
+<li>在该目录下新建title.css文件,其中修改代码里面的content就可以改变Jenkins的Title</li>
+</ol>
+<p><img src="/images/20200910-4.png" alt="color"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#title</span><span class="selector-class">.css</span>内容如下：</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#jenkins-name-icon</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.logo</span>:after &#123;</span><br><span class="line">    content: <span class="string">&quot;Jenkins of Chaos-Notebook&quot;</span>;</span><br><span class="line">    <span class="attribute">text-transform</span>:none;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">color</span>: White;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Docker/Dcoker%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Home">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/4.ToolsNotes/Docker/Dcoker%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">Docker配置参数详解---/etc/docker/daemon.json完整参数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-12-25 12:01:00" itemprop="dateCreated datePublished" datetime="2019-12-25T12:01:00+08:00">2019-12-25</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-07 12:44:35" itemprop="dateModified" datetime="2021-03-07T12:44:35+08:00">2021-03-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Docker配置参数详解"><a href="#Docker配置参数详解" class="headerlink" title="Docker配置参数详解"></a>Docker配置参数详解</h2><p><strong>实际配置的参数</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;insecure-registries&quot;:[&quot;XXX.XXX.XXX.XXX:XXX&quot;] &#125;</span><br><span class="line">&#123; </span><br><span class="line">     &quot;credsStore&quot;: &quot;pass&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>全部参数</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">“api-cors-header”:&quot;&quot;, ——————在引擎API中设置CORS标头</span><br><span class="line">“authorization-plugins”:[], ——————要加载的授权插件</span><br><span class="line">“bridge”:&quot;&quot;, ————将容器附加到网桥</span><br><span class="line">“cgroup-parent”:&quot;&quot;, ——————为所有容器设置父cgroup</span><br><span class="line">“cluster-store”:&quot;&quot;, ——————分布式存储后端的URL</span><br><span class="line">“cluster-store-opts”:&#123;&#125;, ————————设置集群存储选项（默认map []）</span><br><span class="line">“cluster-advertise”:&quot;&quot;, ————————要通告的地址或接口名称</span><br><span class="line">“debug”: true, ————————启用调试模式，启用后，可以看到很多的启动信息。默认false</span><br><span class="line">“default-gateway”:&quot;&quot;, ——————容器默认网关IPv4地址</span><br><span class="line">“default-gateway-v6”:&quot;&quot;, ——————容器默认网关IPv6地址</span><br><span class="line">“default-runtime”:“runc”, ————————容器的默认OCI运行时（默认为“ runc”）</span><br><span class="line">“default-ulimits”:&#123;&#125;, ——————容器的默认ulimit（默认[]）</span><br><span class="line">“dns”: [“192.168.1.1”], ——————设定容器DNS的地址，在容器的 /etc/resolv.conf文件中可查看。</span><br><span class="line">“dns-opts”: [], ————————容器 /etc/resolv.conf 文件，其他设置</span><br><span class="line">“dns-search”: [], ————————设定容器的搜索域，当设定搜索域为 .example.com 时，在搜索一个名为 host 的 主机时，DNS不仅搜索host，还会搜</span><br><span class="line">索host.example.com 。 注意：如果不设置， Docker 会默认用主机上的 /etc/resolv.conf 来配置容器。</span><br><span class="line">“exec-opts”: [], ————————运行时执行选项</span><br><span class="line">“exec-root”:&quot;&quot;, ————————执行状态文件的根目录（默认为’/var/run/docker‘）</span><br><span class="line">“fixed-cidr”:&quot;&quot;, ————————固定IP的IPv4子网</span><br><span class="line">“fixed-cidr-v6”:&quot;&quot;, ————————固定IP的IPv6子网</span><br><span class="line">“data-root”:&quot;/var/lib/docker&quot;, ————-Docker运行时使用的根路径，默认/var/lib/docker</span><br><span class="line">“group”: “”, ——————UNIX套接字的组（默认为“docker”）</span><br><span class="line">“hosts”: [], ——————设置容器hosts</span><br><span class="line">“icc”: false, ——————启用容器间通信（默认为true）</span><br><span class="line">“ip”:“0.0.0.0”, ————————绑定容器端口时的默认IP（默认0.0.0.0）</span><br><span class="line">“iptables”: false, ———————启用iptables规则添加（默认为true）</span><br><span class="line">“ipv6”: false, ——————启用IPv6网络</span><br><span class="line">“ip-forward”: false, ————————默认true, 启用 net.ipv4.ip_forward ,进入容器后使用 sysctl -a | grepnet.ipv4.ip_forward 查看</span><br><span class="line">“ip-masq”:false, ——————启用IP伪装（默认为true）</span><br><span class="line">“labels”:[“nodeName=node-121”], ————————docker主机的标签，很实用的功能,例如定义：–label nodeName=host-121</span><br><span class="line">“live-restore”: true, ——————在容器仍在运行时启用docker的实时还原</span><br><span class="line">“log-driver”:&quot;&quot;, ——————容器日志的默认驱动程序（默认为“ json-file”）</span><br><span class="line">“log-level”:&quot;&quot;, ——————设置日志记录级别（“调试”，“信息”，“警告”，“错误”，“致命”）（默认为“信息”）</span><br><span class="line">“max-concurrent-downloads”:3, ——————设置每个请求的最大并发下载量（默认为3）</span><br><span class="line">“max-concurrent-uploads”:5, ——————设置每次推送的最大同时上传数（默认为5）</span><br><span class="line">“mtu”: 0, ——————设置容器网络MTU</span><br><span class="line">“oom-score-adjust”:-500, ——————设置守护程序的oom_score_adj（默认值为-500）</span><br><span class="line">“pidfile”: “”, ——————Docker守护进程的PID文件</span><br><span class="line">“raw-logs”: false, ——————全时间戳机制</span><br><span class="line">“selinux-enabled”: false, ——————默认 false，启用selinux支持</span><br><span class="line">“storage-driver”:&quot;&quot;, ——————要使用的存储驱动程序</span><br><span class="line">“swarm-default-advertise-addr”:&quot;&quot;, ——————设置默认地址或群集广告地址的接口</span><br><span class="line">“tls”: true, ————————默认 false, 启动TLS认证开关</span><br><span class="line">“tlscacert”: “”, ——————默认 ~/.docker/ca.pem，通过CA认证过的的certificate文件路径</span><br><span class="line">“tlscert”: “”, ————————默认 ~/.docker/cert.pem ，TLS的certificate文件路径</span><br><span class="line">“tlskey”: “”, ————————默认~/.docker/key.pem，TLS的key文件路径</span><br><span class="line">“tlsverify”: true, ————————默认false，使用TLS并做后台进程与客户端通讯的验证</span><br><span class="line">“userland-proxy”:false, ——————使用userland代理进行环回流量（默认为true）</span><br><span class="line">“userns-remap”:&quot;&quot;, ————————用户名称空间的用户/组设置</span><br><span class="line">“bip”:“192.168.88.0/22”, ——————————指定网桥IP</span><br><span class="line">“registry-mirrors”: [“https://192.498.89.232:89”], ————————设置镜像加速</span><br><span class="line">“insecure-registries”: [“120.123.122.123:12312”], ———————设置私有仓库地址可以设为http</span><br><span class="line">“storage-opts”: [</span><br><span class="line">“overlay2.override_kernel_check=true”,</span><br><span class="line">“overlay2.size=15G”</span><br><span class="line">], ————————存储驱动程序选项</span><br><span class="line">“log-opts”: &#123;</span><br><span class="line">“max-file”: “3”,</span><br><span class="line">“max-size”: “10m”,</span><br><span class="line">&#125;, ————————容器默认日志驱动程序选项</span><br><span class="line">“iptables”: false ————————启用iptables规则添加（默认为true）</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h2 id="主题插件配置"><a href="#主题插件配置" class="headerlink" title="主题插件配置"></a>主题插件配置</h2><p><strong>1、 安装插件</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://plugins.jenkins.io/simple-theme-plugin/">Simple Theme</a></p>
+</blockquote>
+<p><strong>2、配置插件</strong></p>
+<p>Configure System -&gt; Theme, 新增两个Css Url</p>
+<p><img src="/images/20200910-5.png" alt="color"></p>
+<p>添加<code>jenkins-material-theme.css</code>和<code>Title.css</code>的url</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="http://localhost:8080/userContent/layout/jenkins-material-theme.css">http://localhost:8080/userContent/layout/jenkins-material-theme.css</a></li>
+<li><a target="_blank" rel="noopener" href="http://localhost:8080/userContent/layout/title.css">http://localhost:8080/userContent/layout/title.css</a></li>
+</ol>
+<p><img src="/images/20200910-6.png" alt="color"></p>
+<h2 id="新的主题"><a href="#新的主题" class="headerlink" title="新的主题"></a>新的主题</h2><p>查看新的主题效果</p>
+<p><strong>1、界面整体UI</strong></p>
+<p><img src="/images/20200910-7.png" alt="color"></p>
 
       
     </div>
@@ -428,7 +371,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Docker/docker-compose%20%E7%AE%A1%E7%90%86docker%E7%9A%84%E5%A4%9A%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Jenkins/Jenkins%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -441,7 +384,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/4.ToolsNotes/Docker/docker-compose%20%E7%AE%A1%E7%90%86docker%E7%9A%84%E5%A4%9A%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">docker-compose 管理docker的多容器配置</a>
+          <a href="/4.ToolsNotes/Jenkins/Jenkins%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6/" class="post-title-link" itemprop="url">Jenkins常用插件</a>
         </h2>
 
         <div class="post-meta-container">
@@ -452,458 +395,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2019-12-23 12:14:00" itemprop="dateCreated datePublished" datetime="2019-12-23T12:14:00+08:00">2019-12-23</time>
+      <time title="创建时间：2020-08-21 14:30:00" itemprop="dateCreated datePublished" datetime="2020-08-21T14:30:00+08:00">2020-08-21</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-07 17:41:05" itemprop="dateModified" datetime="2021-03-07T17:41:05+08:00">2021-03-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">version: &#x27;3.4&#x27;</span><br><span class="line">x-defaults: &amp;defaults</span><br><span class="line">  restart: unless-stopped#启动模式，当值为always时，容器总是重新启动；当值为no-failure时，即出现报错容器退出时，容器重新启动；unless-stopped为容器自启模式</span><br><span class="line">  network_mode: &quot;host&quot;</span><br><span class="line">services:</span><br><span class="line">  mysql: #服务名</span><br><span class="line">    hostname: mysql   #主机名</span><br><span class="line">    image: mysql/mysql:latest  #镜像</span><br><span class="line">    container_name: mysql  #容器名称</span><br><span class="line">    environment:</span><br><span class="line">     - TZ=Asia/Shanghai #时区</span><br><span class="line">    ports:  #端口</span><br><span class="line">      - 80:80</span><br><span class="line">      - 3000:3000</span><br><span class="line">    volumes:</span><br><span class="line">      - &quot;/etc/localtime:/etc/localtime:ro&quot; # 设置容器时区与宿主机保持一致</span><br><span class="line">      - /home/用户名/mysql/data:/data</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/Python-Jenkins%E4%BF%A1%E6%81%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Home">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/1.Python/Python-Jenkins%E4%BF%A1%E6%81%AF/" class="post-title-link" itemprop="url">Python-Jenkins信息</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-12-11 17:33:00" itemprop="dateCreated datePublished" datetime="2019-12-11T17:33:00+08:00">2019-12-11</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-07 17:51:58" itemprop="dateModified" datetime="2021-03-07T17:51:58+08:00">2021-03-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://python-jenkins.readthedocs.io/en/latest/examples.html#example-1-get-version-of-jenkins">1、官方文档</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8fda9e96addd">2、Python-jenkins-api</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/znicy/p/5498609.html">3、Python调用Jenkins</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.im/post/5c70de3b6fb9a049c2330e2d">4、Jenkins常用rest-api</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/seeeees/article/details/79388684">5、Python-jenkins模块之job相关操作</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/%E9%80%9A%E8%BF%87Python%E8%B0%83%E7%94%A8Jenkins%E5%B8%B8%E7%94%A8api%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Home">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/1.Python/%E9%80%9A%E8%BF%87Python%E8%B0%83%E7%94%A8Jenkins%E5%B8%B8%E7%94%A8api%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">通过Python调用Jenkins 常用api操作</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-12-11 17:31:00" itemprop="dateCreated datePublished" datetime="2019-12-11T17:31:00+08:00">2019-12-11</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-07 17:55:12" itemprop="dateModified" datetime="2021-03-07T17:55:12+08:00">2021-03-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/L-O-N/p/11608220.html">原文参考</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> jenkins</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestJenkins</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span>(<span class="params">cls, *args, **kwargs</span>):</span></span><br><span class="line">        server = <span class="string">&#x27;http://1.1.1.1:8080/jenkins&#x27;</span></span><br><span class="line">        username = <span class="string">&#x27;admin&#x27;</span></span><br><span class="line">　　　　 <span class="comment"># 对应用户的token信息,不是明文的密码信息</span></span><br><span class="line">        password = <span class="string">&#x27;fljljdfladoweurojlsjdfasd123&#x27;</span></span><br><span class="line">        server = jenkins.Jenkins(url=server, username=username, password=password)</span><br><span class="line">        instance = <span class="built_in">super</span>(TestJenkins, cls).__new__(cls, *args, **kwargs)</span><br><span class="line">        instance.server = server</span><br><span class="line">        <span class="keyword">return</span> instance</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment">#这里的api_token是针对远程执行任务时,jenkins要验证的token的信息</span></span><br><span class="line">        self.api_token = <span class="string">&#x27;okfine&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jobs_count</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(self.server.jobs_count())</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">server_info</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(self.server.server)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_jobs_info</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> self.server.get_all_jobs():</span><br><span class="line">            print(<span class="string">&#x27;name: %s&#x27;</span> % item[<span class="string">&#x27;name&#x27;</span>], <span class="string">&#x27;URL: &#x27;</span>, item[<span class="string">&#x27;url&#x27;</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_whoami</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(self.server.get_whoami(depth=<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_auth</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(self.server.auth)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_debug_job_info</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        print(self.server.debug_job_info(name))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">check_job_exists</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        print(self.server.job_exists(name))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_all_jobs</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(self.server.get_all_jobs())</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_job</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(self.server.create_job(<span class="string">&#x27;API-1&#x27;</span>, jenkins.RECONFIG_XML))</span><br><span class="line">        print(self.server.create_job(<span class="string">&#x27;API-2&#x27;</span>, jenkins.RECONFIG_XML))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete_job</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        print(self.server.delete_job(name))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">copy_job</span>(<span class="params">self, name, new_name</span>):</span></span><br><span class="line">        print(self.server.copy_job(name, new_name))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enable_job</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        print(self.server.enable_job(name))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">disable_job</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        print(self.server.disable_job(name))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reconfig_job</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        print(self.server.reconfig_job(name, jenkins.RECONFIG_XML))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rename_job</span>(<span class="params">self, name, new_name</span>):</span></span><br><span class="line">        print(self.server.rename_job(name, new_name))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build_job</span>(<span class="params">self, name, parameters</span>):</span></span><br><span class="line">        print(self.server.build_job(name, parameters, token=self.api_token))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_job_info</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        <span class="comment"># 主要是通过任务的信息,来得到需要传入的参数信息,jenkins 各种自定义选项信息,单凭肉眼是很难辨别出参数信息的,</span></span><br><span class="line">        <span class="comment"># 任务相关参数信息都是在property这个参数里面</span></span><br><span class="line">        build_arg = self.server.get_job_info(name)[<span class="string">&quot;property&quot;</span>]</span><br><span class="line">        <span class="keyword">for</span> parameter_definitions <span class="keyword">in</span> build_arg:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(parameter_definitions) &gt; <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">for</span> parameter <span class="keyword">in</span> parameter_definitions[<span class="string">&quot;parameterDefinitions&quot;</span>]:</span><br><span class="line">                    print(<span class="string">&#x27;----------------------------------&#x27;</span>)</span><br><span class="line">                    print(<span class="string">&#x27;name: %s&#x27;</span> % parameter[<span class="string">&quot;name&quot;</span>])</span><br><span class="line">                    print(<span class="string">&#x27;class: %s&#x27;</span> % parameter[<span class="string">&quot;_class&quot;</span>])</span><br><span class="line">                    print(<span class="string">&#x27;type: %s&#x27;</span> % parameter[<span class="string">&quot;type&quot;</span>])</span><br><span class="line">                    print(<span class="string">&#x27;description: %s&#x27;</span> % parameter[<span class="string">&quot;description&quot;</span>])</span><br><span class="line">                    print(<span class="string">&#x27;jenkins_arg: %s&#x27;</span> % parameter[<span class="string">&quot;defaultParameterValue&quot;</span>][<span class="string">&quot;name&quot;</span>])</span><br><span class="line">                    print(<span class="string">&#x27;default_value: %s&#x27;</span> % parameter[<span class="string">&quot;defaultParameterValue&quot;</span>][<span class="string">&quot;value&quot;</span>])</span><br><span class="line">                    <span class="keyword">if</span> parameter[<span class="string">&quot;_class&quot;</span>] == <span class="string">&#x27;hudson.model.ChoiceParameterDefinition&#x27;</span>:</span><br><span class="line">                        print(<span class="string">&#x27;can_choices: %s&#x27;</span> % parameter[<span class="string">&quot;choices&quot;</span>])</span><br><span class="line">                    print(<span class="string">&#x27;----------------------------------&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_build_log</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        last_build_number = self.server.get_job_info(name)[<span class="string">&#x27;lastCompletedBuild&#x27;</span>][<span class="string">&#x27;number&#x27;</span>]</span><br><span class="line">        print(<span class="string">&#x27;last_build_number&#x27;</span>, last_build_number)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 查看指定构建编号的输出</span></span><br><span class="line">        print(self.server.get_build_console_output(name, last_build_number))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span>(<span class="params">self, *args, **kwargs</span>):</span></span><br><span class="line">        self.get_job_info(<span class="string">&#x27;shop&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 通过特定任务的信息来得到要传入的参数信息,然后再来执行构建任务</span></span><br><span class="line">        <span class="comment"># build new job, nice  operation</span></span><br><span class="line">        <span class="comment"># 如下列所示的5个参数,就是此次构建必须提供的参数</span></span><br><span class="line">        param_dict = &#123;<span class="string">&#x27;repository&#x27;</span>: <span class="string">&#x27;ssh://git@xxxxx.com/xx/xxxx.git&#x27;</span>,</span><br><span class="line">                       <span class="string">&#x27;profile&#x27;</span>: <span class="string">&#x27;xxxx-xxx&#x27;</span>,</span><br><span class="line">                       <span class="string">&#x27;branch&#x27;</span>: <span class="string">&#x27;master&#x27;</span>,</span><br><span class="line">                       <span class="string">&#x27;upload_nexus&#x27;</span>: <span class="literal">False</span>,</span><br><span class="line">                       <span class="string">&#x27;deploy_app&#x27;</span>: <span class="literal">False</span>&#125;</span><br><span class="line"></span><br><span class="line">        self.build_job(<span class="string">&#x27;xxxxx&#x27;</span>, parameters=param_dict)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">TestJenkins()()</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/Django%E5%AE%9E%E7%8E%B0%E5%88%97%E8%A1%A8%E5%88%86%E9%A1%B5%E5%8A%9F%E8%83%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Home">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/1.Python/Django%E5%AE%9E%E7%8E%B0%E5%88%97%E8%A1%A8%E5%88%86%E9%A1%B5%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">Django实现列表分页功能</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-12-11 17:11:00" itemprop="dateCreated datePublished" datetime="2019-12-11T17:11:00+08:00">2019-12-11</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-07 17:57:49" itemprop="dateModified" datetime="2021-03-07T17:57:49+08:00">2021-03-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h5 id="在view-py里添加分页查询方法"><a href="#在view-py里添加分页查询方法" class="headerlink" title="在view.py里添加分页查询方法:"></a>在view.py里添加分页查询方法:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> JsonResponse</span><br><span class="line"><span class="keyword">from</span> django.views.decorators.http <span class="keyword">import</span> require_http_methods</span><br><span class="line"><span class="keyword">from</span> django.core <span class="keyword">import</span> serializers</span><br><span class="line"><span class="keyword">from</span> django.core.paginator <span class="keyword">import</span> Paginator, EmptyPage, PageNotAnInteger</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 分页查询</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_page</span>(<span class="params">request</span>):</span></span><br><span class="line">    page = request.GET.get(<span class="string">&#x27;page&#x27;</span>)</span><br><span class="line">    pageSize = <span class="built_in">int</span>(request.GET.get(<span class="string">&#x27;pageSize&#x27;</span>))</span><br><span class="line">    response = &#123;&#125;</span><br><span class="line">    book_list = Book.objects.<span class="built_in">all</span>()</span><br><span class="line">    paginator = Paginator(book_list, pageSize)</span><br><span class="line">    response[<span class="string">&#x27;total&#x27;</span>] = paginator.count</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        books = paginator.page(page)</span><br><span class="line">    <span class="keyword">except</span> PageNotAnInteger:</span><br><span class="line">        books = paginator.page(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">except</span> EmptyPage:</span><br><span class="line">        books = paginator.page(paginator.num_pages)</span><br><span class="line">    response[<span class="string">&#x27;list&#x27;</span>] = json.loads(serializers.serialize(<span class="string">&quot;json&quot;</span>, books))</span><br><span class="line">    <span class="keyword">return</span> JsonResponse(response)</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/%E6%95%99%E4%BD%A0%E6%80%8E%E4%B9%88%E8%B0%83%E7%94%A8GitlabAPI/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Home">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/1.Python/%E6%95%99%E4%BD%A0%E6%80%8E%E4%B9%88%E8%B0%83%E7%94%A8GitlabAPI/" class="post-title-link" itemprop="url">教你怎么调用GitlabAPI</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-12-05 20:18:00" itemprop="dateCreated datePublished" datetime="2019-12-05T20:18:00+08:00">2019-12-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-13 15:17:45" itemprop="dateModified" datetime="2021-03-13T15:17:45+08:00">2021-03-13</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="官方文档："><a href="#官方文档：" class="headerlink" title="官方文档："></a><strong>官方文档：</strong></h2><p><a target="_blank" rel="noopener" href="https://docs.gitlab.com/ce/api/">参考1</a></p>
-<p><a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/api/branches.html#list-repository-branches">参考2</a></p>
-<h2 id="生成Personal-Access-Tokens"><a href="#生成Personal-Access-Tokens" class="headerlink" title="生成Personal Access Tokens"></a><strong>生成Personal Access Tokens</strong></h2><p>   选择右上角用户信息setting—&gt;Access Tokens</p>
-<h2 id="常用Gitlab-API"><a href="#常用Gitlab-API" class="headerlink" title="常用Gitlab API"></a><strong>常用Gitlab API</strong></h2><p><strong>1、获取所有的项目信息</strong></p>
-<p><a target="_blank" rel="noopener" href="http://192.168.199.184/api/v3/projects?private_token=gqv1hvjbGCLs6uAUmBV8&per_page=10">private_token来自Access Tokens</a></p>
-<p><strong>2、获取项目信息</strong></p>
-<p><a target="_blank" rel="noopener" href="http://192.168.199.184/api/v3/projects/15">15 为项目ID，来自所有的项目信息</a></p>
-<p><strong>3、查看用户信息</strong></p>
-<p><a target="_blank" rel="noopener" href="http://192.168.199.184/api/v3/projects/15/users?private_token=gqv1hvjbGCLs6uAUmBV8&amp;per_page=10">http://192.168.199.184/api/v3/projects/15/users?private_token=gqv1hvjbGCLs6uAUmBV8&amp;per_page=10</a></p>
-<p><strong>4、获取commits提交信息</strong>:</p>
-<p><a target="_blank" rel="noopener" href="http://192.168.199.184/api/v3/projects/15/repository/commits/master?private_token=gqv1hvjbGCLs6uAUmBV8&per_page=10">15 为项目ID，来自所有的项目信息</a></p>
-<h2 id="实战案例"><a href="#实战案例" class="headerlink" title="实战案例"></a><strong>实战案例</strong></h2><p><strong>1、获取项目信息</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#-*-coding:utf-8-*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&#x27;http://192.168.199.184/api/v3/projects?private_token=oMJwN5ErC8_n1QvTsyDR&amp;per_page=50&#x27;</span>　　　　</span><br><span class="line">user_url= <span class="string">&#x27;http://192.168.199.184/api/v3/projects/15/users?private_token=oMJwN5ErC8_n1QvTsyDR&amp;per_page=10&#x27;</span>　　</span><br><span class="line"><span class="comment">#获取项目id和项目名称</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GetProject_id</span>(<span class="params">project_url</span>):</span>　　</span><br><span class="line">    r = requests.get(project_url)</span><br><span class="line">    data = r.json()</span><br><span class="line">    ProjectId_list = []</span><br><span class="line">    ProjectName_list = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">        ProjectId_list.append(i[<span class="string">&#x27;id&#x27;</span>])</span><br><span class="line">        ProjectName_list.append(i[<span class="string">&#x27;name&#x27;</span>])</span><br><span class="line">    <span class="keyword">return</span> ProjectId_list,ProjectName_list</span><br><span class="line"><span class="comment">#根据项目id获取项目下的用户信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GetProject_userlist</span>():</span></span><br><span class="line">    IdList = GetProject_id(url)</span><br><span class="line">    project_id = IdList[<span class="number">0</span>]</span><br><span class="line">    project_name = IdList[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">id</span> <span class="keyword">in</span> project_id:</span><br><span class="line">        l = []</span><br><span class="line">        project_user = requests.get(user_url.<span class="built_in">format</span>(<span class="built_in">id</span>))　　        <span class="comment">#生成完整的用于显示项目下所有user的连接</span></span><br><span class="line">        req_data = project_user.json()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> req_data:</span><br><span class="line">            l.append(i[<span class="string">&#x27;name&#x27;</span>])</span><br><span class="line">        <span class="built_in">print</span> (project_name[project_id.index(<span class="built_in">id</span>)],l)</span><br><span class="line">GetProject_userlist()</span><br></pre></td></tr></table></figure>
-
-<p><strong>2、获取项目提交信息</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-*-coding:utf-8-*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span>  re</span><br><span class="line">url = <span class="string">&#x27;http://192.168.199.184/api/v3/projects?private_token=oMJwN5ErC8_n1QvTsyDR&amp;per_page=10&#x27;</span></span><br><span class="line">r =requests.get(url)</span><br><span class="line">p_group = [<span class="string">&#x27;HJ&#x27;</span>]</span><br><span class="line">data = r.json()</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;项目名称&quot;</span>,<span class="string">&#x27; &#x27;</span>*<span class="number">20</span>,<span class="string">&#x27;最近提交时间&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">    <span class="keyword">if</span> i[<span class="string">&#x27;ssh_url_to_repo&#x27;</span>].split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>].split(<span class="string">&#x27;/&#x27;</span>)[<span class="number">0</span>] <span class="keyword">in</span> p_group:</span><br><span class="line">        r1 = requests.get(<span class="string">&#x27;http://192.168.199.184/api/v3/projects/15/repository/commits/master?private_token=gqv1hvjbGCLs6uAUmBV8&amp;per_page=10&#x27;</span></span><br><span class="line">            % i[<span class="string">&#x27;id&#x27;</span>])</span><br><span class="line">        data2 = r1.json()</span><br><span class="line">        <span class="keyword">if</span> data2[<span class="string">&#x27;message&#x27;</span>].strip() == <span class="string">&#x27;404 Commit Not Found&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span> (i[<span class="string">&#x27;ssh_url_to_repo&#x27;</span>].split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>],<span class="string">&#x27; &#x27;</span>*<span class="number">11</span>,<span class="string">&#x27;未提交任何代码&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(i[<span class="string">&#x27;ssh_url_to_repo&#x27;</span>].split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>], <span class="string">&#x27; &#x27;</span> * <span class="number">11</span>, data2[<span class="string">&#x27;committed_date&#x27;</span>][:<span class="number">10</span>])</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Jenkins/%E8%8E%B7%E5%8F%96Jenkins%E6%9E%84%E5%BB%BA%E6%97%B6GitChangeLog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Home">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/4.ToolsNotes/Jenkins/%E8%8E%B7%E5%8F%96Jenkins%E6%9E%84%E5%BB%BA%E6%97%B6GitChangeLog/" class="post-title-link" itemprop="url">获取Jenkins构建时GitChangeLog</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-10-18 10:55:00" itemprop="dateCreated datePublished" datetime="2019-10-18T10:55:00+08:00">2019-10-18</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-12 11:29:37" itemprop="dateModified" datetime="2021-03-12T11:29:37+08:00">2021-03-12</time>
+        <time title="修改时间：2021-03-12 11:39:35" itemprop="dateModified" datetime="2021-03-12T11:39:35+08:00">2021-03-12</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -929,42 +428,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/HYanqing/p/11697097.html">获取Jenkins构建时Git Change Log</a></p>
-<p>在基于Jenkins进行CI持续集成的工作，在构建后上传蒲公英时想将本次版本的git commit信息同步到蒲公英的下载页面。Jenkins每次构建都会根据Git 的提交记录生成一个Web页面来显示自上次构建之后的提交记录列表（如图1），但是Jenkins却并没有提供可以获取这个Strings的功能。 </p>
-<p><img src="/images/20191018-1.png" alt="images"></p>
-<h4 id="Maven安装"><a href="#Maven安装" class="headerlink" title="Maven安装"></a>Maven安装</h4><p>  下载地址：<a target="_blank" rel="noopener" href="https://maven.apache.org/download.cgi%EF%BC%88%E5%A6%82%E5%9B%BE%EF%BC%89%E3%80%82">https://maven.apache.org/download.cgi（如图）。</a></p>
-<p>  将下载的压缩包解压到某个目录下，例如：/Users/用户名/apache-maven-3.5.3。</p>
-<p>  在终端执行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vi ~/.bash_profile</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">export</span> M2_HOME=/Users/用户名/apache-maven-3.5.3</span> </span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$M2_HOME</span>/bin</span></span><br></pre></td></tr></table></figure>
+          <h2 id="Timestamper"><a href="#Timestamper" class="headerlink" title="Timestamper"></a>Timestamper</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">The Timestamper plugin adds timestamps to the console output of Jenkins jobs. For example:</span><br><span class="line"></span><br><span class="line">21:51:15  Started by user anonymous</span><br><span class="line">21:51:15  Building on master</span><br><span class="line">21:51:17  Finished: SUCCESS</span><br></pre></td></tr></table></figure>
 
-<p>  最后在终端执行如下命令来使.bash_profile生效：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> ~/.bash_profile</span></span><br></pre></td></tr></table></figure>
+<p><strong>使用</strong></p>
+<p><img src="/images/20200821-1.png" alt="timestamper"></p>
+<h2 id="AnsiColor"><a href="#AnsiColor" class="headerlink" title="AnsiColor"></a>AnsiColor</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This plugin adds support for standard ANSI escape sequences, including color, to Console Output.　</span><br></pre></td></tr></table></figure>
 
-<p>  可以输入mvn -v来检查Maven是否生效</p>
-<p><img src="/images/20191018-2.png" alt="images"></p>
-<h4 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h4><p> Jenkins里面同样有人反馈了同样的需求，有人给出了一个插件解决获取git change log的需求，插件开源地址（<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/daniel-beck/changelog-environment-plugin">https://github.com/daniel-beck/changelog-environment-plugin</a>）</p>
-<ol>
-<li><p>因作者并没有将插件编译上传，所以我们需要将项目Clone到本地</p>
-</li>
-<li><p>然后在项目根目录下执行 <em>mvn verify</em> ，因为依赖较多，第一次build时间会比较漫长，需耐心等待</p>
-</li>
-<li><p>build完成之后项目根目录中“target”文件夹中会出现“changelog-environment.hpi”这个文件</p>
-</li>
-</ol>
-<p>（注：<em>mvn verify</em> 是Maven命令，文章最后简单说明如何安装），插件现已上传到GitHub上（<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/KrisMarko/kr-changelog">https://github.com/KrisMarko/kr-changelog</a>）。</p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>  在Jenkins的系统管理-&gt; 管理插件-&gt; 高级-&gt;上传插件，将刚刚编译生成的“changelog-environment.hpi”文件上传并安装到Jenkins中，安装完成后，会在“构建环境”中有“Add Changelog Information to Environment”选项，选中后会有Entry Format、File Item Format、Date Format三个可配置项，第一个就是填写提交日志输出格式的地方，采用的是Java String.format占位符的形式。其中可以使用四个参数，分别是：</p>
-<ol>
-<li><p>提交的作者</p>
-</li>
-<li><p>提交的 ID</p>
-</li>
-<li><p>提交信息</p>
-</li>
-<li><p>提交时间(通过 Date Format 控制格式)</p>
-</li>
-</ol>
-<p>  例，我在Entry Format输入 %3$s (via %1$s)\n，然后有一条提交记录，提交信息为「fix bug」，提交者为 Kris.Marko，那么输出到环境变量的字符串就是 “fix bug (via Kris.Marko)\n” (后面的 \n 是为了多层转义，视使用情况请自行调整)。</p>
-<p>  通过如上设置之后，在构建时就可以在shell中来获得SCM_CHANGELOG变量来取到更新日志了。比如自动上传更新信息到内测平台（如蒲公英）。</p>
+<p><strong>使用</strong></p>
+<p><img src="/images/20200821-2.png" alt="timestamper"></p>
 
       
     </div>
@@ -991,7 +462,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/4.Shell/%E4%BD%BF%E7%94%A8Shell%E7%99%BB%E5%BD%95%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8C%E5%A4%9A%E6%9D%A1%E5%91%BD%E4%BB%A4%EF%BC%8CSSH%E7%99%BB%E5%BD%95%E4%B9%8B%E5%90%8E%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/uWSGI%E5%90%AF%E5%8A%A8Django%E9%A1%B9%E7%9B%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1004,7 +475,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/4.Shell/%E4%BD%BF%E7%94%A8Shell%E7%99%BB%E5%BD%95%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8C%E5%A4%9A%E6%9D%A1%E5%91%BD%E4%BB%A4%EF%BC%8CSSH%E7%99%BB%E5%BD%95%E4%B9%8B%E5%90%8E%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">使用Shell登录远程服务器执行多条命令，SSH登录之后执行脚本文件</a>
+          <a href="/2.Programming/1.Python/uWSGI%E5%90%AF%E5%8A%A8Django%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">uWSGI启动Django项目</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1015,14 +486,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2019-10-16 18:32:00" itemprop="dateCreated datePublished" datetime="2019-10-16T18:32:00+08:00">2019-10-16</time>
+      <time title="创建时间：2020-08-11 15:39:00" itemprop="dateCreated datePublished" datetime="2020-08-11T15:39:00+08:00">2020-08-11</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-12 11:50:40" itemprop="dateModified" datetime="2021-03-12T11:50:40+08:00">2021-03-12</time>
+        <time title="修改时间：2021-03-13 14:38:39" itemprop="dateModified" datetime="2021-03-13T14:38:39+08:00">2021-03-13</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1034,7 +505,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
+          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
         </span>
     </span>
 
@@ -1048,24 +519,104 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36622490/article/details/100773589">使用Shell登录远程服务器执行多条命令，SSH登录之后执行脚本文件</a></p>
-<p>这个需求主要是我在jenkins中pipeline的代码里，需要使用shell语言执行远程连接并且部署的工作，但是大多数的shell和服务器交互是使用expect解释器 就是之前我写过的那个关于expect有关的文章，问题是jenkins中默认的shell解释器只有bash，不能更改解释器的。所以就很难受，国内的百度基本都是搬运过来的内容，毫无意义，浪费时间，在国外博客浪荡几天之后终于找到了解决方案。</p>
-<p>下面我来分享一下，大致意思呢就是执行完ssh 连接远程主机之后需要执行的命令，可以进行如下操作，命令不要照抄，换成你自己的user名和ip地址。</p>
-<p><strong>【我在我自己电脑和服务器之间都配置了ssh免密码登录 直接使用ssh IP地址就可以登录了，强烈建议配置ssh，非常方便】</strong></p>
-<h4 id="登录远程主机执行单条命令"><a href="#登录远程主机执行单条命令" class="headerlink" title="登录远程主机执行单条命令"></a>登录远程主机执行单条命令</h4><p>登录完主机之后执行一条命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh USER@HOST <span class="string">&#x27;COMMAND&#x27;</span></span></span><br></pre></td></tr></table></figure>
+          <p><img src="/images/20200811-1.png" alt="uwsgi"></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install uwsgi</span><br></pre></td></tr></table></figure>
 
-<p>获取远程主机的最新更新时间</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@192.168.1.1 <span class="string">&#x27;uptime&#x27;</span></span></span><br></pre></td></tr></table></figure>
 
-<p>登录完远程主机就进行重启远程主机</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@192.168.1.1 <span class="string">&#x27;reboot&#x27;</span></span></span><br></pre></td></tr></table></figure>
 
-<p>那么问题出来了，上面的都是执行一条命令，那如果我需要执行多条命令怎么办呢？之前困扰我最大的问题就是这个，执行多条命令，虽然直接堆叠多条ssh 登录的语句 那些前缀也可以，但是看着就恶心。这样我们就可以使用以下几个方案,原内容如下，我做了备注，这样比较一目了然。</p>
-<h4 id="登录远程主机执行多条命令"><a href="#登录远程主机执行多条命令" class="headerlink" title="登录远程主机执行多条命令"></a>登录远程主机执行多条命令</h4><p><img src="/images/20191016-1.png" alt="images"></p>
-<p> 可能还有小伙伴会问，如果需要ssh登录远程之后执行指定的脚本文件怎么做？</p>
-<h4 id="登录远程主机执行指定脚本文件"><a href="#登录远程主机执行指定脚本文件" class="headerlink" title="登录远程主机执行指定脚本文件"></a>登录远程主机执行指定脚本文件</h4><p><img src="/images/20191016-2.png" alt="images"></p>
-<p>由此来看，英文还是非常重要的。不然遇到问题你都不知道怎么去搜了，不是我埋汰百度，确实国内搬运回答问题现象太严重，点进去一个除了站点不一样 内容都一样 连错别字都一样，如果你是经常和计算机打交道的一定下载个谷歌浏览器，必须可以使用谷歌，可以配置插件或者配置翻墙设备。</p>
+<p><strong>新增文件uwsgi.ini；跟manage.py 同一级目录</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"> 1 [uwsgi]</span><br><span class="line"> 2 ; 监听的端口</span><br><span class="line"> 3 http &#x3D; :8000</span><br><span class="line"> 4 </span><br><span class="line"> 5 ; 指定和nginx进行套接字通信的方式：端口或文件</span><br><span class="line"> 6 ; socket &#x3D; 127.0.0.1:8001</span><br><span class="line"> 7 ; socket &#x3D; &#x2F;home&#x2F;kzzf&#x2F;project&#x2F;OfferHelp&#x2F;OfferHelp.sock</span><br><span class="line"> 8 </span><br><span class="line"> 9 ; 项目所在目录，和manage.py同级</span><br><span class="line">10 chdir &#x3D; &#x2F;home&#x2F;kzzf&#x2F;project&#x2F;OfferHelp</span><br><span class="line">11 </span><br><span class="line">12 ; 虚拟环境所在目录</span><br><span class="line">13 home&#x3D;&#x2F;home&#x2F;kzzf&#x2F;env&#x2F;OfferHelp-env</span><br><span class="line">14 PYTHONHOME &#x3D; &#x2F;home&#x2F;kzzf&#x2F;env&#x2F;OfferHelp-env&#x2F;bin&#x2F;</span><br><span class="line">15 </span><br><span class="line">16 ; 主应用中的wsgi文件</span><br><span class="line">17 wsgi-file &#x3D; OfferHelp&#x2F;wsgi.py</span><br><span class="line">18 </span><br><span class="line">19 ; 使用路由代理静态资源，但失败了</span><br><span class="line">20 ; static-safe&#x3D;&#x2F;home&#x2F;kzzf&#x2F;project&#x2F;OfferHelp&#x2F;static&#x2F;</span><br><span class="line">21 ; route &#x3D; &#x2F;static&#x2F;(.*) static:&#x2F;home&#x2F;kzzf&#x2F;project&#x2F;OfferHelp&#x2F;static&#x2F;$1</span><br><span class="line">22 </span><br><span class="line">23 ; 代理静态资源：路径映射</span><br><span class="line">24 static-map &#x3D; &#x2F;static&#x3D;&#x2F;home&#x2F;kzzf&#x2F;project&#x2F;OfferHelp&#x2F;collect_static</span><br><span class="line">25 </span><br><span class="line">26 ; 启动一个master进程，来管理其余的子进程</span><br><span class="line">27 master&#x3D;True</span><br><span class="line">28 processes &#x3D; 4</span><br><span class="line">29 threads &#x3D; 2</span><br><span class="line">30 </span><br><span class="line">31 ; 保存主进程的pid，用来控制uwsgi服务</span><br><span class="line">32 pidfile&#x3D;&#x2F;home&#x2F;kzzf&#x2F;project&#x2F;OfferHelp&#x2F;uwsgi.pid</span><br><span class="line">33 ; 启动项目  uwsgi uwsgi.ini</span><br><span class="line">34 ; uwsgi --stop&#x2F;reload xxx.pid  停止&#x2F;重启uwsgi</span><br><span class="line">35 </span><br><span class="line">36 ; 设置后台运行，保存日志</span><br><span class="line">37 daemonize&#x3D;&#x2F;home&#x2F;kzzf&#x2F;project&#x2F;OfferHelp&#x2F;log&#x2F;uwsgi.log</span><br><span class="line">38 ; deamonize&#x3D;1  ; 用来配置background运行</span><br><span class="line">39 </span><br><span class="line">40 ; 设置每个工作进程处理请求的上限，达到上限时，将回收（重启）该进程。可以预防内存泄漏</span><br><span class="line">41 max-requests&#x3D;5000</span><br><span class="line">42 </span><br><span class="line">43 # 服务停止时自动移除unix Socket和pid文件</span><br><span class="line">44 vacuum&#x3D;true</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1 uwsgi uwsgi.ini</span><br><span class="line">2 </span><br><span class="line">3 # 停止</span><br><span class="line">4 uwsgi --stop uwsgi.pid</span><br><span class="line">5 pkill -f uwsgi -9</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/%E8%A7%A3%E5%86%B3pip%20install%E5%A4%AA%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Home">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2.Programming/1.Python/%E8%A7%A3%E5%86%B3pip%20install%E5%A4%AA%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">解决pip install太慢的问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-11 15:39:00" itemprop="dateCreated datePublished" datetime="2020-08-11T15:39:00+08:00">2020-08-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-07 15:52:50" itemprop="dateModified" datetime="2021-03-07T15:52:50+08:00">2021-03-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>将pip的源换为国内的。</p>
+<p>1.新建目录及文件～/.pip/pip.conf</p>
+<p>2.内容为：</p>
+<p>[global]<br>index-url = <a target="_blank" rel="noopener" href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a></p>
+<p>[install]<br>trusted-host=mirrors.aliyun.com</p>
 
       
     </div>
@@ -1092,7 +643,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/4.Shell/SSH%E8%BF%9C%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Others/CentOS7.X%E6%9B%B4%E6%96%B0yum%E6%BA%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1105,7 +656,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/4.Shell/SSH%E8%BF%9C%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">SSH远程执行命令</a>
+          <a href="/4.ToolsNotes/Others/CentOS7.X%E6%9B%B4%E6%96%B0yum%E6%BA%90/" class="post-title-link" itemprop="url">CentOS7.X更新yum源</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1116,14 +667,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2019-10-16 18:28:00" itemprop="dateCreated datePublished" datetime="2019-10-16T18:28:00+08:00">2019-10-16</time>
+      <time title="创建时间：2020-04-20 17:46:00" itemprop="dateCreated datePublished" datetime="2020-04-20T17:46:00+08:00">2020-04-20</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-12 14:35:42" itemprop="dateModified" datetime="2021-03-12T14:35:42+08:00">2021-03-12</time>
+        <time title="修改时间：2021-03-12 11:41:35" itemprop="dateModified" datetime="2021-03-12T11:41:35+08:00">2021-03-12</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1131,11 +682,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
+          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
+          <a href="/categories/4-ToolsNotes/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
         </span>
     </span>
 
@@ -1149,63 +700,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liuxiao723846/article/details/82667482">SSH远程执行命令</a></p>
-<p>SSH 是 Linux 下进行远程连接的基本工具，不光可以登录，也可以远程操作。接下来我们详细讲解一些常用的情况。</p>
-<h2 id="执行简单的命令"><a href="#执行简单的命令" class="headerlink" title="执行简单的命令"></a>执行简单的命令</h2><p><strong>1、查看某台主机上的磁盘使用情况</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@1.113.195.138 <span class="string">&quot;df -h&quot;</span></span></span><br><span class="line">***************************************************************************</span><br><span class="line">NOTICE TO Users</span><br><span class="line"></span><br><span class="line">This computer system is the private property of ...</span><br><span class="line"></span><br><span class="line">***************************************************************************</span><br><span class="line"></span><br><span class="line">Filesystem Size Used Avail Use% Mounted on</span><br><span class="line">/dev/vda2 36G 3.2G 31G 10% /</span><br><span class="line">tmpfs 25G 0 25G 0% /dev/shm</span><br><span class="line">/dev/vdb 296G 2.0G 279G 1% /data</span><br></pre></td></tr></table></figure>
+          <h4 id="备份原来的yum源"><a href="#备份原来的yum源" class="headerlink" title="备份原来的yum源"></a>备份原来的yum源</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sudo cp &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo-backup</span><br></pre></td></tr></table></figure>
 
-<p>可以看到会把ssh远程连接的信息，以及远程执行名的返回的信息都输出到了控制台上。</p>
-<p><strong>2、保存远程执行命令结果</strong></p>
-<p>有时我们需要保存远程执行命令的结果，然后进行判断。有两种方法：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">赋值的方式：result=`ssh x@B ~/command.sh`</span><br><span class="line">追加到文件：ssh root@$ip &quot;cmd&quot; &gt;&gt; ./log</span><br></pre></td></tr></table></figure>
+<h4 id="设置aliyun的yum源"><a href="#设置aliyun的yum源" class="headerlink" title="设置aliyun的yum源"></a>设置aliyun的yum源</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sudo wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-7.repo</span><br></pre></td></tr></table></figure>
 
-<p>详情见：<a target="_blank" rel="noopener" href="https://blog.csdn.net/liuxiao723846/article/details/55045988">https://blog.csdn.net/liuxiao723846/article/details/55045988</a></p>
-<p><strong>3、一次执行多个命令</strong></p>
-<p>在shell中单行语句一般要用到分号来区分代码块，多行的话用换行符来区分代码块，则无需用到分号。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$PS1</span>&quot;</span> ]; <span class="keyword">then</span> <span class="built_in">echo</span> <span class="built_in">test</span> is ok; <span class="keyword">fi</span></span></span><br><span class="line">test is ok</span><br><span class="line"></span><br><span class="line">如果换做多行</span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="keyword">if</span> [ <span class="string">&quot;PS1&quot;</span> ]</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">&quot;test is ok&quot;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="keyword">fi</span></span></span><br><span class="line">test is ok</span><br></pre></td></tr></table></figure>
+<h4 id="添加EPEL源"><a href="#添加EPEL源" class="headerlink" title="添加EPEL源"></a>添加EPEL源</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sudo wget -P &#x2F;etc&#x2F;yum.repos.d&#x2F; http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;epel-7.repo</span><br></pre></td></tr></table></figure>
 
-<p>所以，我们可以在ssh中用分好拼接多个命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 ssh root@$IP &quot;if [ -e /lib64/libpcre.so.1 ];then echo &#x27;file exits...&#x27;;else cd /lib64 &amp;&amp; ln -s libpcre.so.0.0.1 libpcre.so.1;fi&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="执行需要交互的命令"><a href="#执行需要交互的命令" class="headerlink" title="执行需要交互的命令"></a>执行需要交互的命令</h2><p>有时候我们需要远程执行一些有交互操作的命令，如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ssh nick@xxx.xxx.xxx.xxx <span class="string">&quot;sudo ls /root&quot;</span></span><br><span class="line">$ ssh nick@xxx.xxx.xxx.xxx <span class="string">&quot;top&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/20191016-3.png" alt="images"></p>
-<p>这两条命令虽然提示的失败原因不同，但它们有一个共同点：都需要与用户交互(需要 TTY)。所以它们失败的原因也是相同的：<br>默认情况下，当你执行不带命令的 ssh 连接时，会为你分配一个 TTY。因为此时你应该是想要运行一个 shell 会话。<br>但是当你通过 ssh 在远程主机上执行命令时，并不会为这个远程会话分配 TTY。此时 ssh 会立即退出远程主机，所以需要交互的命令也随之结束。<br>好在我们可以通过 -t 参数显式的告诉 ssh，我们需要一个 TTY 远程 shell 进行交互！<br>添加 -t 参数后，ssh 会保持登录状态，直到你退出需要交互的命令。</p>
-<h2 id="执行本地脚本"><a href="#执行本地脚本" class="headerlink" title="执行本地脚本"></a>执行本地脚本</h2><p>通常我们遇到的不会是上面那种简单的问题，大多数时候我们需要把若干个命令放到一个脚本里，然后分发到远程去执行。大致有两种思路：</p>
-<p>使用scp将本地脚本文件拷贝到远端，然后再通过ssh执行远端的脚本；（弊端是脚本修改后，每次都需要scp）<br>直接在本地执行脚本到远程；<br>一个scp的例子</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for IP in $&#123;IP_ARR[@]&#125;</span><br><span class="line">do</span><br><span class="line">ssh root@$IP &quot;rm -rf $MONITOR_TARGET_FILE&quot; </span><br><span class="line">ssh root@$IP &quot;mkdir -p /data/apps/scripts&quot;</span><br><span class="line">scp $MONITOR_SOURCE_FILE root@$IP:$MONITOR_TARGET_FILE</span><br><span class="line">ssh root@$IP &#x27;echo &quot;*/1 * * * * /usr/bin/python /data/apps/scripts/checkStatus.py&#x27; $BUSINESS_TYPE &#x27;&gt;/dev/null 2&gt;&amp;1&quot; &gt;&gt; /var/spool/cron/root&#x27;</span><br><span class="line"> </span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-
-<p>重点我们在如何在本地执行脚本到远程。</p>
-<p><strong>1、执行一个简单的脚本到远程：</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat test.sh</span> </span><br><span class="line">ls</span><br><span class="line">pwd</span><br><span class="line"> </span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 &lt; test.sh</span> </span><br><span class="line">anaconda-ks.cfg</span><br><span class="line">/root</span><br></pre></td></tr></table></figure>
-
-<p>通过重定向 stdin，本地的脚本 test.sh 在远程服务器上被执行。</p>
-<p><strong>2、为脚本传递参数：</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat test.sh</span> </span><br><span class="line">echo $1</span><br><span class="line">echo $2</span><br><span class="line"> </span><br><span class="line">在本地执行结构如下：</span><br><span class="line"><span class="meta">$</span><span class="bash"> sh test.sh a b</span></span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line"></span><br><span class="line">通过重定向远程执行，会报错</span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 &lt; test.sh a b</span></span><br><span class="line">bash: a: command not found</span><br></pre></td></tr></table></figure>
-
-<p>看来上面的方法都无法为脚本传递参数。<br>要想在这种情况下(远程执行本地的脚本)执行带有参数的脚本，需要为 bash 指定 -s 参数：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 <span class="string">&#x27;bash -s&#x27;</span> &lt; test.sh a b</span></span><br><span class="line">a</span><br><span class="line">b</span><br></pre></td></tr></table></figure>
-
-<p>除此之外，我们还可以通过替换的方式传参，然后远程执行，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat .&#x2F;rollback_remote.sh | sed -e &quot;s&#x2F;#module#&#x2F;$&#123;MODULE_NAME&#125;&#x2F;g&quot; -e &quot;s&#x2F;#runarg#&#x2F;$&#123;RUN_ARG&#125;&#x2F;g&quot; | ssh $IP</span><br></pre></td></tr></table></figure>
-
-<h2 id="执行远程服务器上的脚本"><a href="#执行远程服务器上的脚本" class="headerlink" title="执行远程服务器上的脚本"></a>执行远程服务器上的脚本</h2><p>除了执行本地的脚本，还有一种情况是脚本文件存放在远程服务器上，而我们需要远程的执行它！此时在远程服务器上用户 nick 的家目录中有一个脚本 test.sh。文件的内容如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">pwd</span><br><span class="line">执行下面的命令即可（注：一定是绝对路径）：</span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh nick@xxx.xxx.xxx.xxx <span class="string">&quot;/home/nick/test.sh&quot;</span></span></span><br></pre></td></tr></table></figure>
-
-<p>下面我们也尝试为脚本传递参数。在远程主机上的 test.sh 文件的末尾添加两行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo $0</span><br><span class="line">echo $1</span><br><span class="line">然后尝试执行下面的命令：</span><br><span class="line"> </span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh nick@xxx.xxx.xxx.xxx /home/nick/test.sh helloworld</span></span><br></pre></td></tr></table></figure>
-
-<p>可以正确得到结果。</p>
-<h2 id="执行多行命令"><a href="#执行多行命令" class="headerlink" title="执行多行命令"></a>执行多行命令</h2><p>有时候我们可能需要随手写几行简单的逻辑，这也没有问题，ssh 能轻松搞定！</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 <span class="string">&quot;</span></span> </span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> ls</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="built_in">pwd</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="string">&quot;</span></span></span><br><span class="line">anaconda-ks.cfg</span><br><span class="line">/root</span><br></pre></td></tr></table></figure>
-
-<p>你可以用单引号或双引号开头，然后写上几行命令，最后再用相同的引号来结束。</p>
-<p>当我们在命令中引用了变量时会怎么样呢？</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> name=<span class="built_in">test</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 <span class="string">&quot;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="built_in">echo</span> <span class="variable">$name</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="string">&quot;</span></span></span><br><span class="line">test</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 <span class="string">&#x27;</span></span></span><br><span class="line">echo $name</span><br><span class="line">&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>最后一行，并没有输出我们期望的 test。这里多少有些诡异，因为如果变量没有被解释的话，输出的应该是 $name 才对。但是这里却什么都没有输出。对于引用变量的写法，可以通过bash 指定了 -c 参数方式保证变量被正确解释：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 bash -c <span class="string">&quot;&#x27;</span></span></span><br><span class="line">echo $name</span><br><span class="line">&#x27;&quot;</span><br><span class="line">test</span><br></pre></td></tr></table></figure>
+<h4 id="清理缓存，生成新缓存，执行yum系统更新"><a href="#清理缓存，生成新缓存，执行yum系统更新" class="headerlink" title="清理缓存，生成新缓存，执行yum系统更新"></a>清理缓存，生成新缓存，执行yum系统更新</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$sudo yum clean all</span><br><span class="line"></span><br><span class="line">$sudo yum makecache</span><br><span class="line"></span><br><span class="line">$sudo yum update（可选）</span><br></pre></td></tr></table></figure>
 
 
       
@@ -1226,7 +727,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

@@ -251,7 +251,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/2.PHP/ThinkPHP%E5%AE%9E%E7%8E%B0%E5%AD%98%E5%82%A8Session%E8%87%B3Redis/">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/Django%E5%AE%9E%E7%8E%B0%E5%88%97%E8%A1%A8%E5%88%86%E9%A1%B5%E5%8A%9F%E8%83%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -264,7 +264,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/2.PHP/ThinkPHP%E5%AE%9E%E7%8E%B0%E5%AD%98%E5%82%A8Session%E8%87%B3Redis/" class="post-title-link" itemprop="url">ThinkPHP实现存储Session至Redis</a>
+          <a href="/2.Programming/1.Python/Django%E5%AE%9E%E7%8E%B0%E5%88%97%E8%A1%A8%E5%88%86%E9%A1%B5%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">Django实现列表分页功能</a>
         </h2>
 
         <div class="post-meta-container">
@@ -275,14 +275,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2018-09-14 15:47:00" itemprop="dateCreated datePublished" datetime="2018-09-14T15:47:00+08:00">2018-09-14</time>
+      <time title="创建时间：2019-12-11 17:11:00" itemprop="dateCreated datePublished" datetime="2019-12-11T17:11:00+08:00">2019-12-11</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-13 13:54:35" itemprop="dateModified" datetime="2021-03-13T13:54:35+08:00">2021-03-13</time>
+        <time title="修改时间：2021-03-07 17:57:49" itemprop="dateModified" datetime="2021-03-07T17:57:49+08:00">2021-03-07</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -294,7 +294,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
         </span>
     </span>
 
@@ -308,11 +308,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="涉及文件"><a href="#涉及文件" class="headerlink" title="涉及文件"></a>涉及文件</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Thinkphp\Library\Think\Session\Driver   中新建redis缓存文件：Redis.<span class="keyword">class</span>.php</span><br><span class="line">Thinkphp\Common\function.php   中<span class="function"><span class="keyword">function</span> <span class="title">session</span>(<span class="params"><span class="variable">$name</span>=<span class="string">&#x27;&#x27;</span>,<span class="variable">$value</span>=<span class="string">&#x27;&#x27;</span></span>)   //<span class="title">session</span>说明文件</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//redis操作session</span></span><br><span class="line"><span class="string">&#x27;SESSION_AUTO_START&#x27;</span>    =&gt;  <span class="literal">true</span>,    <span class="comment">// 是否自动开启Session</span></span><br><span class="line"><span class="string">&#x27;SESSION_TYPE&#x27;</span>          =&gt; <span class="string">&#x27;Redis&#x27;</span>,    <span class="comment">//session类型</span></span><br><span class="line"><span class="string">&#x27;SESSION_PERSISTENT&#x27;</span>    =&gt;  <span class="number">1</span>,        <span class="comment">//是否长连接(对于php来说0和1都一样)</span></span><br><span class="line"><span class="string">&#x27;SESSION_CACHE_TIME&#x27;</span>    =&gt;  <span class="number">3000</span>,        <span class="comment">//连接超时时间(秒)</span></span><br><span class="line"><span class="string">&#x27;SESSION_EXPIRE&#x27;</span>        =&gt; <span class="number">0</span>,        <span class="comment">//session有效期(单位:秒) 0表示永久缓存</span></span><br><span class="line"><span class="string">&#x27;SESSION_PREFIX&#x27;</span>        =&gt;  <span class="string">&#x27;sses_&#x27;</span>,        <span class="comment">//session前缀</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Redis-class-php文件"><a href="#Redis-class-php文件" class="headerlink" title="Redis.class.php文件"></a>Redis.class.php文件</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Think</span>\<span class="title">Session</span>\<span class="title">Driver</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Redis Session驱动</span></span><br><span class="line"><span class="comment"> * 要求安装phpredis扩展：https://github.com/nicolasff/phpredis</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@category</span>   Think</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@package</span>  Session</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@subpackage</span>  Driver</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span>   TP3.2~TP3.2.1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Redis</span> <span class="keyword">implements</span> \<span class="title">SessionHandlerInterface</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Redis句柄</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$handler</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$get_result</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ( !extension_loaded(<span class="string">&#x27;redis&#x27;</span>) ) &#123;</span><br><span class="line">            E(L(<span class="string">&#x27;_NOT_SUPPERT_&#x27;</span>).<span class="string">&#x27;:redis&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">empty</span>(<span class="variable">$options</span>)) &#123;</span><br><span class="line">            <span class="variable">$options</span> = <span class="keyword">array</span> (</span><br><span class="line">                <span class="string">&#x27;host&#x27;</span>          =&gt; C(<span class="string">&#x27;REDIS_HOST&#x27;</span>) ? C(<span class="string">&#x27;REDIS_HOST&#x27;</span>) : <span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;port&#x27;</span>          =&gt; C(<span class="string">&#x27;REDIS_PORT&#x27;</span>) ? C(<span class="string">&#x27;REDIS_PORT&#x27;</span>) : <span class="number">6379</span>,</span><br><span class="line">                <span class="string">&#x27;timeout&#x27;</span>       =&gt; C(<span class="string">&#x27;SESSION_CACHE_TIME&#x27;</span>) ? C(<span class="string">&#x27;SESSION_CACHE_TIME&#x27;</span>) : <span class="literal">false</span>,</span><br><span class="line">                <span class="string">&#x27;persistent&#x27;</span>    =&gt; C(<span class="string">&#x27;SESSION_PERSISTENT&#x27;</span>) ? C(<span class="string">&#x27;SESSION_PERSISTENT&#x27;</span>) : <span class="literal">false</span>,</span><br><span class="line">                <span class="string">&#x27;auth&#x27;</span>          =&gt; C(<span class="string">&#x27;REDIS_AUTH&#x27;</span>) ? C(<span class="string">&#x27;REDIS_AUTH&#x27;</span>) : <span class="literal">false</span>,</span><br><span class="line">                <span class="string">&#x27;dbindex&#x27;</span>       =&gt; C(<span class="string">&#x27;REDIS_DBINDEX&#x27;</span>) ? C(<span class="string">&#x27;REDIS_DBINDEX&#x27;</span>) : <span class="number">0</span>, <span class="comment">//选择存库</span></span><br><span class="line">            );</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$options</span>[<span class="string">&#x27;host&#x27;</span>] = explode(<span class="string">&#x27;,&#x27;</span>, <span class="variable">$options</span>[<span class="string">&#x27;host&#x27;</span>]);</span><br><span class="line">        <span class="variable">$options</span>[<span class="string">&#x27;port&#x27;</span>] = explode(<span class="string">&#x27;,&#x27;</span>, <span class="variable">$options</span>[<span class="string">&#x27;port&#x27;</span>]);</span><br><span class="line">        <span class="variable">$options</span>[<span class="string">&#x27;auth&#x27;</span>] = explode(<span class="string">&#x27;,&#x27;</span>, <span class="variable">$options</span>[<span class="string">&#x27;auth&#x27;</span>]);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$options</span>[<span class="string">&#x27;host&#x27;</span>] <span class="keyword">as</span> <span class="variable">$key</span>=&gt;<span class="variable">$value</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$options</span>[<span class="string">&#x27;port&#x27;</span>][<span class="variable">$key</span>])) &#123;</span><br><span class="line">                <span class="variable">$options</span>[<span class="string">&#x27;port&#x27;</span>][<span class="variable">$key</span>] = <span class="variable">$options</span>[<span class="string">&#x27;port&#x27;</span>][<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$options</span>[<span class="string">&#x27;auth&#x27;</span>][<span class="variable">$key</span>])) &#123;</span><br><span class="line">                <span class="variable">$options</span>[<span class="string">&#x27;auth&#x27;</span>][<span class="variable">$key</span>] = <span class="variable">$options</span>[<span class="string">&#x27;auth&#x27;</span>][<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;options =  <span class="variable">$options</span>;</span><br><span class="line">        <span class="variable">$expire</span> = C(<span class="string">&#x27;SESSION_EXPIRE&#x27;</span>);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;expire&#x27;</span>] =  <span class="keyword">isset</span>(<span class="variable">$expire</span>) ? (<span class="keyword">int</span>)<span class="variable">$expire</span> : (<span class="keyword">int</span>)ini_get(<span class="string">&#x27;session.gc_maxlifetime&#x27;</span>);;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;prefix&#x27;</span>] =  <span class="keyword">isset</span>(<span class="variable">$options</span>[<span class="string">&#x27;prefix&#x27;</span>]) ?  <span class="variable">$options</span>[<span class="string">&#x27;prefix&#x27;</span>]  :   C(<span class="string">&#x27;SESSION_PREFIX&#x27;</span>);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;dbindex&#x27;</span>] = <span class="keyword">isset</span>(<span class="variable">$options</span>[<span class="string">&#x27;dbindex&#x27;</span>])? <span class="variable">$options</span>[<span class="string">&#x27;dbindex&#x27;</span>]  :   <span class="number">0</span>;  <span class="comment">//选择存库</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">$this</span>-&gt;handler  = <span class="keyword">new</span> \Redis;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 连接Redis服务端</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> bool $is_master : 是否连接主服务器</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">connect</span>(<span class="params"><span class="variable">$is_master</span> = <span class="literal">true</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$is_master</span>) &#123;</span><br><span class="line">            <span class="variable">$i</span> = <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable">$count</span> = count(<span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;host&#x27;</span>]);</span><br><span class="line">            <span class="keyword">if</span> (<span class="variable">$count</span> == <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="variable">$i</span> = <span class="number">0</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$i</span> = rand(<span class="number">1</span>, <span class="variable">$count</span> - <span class="number">1</span>);   <span class="comment">//多个从服务器随机选择</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$func</span> = <span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;persistent&#x27;</span>] ? <span class="string">&#x27;pconnect&#x27;</span> : <span class="string">&#x27;connect&#x27;</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;timeout&#x27;</span>] === <span class="literal">false</span>) &#123;</span><br><span class="line">                <span class="variable">$result</span> = <span class="keyword">$this</span>-&gt;handler-&gt;<span class="variable">$func</span>(<span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;host&#x27;</span>][<span class="variable">$i</span>], <span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;port&#x27;</span>][<span class="variable">$i</span>]);</span><br><span class="line">                <span class="keyword">if</span> (!<span class="variable">$result</span>)</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> \Think\<span class="built_in">Exception</span>(<span class="string">&#x27;Redis Error&#x27;</span>, <span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$result</span> = <span class="keyword">$this</span>-&gt;handler-&gt;<span class="variable">$func</span>(<span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;host&#x27;</span>][<span class="variable">$i</span>], <span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;port&#x27;</span>][<span class="variable">$i</span>], <span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;timeout&#x27;</span>]);</span><br><span class="line">                <span class="keyword">if</span> (!<span class="variable">$result</span>)</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> \Think\<span class="built_in">Exception</span>(<span class="string">&#x27;Redis Error&#x27;</span>, <span class="number">101</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;auth&#x27;</span>][<span class="variable">$i</span>]) &#123;</span><br><span class="line">                <span class="variable">$result</span> = <span class="keyword">$this</span>-&gt;handler-&gt;auth(<span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;auth&#x27;</span>][<span class="variable">$i</span>]);</span><br><span class="line">                <span class="keyword">if</span> (!<span class="variable">$result</span>) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> \Think\<span class="built_in">Exception</span>(<span class="string">&#x27;Redis Error&#x27;</span>, <span class="number">102</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//选择db存库</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="number">0</span> != <span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;dbindex&#x27;</span>]) &#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;handler-&gt;select(<span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;dbindex&#x27;</span>]);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> ( \<span class="built_in">Exception</span> <span class="variable">$e</span> ) &#123;</span><br><span class="line">            <span class="keyword">exit</span>(<span class="string">&#x27;Error Message:&#x27;</span>.<span class="variable">$e</span>-&gt;getMessage().<span class="string">&#x27;&lt;br&gt;Error Code:&#x27;</span>.<span class="variable">$e</span>-&gt;getCode().<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 打开Session</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $savePath</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> mixed $sessName</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">open</span>(<span class="params"><span class="variable">$savePath</span>, <span class="variable">$sessName</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 关闭Session</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">close</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;persistent&#x27;</span>] == <span class="string">&#x27;pconnect&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;handler-&gt;close();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 读取Session</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $sessID</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">read</span>(<span class="params"><span class="variable">$sessID</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;connect(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;get_result = <span class="keyword">$this</span>-&gt;handler-&gt;get(<span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;prefix&#x27;</span>].<span class="variable">$sessID</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;get_result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 写入Session</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $sessID</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> String $sessData</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">write</span>(<span class="params"><span class="variable">$sessID</span>, <span class="variable">$sessData</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="variable">$sessData</span> || <span class="variable">$sessData</span> == <span class="keyword">$this</span>-&gt;get_result) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;connect(<span class="number">1</span>);</span><br><span class="line">        <span class="variable">$expire</span>  =  <span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;expire&#x27;</span>];</span><br><span class="line">        <span class="variable">$sessID</span>   =   <span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;prefix&#x27;</span>].<span class="variable">$sessID</span>;</span><br><span class="line">        <span class="keyword">if</span>(is_int(<span class="variable">$expire</span>) &amp;&amp; <span class="variable">$expire</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="variable">$result</span> = <span class="keyword">$this</span>-&gt;handler-&gt;setex(<span class="variable">$sessID</span>, <span class="variable">$expire</span>, <span class="variable">$sessData</span>);</span><br><span class="line">            <span class="variable">$re</span> = <span class="variable">$result</span> ? <span class="string">&#x27;true&#x27;</span> : <span class="string">&#x27;false&#x27;</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="variable">$result</span> = <span class="keyword">$this</span>-&gt;handler-&gt;set(<span class="variable">$sessID</span>, <span class="variable">$sessData</span>);</span><br><span class="line">            <span class="variable">$re</span> = <span class="variable">$result</span> ? <span class="string">&#x27;true&#x27;</span> : <span class="string">&#x27;false&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$result</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除Session</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $sessID</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">destroy</span>(<span class="params"><span class="variable">$sessID</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;connect(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;handler-&gt;delete(<span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;prefix&#x27;</span>].<span class="variable">$sessID</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Session 垃圾回收</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $sessMaxLifeTime</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">gc</span>(<span class="params"><span class="variable">$sessMaxLifeTime</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 打开Session</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $savePath</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> mixed $sessName</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">execute</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        session_set_save_handler(</span><br><span class="line">            <span class="keyword">array</span>(&amp;<span class="keyword">$this</span>, <span class="string">&quot;open&quot;</span>),</span><br><span class="line">            <span class="keyword">array</span>(&amp;<span class="keyword">$this</span>, <span class="string">&quot;close&quot;</span>),</span><br><span class="line">            <span class="keyword">array</span>(&amp;<span class="keyword">$this</span>, <span class="string">&quot;read&quot;</span>),</span><br><span class="line">            <span class="keyword">array</span>(&amp;<span class="keyword">$this</span>, <span class="string">&quot;write&quot;</span>),</span><br><span class="line">            <span class="keyword">array</span>(&amp;<span class="keyword">$this</span>, <span class="string">&quot;destroy&quot;</span>),</span><br><span class="line">            <span class="keyword">array</span>(&amp;<span class="keyword">$this</span>, <span class="string">&quot;gc&quot;</span>)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;persistent&#x27;</span>] == <span class="string">&#x27;pconnect&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;handler-&gt;close();</span><br><span class="line">        &#125;</span><br><span class="line">        session_write_close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h5 id="在view-py里添加分页查询方法"><a href="#在view-py里添加分页查询方法" class="headerlink" title="在view.py里添加分页查询方法:"></a>在view.py里添加分页查询方法:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> JsonResponse</span><br><span class="line"><span class="keyword">from</span> django.views.decorators.http <span class="keyword">import</span> require_http_methods</span><br><span class="line"><span class="keyword">from</span> django.core <span class="keyword">import</span> serializers</span><br><span class="line"><span class="keyword">from</span> django.core.paginator <span class="keyword">import</span> Paginator, EmptyPage, PageNotAnInteger</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 分页查询</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_page</span>(<span class="params">request</span>):</span></span><br><span class="line">    page = request.GET.get(<span class="string">&#x27;page&#x27;</span>)</span><br><span class="line">    pageSize = <span class="built_in">int</span>(request.GET.get(<span class="string">&#x27;pageSize&#x27;</span>))</span><br><span class="line">    response = &#123;&#125;</span><br><span class="line">    book_list = Book.objects.<span class="built_in">all</span>()</span><br><span class="line">    paginator = Paginator(book_list, pageSize)</span><br><span class="line">    response[<span class="string">&#x27;total&#x27;</span>] = paginator.count</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        books = paginator.page(page)</span><br><span class="line">    <span class="keyword">except</span> PageNotAnInteger:</span><br><span class="line">        books = paginator.page(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">except</span> EmptyPage:</span><br><span class="line">        books = paginator.page(paginator.num_pages)</span><br><span class="line">    response[<span class="string">&#x27;list&#x27;</span>] = json.loads(serializers.serialize(<span class="string">&quot;json&quot;</span>, books))</span><br><span class="line">    <span class="keyword">return</span> JsonResponse(response)</span><br></pre></td></tr></table></figure>
 
 
       
@@ -340,7 +336,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/2.PHP/ThinkPHP%E4%BF%AE%E6%94%B9Redis%E6%93%8D%E4%BD%9C%E7%B1%BB%EF%BC%8C%E6%94%AF%E6%8C%81%E9%80%89%E6%8B%A9%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8A%9F%E8%83%BD%E5%8F%8A%E6%B7%BB%E5%8A%A0%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/%E6%95%99%E4%BD%A0%E6%80%8E%E4%B9%88%E8%B0%83%E7%94%A8GitlabAPI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -353,7 +349,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/2.PHP/ThinkPHP%E4%BF%AE%E6%94%B9Redis%E6%93%8D%E4%BD%9C%E7%B1%BB%EF%BC%8C%E6%94%AF%E6%8C%81%E9%80%89%E6%8B%A9%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8A%9F%E8%83%BD%E5%8F%8A%E6%B7%BB%E5%8A%A0%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">ThinkPHP修改Redis操作类，支持选择数据库功能及添加其他方法</a>
+          <a href="/2.Programming/1.Python/%E6%95%99%E4%BD%A0%E6%80%8E%E4%B9%88%E8%B0%83%E7%94%A8GitlabAPI/" class="post-title-link" itemprop="url">教你怎么调用GitlabAPI</a>
         </h2>
 
         <div class="post-meta-container">
@@ -364,14 +360,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2018-09-10 12:01:00" itemprop="dateCreated datePublished" datetime="2018-09-10T12:01:00+08:00">2018-09-10</time>
+      <time title="创建时间：2019-12-05 20:18:00" itemprop="dateCreated datePublished" datetime="2019-12-05T20:18:00+08:00">2019-12-05</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-13 13:53:58" itemprop="dateModified" datetime="2021-03-13T13:53:58+08:00">2021-03-13</time>
+        <time title="修改时间：2021-03-13 15:17:45" itemprop="dateModified" datetime="2021-03-13T15:17:45+08:00">2021-03-13</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -383,7 +379,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
         </span>
     </span>
 
@@ -397,34 +393,142 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h2><p>ThinkPHP 3.2.2</p>
-<p><strong>官方默认不支持选择数据库功能及，现就可选择数据库功能进行说明</strong></p>
+          <h2 id="官方文档："><a href="#官方文档：" class="headerlink" title="官方文档："></a><strong>官方文档：</strong></h2><p><a target="_blank" rel="noopener" href="https://docs.gitlab.com/ce/api/">参考1</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/api/branches.html#list-repository-branches">参考2</a></p>
+<h2 id="生成Personal-Access-Tokens"><a href="#生成Personal-Access-Tokens" class="headerlink" title="生成Personal Access Tokens"></a><strong>生成Personal Access Tokens</strong></h2><p>   选择右上角用户信息setting—&gt;Access Tokens</p>
+<h2 id="常用Gitlab-API"><a href="#常用Gitlab-API" class="headerlink" title="常用Gitlab API"></a><strong>常用Gitlab API</strong></h2><p><strong>1、获取所有的项目信息</strong></p>
+<p><a target="_blank" rel="noopener" href="http://192.168.199.184/api/v3/projects?private_token=gqv1hvjbGCLs6uAUmBV8&per_page=10">private_token来自Access Tokens</a></p>
+<p><strong>2、获取项目信息</strong></p>
+<p><a target="_blank" rel="noopener" href="http://192.168.199.184/api/v3/projects/15">15 为项目ID，来自所有的项目信息</a></p>
+<p><strong>3、查看用户信息</strong></p>
+<p><a target="_blank" rel="noopener" href="http://192.168.199.184/api/v3/projects/15/users?private_token=gqv1hvjbGCLs6uAUmBV8&amp;per_page=10">http://192.168.199.184/api/v3/projects/15/users?private_token=gqv1hvjbGCLs6uAUmBV8&amp;per_page=10</a></p>
+<p><strong>4、获取commits提交信息</strong>:</p>
+<p><a target="_blank" rel="noopener" href="http://192.168.199.184/api/v3/projects/15/repository/commits/master?private_token=gqv1hvjbGCLs6uAUmBV8&per_page=10">15 为项目ID，来自所有的项目信息</a></p>
+<h2 id="实战案例"><a href="#实战案例" class="headerlink" title="实战案例"></a><strong>实战案例</strong></h2><p><strong>1、获取项目信息</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#-*-coding:utf-8-*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&#x27;http://192.168.199.184/api/v3/projects?private_token=oMJwN5ErC8_n1QvTsyDR&amp;per_page=50&#x27;</span>　　　　</span><br><span class="line">user_url= <span class="string">&#x27;http://192.168.199.184/api/v3/projects/15/users?private_token=oMJwN5ErC8_n1QvTsyDR&amp;per_page=10&#x27;</span>　　</span><br><span class="line"><span class="comment">#获取项目id和项目名称</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GetProject_id</span>(<span class="params">project_url</span>):</span>　　</span><br><span class="line">    r = requests.get(project_url)</span><br><span class="line">    data = r.json()</span><br><span class="line">    ProjectId_list = []</span><br><span class="line">    ProjectName_list = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">        ProjectId_list.append(i[<span class="string">&#x27;id&#x27;</span>])</span><br><span class="line">        ProjectName_list.append(i[<span class="string">&#x27;name&#x27;</span>])</span><br><span class="line">    <span class="keyword">return</span> ProjectId_list,ProjectName_list</span><br><span class="line"><span class="comment">#根据项目id获取项目下的用户信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GetProject_userlist</span>():</span></span><br><span class="line">    IdList = GetProject_id(url)</span><br><span class="line">    project_id = IdList[<span class="number">0</span>]</span><br><span class="line">    project_name = IdList[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">id</span> <span class="keyword">in</span> project_id:</span><br><span class="line">        l = []</span><br><span class="line">        project_user = requests.get(user_url.<span class="built_in">format</span>(<span class="built_in">id</span>))　　        <span class="comment">#生成完整的用于显示项目下所有user的连接</span></span><br><span class="line">        req_data = project_user.json()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> req_data:</span><br><span class="line">            l.append(i[<span class="string">&#x27;name&#x27;</span>])</span><br><span class="line">        <span class="built_in">print</span> (project_name[project_id.index(<span class="built_in">id</span>)],l)</span><br><span class="line">GetProject_userlist()</span><br></pre></td></tr></table></figure>
+
+<p><strong>2、获取项目提交信息</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-*-coding:utf-8-*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span>  re</span><br><span class="line">url = <span class="string">&#x27;http://192.168.199.184/api/v3/projects?private_token=oMJwN5ErC8_n1QvTsyDR&amp;per_page=10&#x27;</span></span><br><span class="line">r =requests.get(url)</span><br><span class="line">p_group = [<span class="string">&#x27;HJ&#x27;</span>]</span><br><span class="line">data = r.json()</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;项目名称&quot;</span>,<span class="string">&#x27; &#x27;</span>*<span class="number">20</span>,<span class="string">&#x27;最近提交时间&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">    <span class="keyword">if</span> i[<span class="string">&#x27;ssh_url_to_repo&#x27;</span>].split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>].split(<span class="string">&#x27;/&#x27;</span>)[<span class="number">0</span>] <span class="keyword">in</span> p_group:</span><br><span class="line">        r1 = requests.get(<span class="string">&#x27;http://192.168.199.184/api/v3/projects/15/repository/commits/master?private_token=gqv1hvjbGCLs6uAUmBV8&amp;per_page=10&#x27;</span></span><br><span class="line">            % i[<span class="string">&#x27;id&#x27;</span>])</span><br><span class="line">        data2 = r1.json()</span><br><span class="line">        <span class="keyword">if</span> data2[<span class="string">&#x27;message&#x27;</span>].strip() == <span class="string">&#x27;404 Commit Not Found&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span> (i[<span class="string">&#x27;ssh_url_to_repo&#x27;</span>].split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>],<span class="string">&#x27; &#x27;</span>*<span class="number">11</span>,<span class="string">&#x27;未提交任何代码&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(i[<span class="string">&#x27;ssh_url_to_repo&#x27;</span>].split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>], <span class="string">&#x27; &#x27;</span> * <span class="number">11</span>, data2[<span class="string">&#x27;committed_date&#x27;</span>][:<span class="number">10</span>])</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Jenkins/%E8%8E%B7%E5%8F%96Jenkins%E6%9E%84%E5%BB%BA%E6%97%B6GitChangeLog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Home">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/4.ToolsNotes/Jenkins/%E8%8E%B7%E5%8F%96Jenkins%E6%9E%84%E5%BB%BA%E6%97%B6GitChangeLog/" class="post-title-link" itemprop="url">获取Jenkins构建时GitChangeLog</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-18 10:55:00" itemprop="dateCreated datePublished" datetime="2019-10-18T10:55:00+08:00">2019-10-18</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-12 11:29:37" itemprop="dateModified" datetime="2021-03-12T11:29:37+08:00">2021-03-12</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/4-ToolsNotes/Jenkins/" itemprop="url" rel="index"><span itemprop="name">Jenkins</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/HYanqing/p/11697097.html">获取Jenkins构建时Git Change Log</a></p>
+<p>在基于Jenkins进行CI持续集成的工作，在构建后上传蒲公英时想将本次版本的git commit信息同步到蒲公英的下载页面。Jenkins每次构建都会根据Git 的提交记录生成一个Web页面来显示自上次构建之后的提交记录列表（如图1），但是Jenkins却并没有提供可以获取这个Strings的功能。 </p>
+<p><img src="/images/20191018-1.png" alt="images"></p>
+<h4 id="Maven安装"><a href="#Maven安装" class="headerlink" title="Maven安装"></a>Maven安装</h4><p>  下载地址：<a target="_blank" rel="noopener" href="https://maven.apache.org/download.cgi%EF%BC%88%E5%A6%82%E5%9B%BE%EF%BC%89%E3%80%82">https://maven.apache.org/download.cgi（如图）。</a></p>
+<p>  将下载的压缩包解压到某个目录下，例如：/Users/用户名/apache-maven-3.5.3。</p>
+<p>  在终端执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vi ~/.bash_profile</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">export</span> M2_HOME=/Users/用户名/apache-maven-3.5.3</span> </span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$M2_HOME</span>/bin</span></span><br></pre></td></tr></table></figure>
+
+<p>  最后在终端执行如下命令来使.bash_profile生效：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> ~/.bash_profile</span></span><br></pre></td></tr></table></figure>
+
+<p>  可以输入mvn -v来检查Maven是否生效</p>
+<p><img src="/images/20191018-2.png" alt="images"></p>
+<h4 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h4><p> Jenkins里面同样有人反馈了同样的需求，有人给出了一个插件解决获取git change log的需求，插件开源地址（<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/daniel-beck/changelog-environment-plugin">https://github.com/daniel-beck/changelog-environment-plugin</a>）</p>
 <ol>
-<li>config.php 配置文件中选择数据库 </li>
+<li><p>因作者并没有将插件编译上传，所以我们需要将项目Clone到本地</p>
+</li>
+<li><p>然后在项目根目录下执行 <em>mvn verify</em> ，因为依赖较多，第一次build时间会比较漫长，需耐心等待</p>
+</li>
+<li><p>build完成之后项目根目录中“target”文件夹中会出现“changelog-environment.hpi”这个文件</p>
+</li>
 </ol>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;REDIS_DBINDEX&#x27;</span> =&gt;<span class="number">1</span>, <span class="comment">// 选择库信息（0~16）</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>Redis.class.php中修改__construct()方法</li>
-</ol>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;dbindex&#x27;</span>  =&gt; C(<span class="string">&#x27;REDIS_DBINDEX&#x27;</span>) ? C(<span class="string">&#x27;REDIS_DBINDEX&#x27;</span>) : <span class="number">0</span>;  <span class="comment">//选择存库</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;dbindex&#x27;</span>] = <span class="keyword">isset</span>(<span class="variable">$options</span>[<span class="string">&#x27;dbindex&#x27;</span>])? <span class="variable">$options</span>[<span class="string">&#x27;dbindex&#x27;</span>] : <span class="number">0</span>;  <span class="comment">//选择存库</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">$this</span>-&gt;handler-&gt;select(<span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;dbindex&#x27;</span>]);  <span class="comment">//选择存库</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>官方默认未实现鉴权功能，现就实现鉴权进行说明</strong></p>
+<p>（注：<em>mvn verify</em> 是Maven命令，文章最后简单说明如何安装），插件现已上传到GitHub上（<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/KrisMarko/kr-changelog">https://github.com/KrisMarko/kr-changelog</a>）。</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>  在Jenkins的系统管理-&gt; 管理插件-&gt; 高级-&gt;上传插件，将刚刚编译生成的“changelog-environment.hpi”文件上传并安装到Jenkins中，安装完成后，会在“构建环境”中有“Add Changelog Information to Environment”选项，选中后会有Entry Format、File Item Format、Date Format三个可配置项，第一个就是填写提交日志输出格式的地方，采用的是Java String.format占位符的形式。其中可以使用四个参数，分别是：</p>
 <ol>
-<li>config.php 配置文件中增加鉴权密码　</li>
+<li><p>提交的作者</p>
+</li>
+<li><p>提交的 ID</p>
+</li>
+<li><p>提交信息</p>
+</li>
+<li><p>提交时间(通过 Date Format 控制格式)</p>
+</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;REDIS_AUTH&#39;&#x3D;&gt;&#39;123456&#39;, &#x2F;&#x2F;AUTH认证密码</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>Redis.class.php中修改__construct()方法</li>
-</ol>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;auth&#x27;</span>]!=<span class="literal">null</span>)&#123;</span><br><span class="line"></span><br><span class="line">　　　<span class="keyword">$this</span>-&gt;handler-&gt;auth(<span class="keyword">$this</span>-&gt;options[<span class="string">&#x27;auth&#x27;</span>]); <span class="comment">//说明有配置redis的认证配置密码 需要认证</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="具体代码如下"><a href="#具体代码如下" class="headerlink" title="具体代码如下"></a>具体代码如下</h2><p><img src="/images/20180910-1.png" alt="code"></p>
+<p>  例，我在Entry Format输入 %3$s (via %1$s)\n，然后有一条提交记录，提交信息为「fix bug」，提交者为 Kris.Marko，那么输出到环境变量的字符串就是 “fix bug (via Kris.Marko)\n” (后面的 \n 是为了多层转义，视使用情况请自行调整)。</p>
+<p>  通过如上设置之后，在构建时就可以在shell中来获得SCM_CHANGELOG变量来取到更新日志了。比如自动上传更新信息到内测平台（如蒲公英）。</p>
 
       
     </div>
@@ -451,7 +555,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/3.MySQL/MySQL%E5%AD%98%E5%82%A8%E5%85%B3%E8%81%94%E6%95%B0%E7%BB%84/">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/4.Shell/%E4%BD%BF%E7%94%A8Shell%E7%99%BB%E5%BD%95%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8C%E5%A4%9A%E6%9D%A1%E5%91%BD%E4%BB%A4%EF%BC%8CSSH%E7%99%BB%E5%BD%95%E4%B9%8B%E5%90%8E%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -464,7 +568,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/3.MySQL/MySQL%E5%AD%98%E5%82%A8%E5%85%B3%E8%81%94%E6%95%B0%E7%BB%84/" class="post-title-link" itemprop="url">MySQL存储关联数组</a>
+          <a href="/2.Programming/4.Shell/%E4%BD%BF%E7%94%A8Shell%E7%99%BB%E5%BD%95%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8C%E5%A4%9A%E6%9D%A1%E5%91%BD%E4%BB%A4%EF%BC%8CSSH%E7%99%BB%E5%BD%95%E4%B9%8B%E5%90%8E%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">使用Shell登录远程服务器执行多条命令，SSH登录之后执行脚本文件</a>
         </h2>
 
         <div class="post-meta-container">
@@ -475,14 +579,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2018-06-07 15:56:00" itemprop="dateCreated datePublished" datetime="2018-06-07T15:56:00+08:00">2018-06-07</time>
+      <time title="创建时间：2019-10-16 18:32:00" itemprop="dateCreated datePublished" datetime="2019-10-16T18:32:00+08:00">2019-10-16</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-07 12:44:34" itemprop="dateModified" datetime="2021-03-07T12:44:34+08:00">2021-03-07</time>
+        <time title="修改时间：2021-03-12 11:50:40" itemprop="dateModified" datetime="2021-03-12T11:50:40+08:00">2021-03-12</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -494,7 +598,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+          <a href="/categories/2-Programming/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
         </span>
     </span>
 
@@ -508,19 +612,24 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>关联数组：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$fruits</span>= <span class="keyword">array</span>(<span class="string">&quot;apple&quot;</span> =&gt; <span class="string">&quot;苹果&quot;</span>, <span class="string">&quot;banana&quot;</span> =&gt; <span class="string">&quot;香蕉&quot;</span>,<span class="string">&quot;oriange&quot;</span> =&gt; <span class="string">&quot;橘子&quot;</span>);</span><br></pre></td></tr></table></figure>
+          <h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36622490/article/details/100773589">使用Shell登录远程服务器执行多条命令，SSH登录之后执行脚本文件</a></p>
+<p>这个需求主要是我在jenkins中pipeline的代码里，需要使用shell语言执行远程连接并且部署的工作，但是大多数的shell和服务器交互是使用expect解释器 就是之前我写过的那个关于expect有关的文章，问题是jenkins中默认的shell解释器只有bash，不能更改解释器的。所以就很难受，国内的百度基本都是搬运过来的内容，毫无意义，浪费时间，在国外博客浪荡几天之后终于找到了解决方案。</p>
+<p>下面我来分享一下，大致意思呢就是执行完ssh 连接远程主机之后需要执行的命令，可以进行如下操作，命令不要照抄，换成你自己的user名和ip地址。</p>
+<p><strong>【我在我自己电脑和服务器之间都配置了ssh免密码登录 直接使用ssh IP地址就可以登录了，强烈建议配置ssh，非常方便】</strong></p>
+<h4 id="登录远程主机执行单条命令"><a href="#登录远程主机执行单条命令" class="headerlink" title="登录远程主机执行单条命令"></a>登录远程主机执行单条命令</h4><p>登录完主机之后执行一条命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh USER@HOST <span class="string">&#x27;COMMAND&#x27;</span></span></span><br></pre></td></tr></table></figure>
 
-<p>对于这样的数据，MySQL数据库因存储类型是无法直接写入的，那有什么办法呢？</p>
-<p><strong>解决方案：使用PHP自带的serialize()或者json_encode()函数序列化数据成字符串，之后从数据库里面读出来的数据还是字符串格式的，用unserialize()和json_decode()函数转换成数组就可以了</strong></p>
-<p><strong>写入数据库之前</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$fruits_serialize</span> = serialize(<span class="variable">$fruits</span>); <span class="comment">// 序列化成字符串</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$fruits_json</span> = json_encode(<span class="variable">$fruits</span>); <span class="comment">// JSON编码数组成字符串</span></span><br></pre></td></tr></table></figure>
+<p>获取远程主机的最新更新时间</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@192.168.1.1 <span class="string">&#x27;uptime&#x27;</span></span></span><br></pre></td></tr></table></figure>
 
+<p>登录完远程主机就进行重启远程主机</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@192.168.1.1 <span class="string">&#x27;reboot&#x27;</span></span></span><br></pre></td></tr></table></figure>
 
-
-<p><strong>读取数据库后</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$fruits</span> _restore = unserialize(<span class="variable">$fruits_serialize</span>); <span class="comment">// 反序列化成数组</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$fruits</span> _dejson = json_decode(<span class="variable">$fruits_json</span>, <span class="literal">true</span>); <span class="comment">// JSON解码成数组</span></span><br></pre></td></tr></table></figure>
-
+<p>那么问题出来了，上面的都是执行一条命令，那如果我需要执行多条命令怎么办呢？之前困扰我最大的问题就是这个，执行多条命令，虽然直接堆叠多条ssh 登录的语句 那些前缀也可以，但是看着就恶心。这样我们就可以使用以下几个方案,原内容如下，我做了备注，这样比较一目了然。</p>
+<h4 id="登录远程主机执行多条命令"><a href="#登录远程主机执行多条命令" class="headerlink" title="登录远程主机执行多条命令"></a>登录远程主机执行多条命令</h4><p><img src="/images/20191016-1.png" alt="images"></p>
+<p> 可能还有小伙伴会问，如果需要ssh登录远程之后执行指定的脚本文件怎么做？</p>
+<h4 id="登录远程主机执行指定脚本文件"><a href="#登录远程主机执行指定脚本文件" class="headerlink" title="登录远程主机执行指定脚本文件"></a>登录远程主机执行指定脚本文件</h4><p><img src="/images/20191016-2.png" alt="images"></p>
+<p>由此来看，英文还是非常重要的。不然遇到问题你都不知道怎么去搜了，不是我埋汰百度，确实国内搬运回答问题现象太严重，点进去一个除了站点不一样 内容都一样 连错别字都一样，如果你是经常和计算机打交道的一定下载个谷歌浏览器，必须可以使用谷歌，可以配置插件或者配置翻墙设备。</p>
 
       
     </div>
@@ -547,7 +656,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/2.PHP/PHP%E4%B9%8BSMTP%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/4.Shell/SSH%E8%BF%9C%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -560,7 +669,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/2.PHP/PHP%E4%B9%8BSMTP%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/" class="post-title-link" itemprop="url">PHP之SMTP发送邮件</a>
+          <a href="/2.Programming/4.Shell/SSH%E8%BF%9C%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">SSH远程执行命令</a>
         </h2>
 
         <div class="post-meta-container">
@@ -571,14 +680,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2018-06-07 15:24:00" itemprop="dateCreated datePublished" datetime="2018-06-07T15:24:00+08:00">2018-06-07</time>
+      <time title="创建时间：2019-10-16 18:28:00" itemprop="dateCreated datePublished" datetime="2019-10-16T18:28:00+08:00">2019-10-16</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-12 11:49:18" itemprop="dateModified" datetime="2021-03-12T11:49:18+08:00">2021-03-12</time>
+        <time title="修改时间：2021-03-12 14:35:42" itemprop="dateModified" datetime="2021-03-12T14:35:42+08:00">2021-03-12</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -590,7 +699,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+          <a href="/categories/2-Programming/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
         </span>
     </span>
 
@@ -604,184 +713,63 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="下载相关库"><a href="#下载相关库" class="headerlink" title="下载相关库"></a>下载相关库</h2><p>class.phpmailer.php和class.smtp.php至公共库</p>
-<h2 id="编写公共函数"><a href="#编写公共函数" class="headerlink" title="编写公共函数"></a>编写公共函数</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendMail</span>(<span class="params"><span class="variable">$param</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable">$config</span> = C(<span class="string">&#x27;THINK_EMAIL&#x27;</span>);</span><br><span class="line">        vendor(<span class="string">&#x27;PHPMailer.class#phpmailer&#x27;</span>); <span class="comment">//从PHPMailer目录导class.phpmailer.php类文件</span></span><br><span class="line">        <span class="variable">$mail</span> = <span class="keyword">new</span> PHPMailer(); <span class="comment">//PHPMailer对象</span></span><br><span class="line">        <span class="variable">$mail</span>-&gt;CharSet = <span class="variable">$config</span>[<span class="string">&#x27;EMAIL_CHARSET&#x27;</span>]; <span class="comment">//设定邮件编码，默认ISO-8859-1，如果发中文此项必须设置，否则乱码</span></span><br><span class="line">        <span class="variable">$mail</span>-&gt;IsSMTP();  <span class="comment">// 设定使用SMTP服务</span></span><br><span class="line">        <span class="variable">$mail</span>-&gt;SMTPDebug = <span class="number">0</span>;   <span class="comment">// 关闭SMTP调试功能</span></span><br><span class="line">        <span class="comment">// 1 = errors and messages</span></span><br><span class="line">        <span class="comment">// 2 = messages only</span></span><br><span class="line">        <span class="variable">$mail</span>-&gt;SMTPAuth = <span class="variable">$config</span>[<span class="string">&#x27;EMAIL_SMTPAUTH&#x27;</span>];   <span class="comment">// 启用 SMTP 验证功能</span></span><br><span class="line">        <span class="variable">$mail</span>-&gt;Host = <span class="variable">$config</span>[<span class="string">&#x27;SMTP_HOST&#x27;</span>];  <span class="comment">// SMTP 服务器</span></span><br><span class="line">        <span class="variable">$mail</span>-&gt;Port = <span class="variable">$config</span>[<span class="string">&#x27;SMTP_PORT&#x27;</span>];  <span class="comment">// SMTP服务器的端口号</span></span><br><span class="line">        <span class="variable">$mail</span>-&gt;Username = <span class="variable">$config</span>[<span class="string">&#x27;SMTP_USER&#x27;</span>];  <span class="comment">// SMTP服务器用户名</span></span><br><span class="line">        <span class="variable">$mail</span>-&gt;Password = <span class="variable">$config</span>[<span class="string">&#x27;SMTP_PASS&#x27;</span>];  <span class="comment">// SMTP服务器密码</span></span><br><span class="line">        <span class="comment">//$mail-&gt;SetFrom($config[&#x27;FROM_EMAIL&#x27;], $config[&#x27;FROM_NAME&#x27;]);</span></span><br><span class="line">        <span class="variable">$mail</span>-&gt;SetFrom(<span class="variable">$param</span>[<span class="string">&#x27;mail_from&#x27;</span>], <span class="variable">$param</span>[<span class="string">&#x27;mail_name&#x27;</span>]);</span><br><span class="line">        <span class="variable">$replyEmail</span> = <span class="variable">$config</span>[<span class="string">&#x27;REPLY_EMAIL&#x27;</span>] ? <span class="variable">$config</span>[<span class="string">&#x27;REPLY_EMAIL&#x27;</span>] : <span class="variable">$param</span>[<span class="string">&#x27;mail_from&#x27;</span>];</span><br><span class="line">        <span class="variable">$replyName</span> = <span class="variable">$config</span>[<span class="string">&#x27;REPLY_NAME&#x27;</span>] ? <span class="variable">$config</span>[<span class="string">&#x27;REPLY_NAME&#x27;</span>] : <span class="variable">$param</span>[<span class="string">&#x27;mail_name&#x27;</span>];</span><br><span class="line">        <span class="variable">$mail</span>-&gt;AddReplyTo(<span class="variable">$replyEmail</span>, <span class="variable">$replyName</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable">$param</span>[<span class="string">&#x27;to&#x27;</span>])) &#123;</span><br><span class="line">            <span class="keyword">foreach</span> (<span class="variable">$param</span>[<span class="string">&#x27;to&#x27;</span>] <span class="keyword">as</span> <span class="variable">$to</span>) &#123;</span><br><span class="line">                <span class="variable">$mail</span>-&gt;AddAddress(<span class="variable">$to</span>[<span class="string">&#x27;address&#x27;</span>], <span class="variable">$to</span>[<span class="string">&#x27;name&#x27;</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable">$param</span>[<span class="string">&#x27;cc&#x27;</span>])) &#123;</span><br><span class="line">            <span class="keyword">foreach</span> (<span class="variable">$param</span>[<span class="string">&#x27;cc&#x27;</span>] <span class="keyword">as</span> <span class="variable">$cc</span>) &#123;</span><br><span class="line">                <span class="variable">$mail</span>-&gt;addCC(<span class="variable">$cc</span>[<span class="string">&#x27;address&#x27;</span>], <span class="variable">$cc</span>[<span class="string">&#x27;name&#x27;</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//        if (!empty($param[&#x27;bcc&#x27;])) &#123;</span></span><br><span class="line"><span class="comment">//            foreach ($param[&#x27;bcc&#x27;] as $bcc) &#123;</span></span><br><span class="line"><span class="comment">//                $mail-&gt;addBCC($bcc[&#x27;address&#x27;], $bcc[&#x27;name&#x27;]);</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="variable">$param</span>[<span class="string">&#x27;body&#x27;</span>] = <span class="variable">$mail</span>-&gt;WrapText(<span class="variable">$param</span>[<span class="string">&#x27;body&#x27;</span>], <span class="number">900</span>);</span><br><span class="line">        <span class="variable">$mail</span>-&gt;Subject = <span class="variable">$param</span>[<span class="string">&#x27;subject&#x27;</span>];</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable">$param</span>[<span class="string">&#x27;body&#x27;</span>])) &#123;</span><br><span class="line">            <span class="variable">$mail</span>-&gt;MsgHTML(<span class="variable">$param</span>[<span class="string">&#x27;body&#x27;</span>]);</span><br><span class="line">            <span class="variable">$mail</span>-&gt;IsHTML(<span class="variable">$config</span>[<span class="string">&#x27;EMAIL_ISHTML&#x27;</span>]);</span><br><span class="line">            <span class="variable">$mail</span>-&gt;Body = <span class="variable">$param</span>[<span class="string">&#x27;body&#x27;</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//        if (!empty($param[&#x27;attachment&#x27;])) &#123; // 添加附件</span></span><br><span class="line"><span class="comment">//            foreach ($param[&#x27;attachment&#x27;] as $file) &#123;</span></span><br><span class="line"><span class="comment">//                if (is_file($file[&#x27;path&#x27;])) &#123;</span></span><br><span class="line"><span class="comment">//                    $mail-&gt;AddAttachment($file[&#x27;path&#x27;], $file[&#x27;name&#x27;]);</span></span><br><span class="line"><span class="comment">//                &#125;</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;(count(<span class="variable">$param</span>[<span class="string">&#x27;attachment&#x27;</span>]));<span class="variable">$i</span>++)&#123;</span><br><span class="line">            <span class="variable">$img</span>=substr(<span class="variable">$param</span>[<span class="string">&#x27;attachment&#x27;</span>][<span class="variable">$i</span>], strpos(<span class="variable">$param</span>[<span class="string">&#x27;attachment&#x27;</span>][<span class="variable">$i</span>], <span class="string">&quot;,&quot;</span>));</span><br><span class="line">            <span class="variable">$mail</span>-&gt;AddStringAttachment(base64_decode(<span class="variable">$img</span>),<span class="string">&quot;attach&quot;</span>.<span class="variable">$i</span>.<span class="string">&quot;.png&quot;</span>,<span class="string">&quot;base64&quot;</span>,<span class="string">&quot;image/png&quot;</span>);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//重发机制</span></span><br><span class="line">        <span class="variable">$ret</span>[<span class="string">&#x27;errno&#x27;</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="variable">$ret</span>[<span class="string">&#x27;msg&#x27;</span>] = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$mail</span>-&gt;Send()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable">$ret</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="variable">$mail</span>-&gt;Send()) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="variable">$ret</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$ret</span>[<span class="string">&#x27;errno&#x27;</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="variable">$ret</span>[<span class="string">&#x27;msg&#x27;</span>] = <span class="variable">$mail</span>-&gt;ErrorInfo;</span><br><span class="line">                <span class="keyword">return</span> <span class="variable">$ret</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// return $mail-&gt;Send() ? true : $mail-&gt;ErrorInfo;</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liuxiao723846/article/details/82667482">SSH远程执行命令</a></p>
+<p>SSH 是 Linux 下进行远程连接的基本工具，不光可以登录，也可以远程操作。接下来我们详细讲解一些常用的情况。</p>
+<h2 id="执行简单的命令"><a href="#执行简单的命令" class="headerlink" title="执行简单的命令"></a>执行简单的命令</h2><p><strong>1、查看某台主机上的磁盘使用情况</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@1.113.195.138 <span class="string">&quot;df -h&quot;</span></span></span><br><span class="line">***************************************************************************</span><br><span class="line">NOTICE TO Users</span><br><span class="line"></span><br><span class="line">This computer system is the private property of ...</span><br><span class="line"></span><br><span class="line">***************************************************************************</span><br><span class="line"></span><br><span class="line">Filesystem Size Used Avail Use% Mounted on</span><br><span class="line">/dev/vda2 36G 3.2G 31G 10% /</span><br><span class="line">tmpfs 25G 0 25G 0% /dev/shm</span><br><span class="line">/dev/vdb 296G 2.0G 279G 1% /data</span><br></pre></td></tr></table></figure>
 
-<h2 id="SMTP配置函数"><a href="#SMTP配置函数" class="headerlink" title="SMTP配置函数"></a>SMTP配置函数</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 配置邮件发送服务器</span></span><br><span class="line"><span class="string">&#x27;THINK_EMAIL&#x27;</span>=&gt;<span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;SMTP_HOST&#x27;</span>   =&gt;  <span class="string">&#x27;localhost&#x27;</span>,  <span class="comment">//邮件发送SMTP服务器</span></span><br><span class="line">    <span class="string">&#x27;SMTP_PORT&#x27;</span>   =&gt; <span class="string">&#x27;25&#x27;</span>,<span class="comment">//SMTP服务器端口  </span></span><br><span class="line">    <span class="string">&#x27;SMTP_USER&#x27;</span>   =&gt;  <span class="string">&#x27;admin&#x27;</span>, <span class="comment">//SMTP服务器登陆用户名</span></span><br><span class="line">    <span class="string">&#x27;SMTP_PASS&#x27;</span>   =&gt;  <span class="string">&#x27;admin&#x27;</span>, <span class="comment">//SMTP服务器登陆密码 </span></span><br><span class="line">    <span class="string">&#x27;FROM_EMAIL&#x27;</span>  =&gt;<span class="string">&#x27;发件箱@XX.com&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;FROM_NAME&#x27;</span>  =&gt;<span class="string">&#x27;发件人姓名&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;REPLY_EMAIL&#x27;</span> =&gt;<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;REPLY_NAME&#x27;</span>  =&gt;<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;EMAIL_CHARSET&#x27;</span> =&gt;<span class="string">&#x27;utf-8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;EMAIL_ISHTML&#x27;</span> =&gt; <span class="string">&#x27;TRUE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;EMAIL_SMTPAUTH&#x27;</span> =&gt; <span class="string">&#x27;0&#x27;</span>,</span><br><span class="line">    ),</span><br></pre></td></tr></table></figure>
+<p>可以看到会把ssh远程连接的信息，以及远程执行名的返回的信息都输出到了控制台上。</p>
+<p><strong>2、保存远程执行命令结果</strong></p>
+<p>有时我们需要保存远程执行命令的结果，然后进行判断。有两种方法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">赋值的方式：result=`ssh x@B ~/command.sh`</span><br><span class="line">追加到文件：ssh root@$ip &quot;cmd&quot; &gt;&gt; ./log</span><br></pre></td></tr></table></figure>
 
-<h2 id="根据库中存取的base64获取图片信息，实际调用为一个url"><a href="#根据库中存取的base64获取图片信息，实际调用为一个url" class="headerlink" title="根据库中存取的base64获取图片信息，实际调用为一个url"></a>根据库中存取的base64获取图片信息，实际调用为一个url</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getImage</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$reportId</span> = I(<span class="string">&#x27;request.id&#x27;</span>);</span><br><span class="line">    <span class="variable">$imgInfos</span> = I(<span class="string">&#x27;request.img&#x27;</span>);</span><br><span class="line">    header(<span class="string">&#x27;Content-Type: image/png&#x27;</span>);</span><br><span class="line">    <span class="variable">$repotModel</span> = M(<span class="string">&#x27;XXX&#x27;</span>);</span><br><span class="line">    <span class="variable">$report</span> = <span class="variable">$repotModel</span>-&gt;where([<span class="string">&#x27;id&#x27;</span>=&gt;<span class="variable">$reportId</span>])-&gt;find();</span><br><span class="line">    <span class="variable">$base</span> = explode(<span class="string">&#x27;,&#x27;</span>, <span class="variable">$report</span>[<span class="variable">$imgInfos</span>])[<span class="number">1</span>];</span><br><span class="line">    <span class="variable">$base</span> = base64_decode(<span class="variable">$base</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$base</span>;</span><br><span class="line">    <span class="keyword">die</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>详情见：<a target="_blank" rel="noopener" href="https://blog.csdn.net/liuxiao723846/article/details/55045988">https://blog.csdn.net/liuxiao723846/article/details/55045988</a></p>
+<p><strong>3、一次执行多个命令</strong></p>
+<p>在shell中单行语句一般要用到分号来区分代码块，多行的话用换行符来区分代码块，则无需用到分号。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$PS1</span>&quot;</span> ]; <span class="keyword">then</span> <span class="built_in">echo</span> <span class="built_in">test</span> is ok; <span class="keyword">fi</span></span></span><br><span class="line">test is ok</span><br><span class="line"></span><br><span class="line">如果换做多行</span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="keyword">if</span> [ <span class="string">&quot;PS1&quot;</span> ]</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">&quot;test is ok&quot;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="keyword">fi</span></span></span><br><span class="line">test is ok</span><br></pre></td></tr></table></figure>
 
+<p>所以，我们可以在ssh中用分好拼接多个命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 ssh root@$IP &quot;if [ -e /lib64/libpcre.so.1 ];then echo &#x27;file exits...&#x27;;else cd /lib64 &amp;&amp; ln -s libpcre.so.0.0.1 libpcre.so.1;fi&quot;</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
+<h2 id="执行需要交互的命令"><a href="#执行需要交互的命令" class="headerlink" title="执行需要交互的命令"></a>执行需要交互的命令</h2><p>有时候我们需要远程执行一些有交互操作的命令，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ssh nick@xxx.xxx.xxx.xxx <span class="string">&quot;sudo ls /root&quot;</span></span><br><span class="line">$ ssh nick@xxx.xxx.xxx.xxx <span class="string">&quot;top&quot;</span></span><br></pre></td></tr></table></figure>
 
-    
-    
-    
+<p><img src="/images/20191016-3.png" alt="images"></p>
+<p>这两条命令虽然提示的失败原因不同，但它们有一个共同点：都需要与用户交互(需要 TTY)。所以它们失败的原因也是相同的：<br>默认情况下，当你执行不带命令的 ssh 连接时，会为你分配一个 TTY。因为此时你应该是想要运行一个 shell 会话。<br>但是当你通过 ssh 在远程主机上执行命令时，并不会为这个远程会话分配 TTY。此时 ssh 会立即退出远程主机，所以需要交互的命令也随之结束。<br>好在我们可以通过 -t 参数显式的告诉 ssh，我们需要一个 TTY 远程 shell 进行交互！<br>添加 -t 参数后，ssh 会保持登录状态，直到你退出需要交互的命令。</p>
+<h2 id="执行本地脚本"><a href="#执行本地脚本" class="headerlink" title="执行本地脚本"></a>执行本地脚本</h2><p>通常我们遇到的不会是上面那种简单的问题，大多数时候我们需要把若干个命令放到一个脚本里，然后分发到远程去执行。大致有两种思路：</p>
+<p>使用scp将本地脚本文件拷贝到远端，然后再通过ssh执行远端的脚本；（弊端是脚本修改后，每次都需要scp）<br>直接在本地执行脚本到远程；<br>一个scp的例子</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for IP in $&#123;IP_ARR[@]&#125;</span><br><span class="line">do</span><br><span class="line">ssh root@$IP &quot;rm -rf $MONITOR_TARGET_FILE&quot; </span><br><span class="line">ssh root@$IP &quot;mkdir -p /data/apps/scripts&quot;</span><br><span class="line">scp $MONITOR_SOURCE_FILE root@$IP:$MONITOR_TARGET_FILE</span><br><span class="line">ssh root@$IP &#x27;echo &quot;*/1 * * * * /usr/bin/python /data/apps/scripts/checkStatus.py&#x27; $BUSINESS_TYPE &#x27;&gt;/dev/null 2&gt;&amp;1&quot; &gt;&gt; /var/spool/cron/root&#x27;</span><br><span class="line"> </span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+<p>重点我们在如何在本地执行脚本到远程。</p>
+<p><strong>1、执行一个简单的脚本到远程：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat test.sh</span> </span><br><span class="line">ls</span><br><span class="line">pwd</span><br><span class="line"> </span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 &lt; test.sh</span> </span><br><span class="line">anaconda-ks.cfg</span><br><span class="line">/root</span><br></pre></td></tr></table></figure>
 
+<p>通过重定向 stdin，本地的脚本 test.sh 在远程服务器上被执行。</p>
+<p><strong>2、为脚本传递参数：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat test.sh</span> </span><br><span class="line">echo $1</span><br><span class="line">echo $2</span><br><span class="line"> </span><br><span class="line">在本地执行结构如下：</span><br><span class="line"><span class="meta">$</span><span class="bash"> sh test.sh a b</span></span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line"></span><br><span class="line">通过重定向远程执行，会报错</span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 &lt; test.sh a b</span></span><br><span class="line">bash: a: command not found</span><br></pre></td></tr></table></figure>
 
+<p>看来上面的方法都无法为脚本传递参数。<br>要想在这种情况下(远程执行本地的脚本)执行带有参数的脚本，需要为 bash 指定 -s 参数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 <span class="string">&#x27;bash -s&#x27;</span> &lt; test.sh a b</span></span><br><span class="line">a</span><br><span class="line">b</span><br></pre></td></tr></table></figure>
 
+<p>除此之外，我们还可以通过替换的方式传参，然后远程执行，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat .&#x2F;rollback_remote.sh | sed -e &quot;s&#x2F;#module#&#x2F;$&#123;MODULE_NAME&#125;&#x2F;g&quot; -e &quot;s&#x2F;#runarg#&#x2F;$&#123;RUN_ARG&#125;&#x2F;g&quot; | ssh $IP</span><br></pre></td></tr></table></figure>
 
-    
+<h2 id="执行远程服务器上的脚本"><a href="#执行远程服务器上的脚本" class="headerlink" title="执行远程服务器上的脚本"></a>执行远程服务器上的脚本</h2><p>除了执行本地的脚本，还有一种情况是脚本文件存放在远程服务器上，而我们需要远程的执行它！此时在远程服务器上用户 nick 的家目录中有一个脚本 test.sh。文件的内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">pwd</span><br><span class="line">执行下面的命令即可（注：一定是绝对路径）：</span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh nick@xxx.xxx.xxx.xxx <span class="string">&quot;/home/nick/test.sh&quot;</span></span></span><br></pre></td></tr></table></figure>
 
+<p>下面我们也尝试为脚本传递参数。在远程主机上的 test.sh 文件的末尾添加两行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo $0</span><br><span class="line">echo $1</span><br><span class="line">然后尝试执行下面的命令：</span><br><span class="line"> </span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh nick@xxx.xxx.xxx.xxx /home/nick/test.sh helloworld</span></span><br></pre></td></tr></table></figure>
 
-<div class="post-block">
-  
-  
+<p>可以正确得到结果。</p>
+<h2 id="执行多行命令"><a href="#执行多行命令" class="headerlink" title="执行多行命令"></a>执行多行命令</h2><p>有时候我们可能需要随手写几行简单的逻辑，这也没有问题，ssh 能轻松搞定！</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 <span class="string">&quot;</span></span> </span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> ls</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="built_in">pwd</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="string">&quot;</span></span></span><br><span class="line">anaconda-ks.cfg</span><br><span class="line">/root</span><br></pre></td></tr></table></figure>
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/2.PHP/PHP%E4%B9%8BPchart%E7%94%9F%E4%BA%A7%E5%9B%BE%E7%89%87/">
+<p>你可以用单引号或双引号开头，然后写上几行命令，最后再用相同的引号来结束。</p>
+<p>当我们在命令中引用了变量时会怎么样呢？</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> name=<span class="built_in">test</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 <span class="string">&quot;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="built_in">echo</span> <span class="variable">$name</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="string">&quot;</span></span></span><br><span class="line">test</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 <span class="string">&#x27;</span></span></span><br><span class="line">echo $name</span><br><span class="line">&#x27;</span><br></pre></td></tr></table></figure>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Home">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/2.PHP/PHP%E4%B9%8BPchart%E7%94%9F%E4%BA%A7%E5%9B%BE%E7%89%87/" class="post-title-link" itemprop="url">PHP之Pchart生产图片</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-06-07 15:11:00" itemprop="dateCreated datePublished" datetime="2018-06-07T15:11:00+08:00">2018-06-07</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-07 12:44:34" itemprop="dateModified" datetime="2021-03-07T12:44:34+08:00">2021-03-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="http://wiki.pchart.net/doc.introduction.html">pChart online documentation</a></p>
-<p><a target="_blank" rel="noopener" href="http://pchart.sourceforge.net/index.php">实例</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/2.PHP/PHP%E5%AF%BC%E5%87%BAExcel/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Home">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/2.PHP/PHP%E5%AF%BC%E5%87%BAExcel/" class="post-title-link" itemprop="url">PHP导出Excel</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-06-07 14:56:00" itemprop="dateCreated datePublished" datetime="2018-06-07T14:56:00+08:00">2018-06-07</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-12 11:48:51" itemprop="dateModified" datetime="2021-03-12T11:48:51+08:00">2021-03-12</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="引入相关公共库PHPExcel"><a href="#引入相关公共库PHPExcel" class="headerlink" title="引入相关公共库PHPExcel"></a>引入相关公共库PHPExcel</h2><h2 id="编写公共函数"><a href="#编写公共函数" class="headerlink" title="编写公共函数"></a>编写公共函数</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">exportExcel</span>(<span class="params"><span class="variable">$excelTitle</span>,<span class="variable">$data</span>,<span class="variable">$filename</span>=<span class="string">&#x27;&#x27;</span>,<span class="variable">$column_width</span>=<span class="string">&#x27;&#x27;</span></span>)</span>&#123;</span><br><span class="line">        ini_set(<span class="string">&#x27;max_execution_time&#x27;</span>, <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">        header(<span class="string">&quot;Content-Type:application/force-download&quot;</span>);</span><br><span class="line">        header(<span class="string">&quot;Content-Type:application/vnd.ms-execl&quot;</span>);</span><br><span class="line">        header(<span class="string">&quot;Content-Type:application/download&quot;</span>);</span><br><span class="line">        <span class="variable">$filename</span>=str_replace(<span class="string">&#x27;.xls&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$filename</span>).<span class="string">&#x27;.xls&#x27;</span>;</span><br><span class="line">        header(<span class="string">&#x27;Content-Disposition: attachment;filename=&#x27;</span>.<span class="variable">$filename</span>);</span><br><span class="line">        Vendor(<span class="string">&#x27;PHPExcel.PHPExcel&#x27;</span>);</span><br><span class="line">        <span class="variable">$phpexcel</span> = <span class="keyword">new</span> PHPExcel();</span><br><span class="line">        <span class="variable">$phpexcel</span>-&gt;getActiveSheet()-&gt;setTitle(<span class="string">&#x27;Sheet1&#x27;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="variable">$key</span> = <span class="number">0</span>;  <span class="comment">//设置表头</span></span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$excelTitle</span> <span class="keyword">as</span> <span class="variable">$v</span>)&#123;</span><br><span class="line">            <span class="variable">$colum</span> = \PHPExcel_Cell::stringFromColumnIndex(<span class="variable">$key</span>);</span><br><span class="line">            <span class="variable">$phpexcel</span>-&gt;setActiveSheetIndex(<span class="number">0</span>) -&gt;setCellValue(<span class="variable">$colum</span>.<span class="string">&#x27;1&#x27;</span>, <span class="variable">$v</span>);</span><br><span class="line">            <span class="variable">$key</span> += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$column</span> = <span class="number">2</span>;</span><br><span class="line">        <span class="variable">$objActSheet</span> = <span class="variable">$phpexcel</span>-&gt;getActiveSheet();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$data</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$rows</span>)&#123; <span class="comment">//行写入</span></span><br><span class="line">            <span class="variable">$span</span> = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">foreach</span>(<span class="variable">$rows</span> <span class="keyword">as</span> <span class="variable">$keyName</span>=&gt;<span class="variable">$value</span>)&#123;<span class="comment">// 列写入</span></span><br><span class="line">                <span class="variable">$j</span> = \PHPExcel_Cell::stringFromColumnIndex(<span class="variable">$span</span>);</span><br><span class="line">                <span class="variable">$objActSheet</span>-&gt;setCellValue(<span class="variable">$j</span>.<span class="variable">$column</span>, <span class="variable">$value</span>);</span><br><span class="line">                <span class="variable">$span</span>++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="variable">$column</span>++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置字体格式及大小</span></span><br><span class="line">        <span class="variable">$phpexcel</span>-&gt;getDefaultStyle()-&gt;getFont()-&gt;setName( <span class="string">&#x27;微软雅黑&#x27;</span>);</span><br><span class="line">        <span class="variable">$phpexcel</span>-&gt;getDefaultStyle()-&gt;getFont()-&gt;setSize(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//第一行设置填充的样式和背景色</span></span><br><span class="line">        <span class="variable">$currentColumn</span> = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">1</span>; <span class="variable">$i</span> &lt;= count(<span class="variable">$excelTitle</span>); <span class="variable">$i</span>++) &#123;</span><br><span class="line">            <span class="variable">$a</span>[] = <span class="variable">$currentColumn</span>++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$last</span> = <span class="variable">$a</span>[(count(<span class="variable">$a</span>) <span class="number">-1</span>)].<span class="string">&quot;1&quot;</span>;</span><br><span class="line">        <span class="variable">$phpexcel</span>-&gt;getActiveSheet()-&gt;getStyle( <span class="string">&quot;A1:<span class="subst">$last</span>&quot;</span>)-&gt;getFill()-&gt;setFillType(\PHPExcel_Style_Fill::FILL_SOLID);</span><br><span class="line">        <span class="variable">$phpexcel</span>-&gt;getActiveSheet()-&gt;getStyle( <span class="string">&quot;A1:<span class="subst">$last</span>&quot;</span>)-&gt;getFill()-&gt;getStartColor()-&gt;setARGB(<span class="string">&#x27;#458B00&#x27;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置单元格内容居左显示</span></span><br><span class="line">        <span class="comment">//$phpexcel-&gt;getActiveSheet()-&gt;getStyle(&#x27;A&#x27;)-&gt;getAlignment()-&gt;setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_JUSTIFY);</span></span><br><span class="line">        <span class="variable">$phpexcel</span>-&gt;getDefaultStyle()-&gt;getAlignment()-&gt;setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_JUSTIFY);</span><br><span class="line">        <span class="variable">$phpexcel</span>-&gt;getDefaultStyle()-&gt;getAlignment()-&gt;setVertical(\PHPExcel_Style_Alignment::HORIZONTAL_JUSTIFY);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置列宽度</span></span><br><span class="line">        <span class="keyword">if</span>(!<span class="keyword">empty</span>(<span class="variable">$column_width</span>))&#123;</span><br><span class="line">            <span class="keyword">foreach</span>(<span class="variable">$column_width</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)&#123;</span><br><span class="line">                <span class="variable">$phpexcel</span>-&gt;getActiveSheet()-&gt;getColumnDimension(<span class="variable">$key</span>)-&gt;setWidth(<span class="variable">$value</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$objwriter</span> = PHPExcel_IOFactory::createWriter(<span class="variable">$phpexcel</span>, <span class="string">&#x27;Excel5&#x27;</span>);</span><br><span class="line">        <span class="variable">$objwriter</span>-&gt;save(<span class="string">&#x27;php://output&#x27;</span>);</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="调用公共函数"><a href="#调用公共函数" class="headerlink" title="调用公共函数"></a>调用公共函数</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$excelTitle</span> = <span class="keyword">array</span>(<span class="string">&quot;提测单名称&quot;</span>,<span class="string">&quot;BUG统计周期&quot;</span>,<span class="string">&quot;BUG_TOTAL&quot;</span>,<span class="string">&quot;ASSIGNED&quot;</span>,<span class="string">&quot;REOPENED&quot;</span>,<span class="string">&quot;RESOLVED&quot;</span>,<span class="string">&quot;VERIFIED&quot;</span>,<span class="string">&quot;CLOSED&quot;</span>);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$retSearchStatusList</span> <span class="keyword">as</span> <span class="variable">$excelExport</span>)&#123;</span><br><span class="line">    <span class="variable">$excelExports</span>[<span class="string">&#x27;A&#x27;</span>] = <span class="variable">$excelExport</span>[<span class="string">&#x27;A&#x27;</span>];</span><br><span class="line">    <span class="variable">$excelExports</span>[<span class="string">&#x27;B&#x27;</span>] = <span class="variable">$dateFrom</span>.<span class="string">&quot;至&quot;</span>.<span class="variable">$dateTo</span>;</span><br><span class="line">    <span class="variable">$excelExports</span>[<span class="string">&#x27;C&#x27;</span>] = <span class="variable">$excelExport</span>[<span class="string">&#x27;C&#x27;</span>];</span><br><span class="line">    <span class="variable">$excelExports</span>[<span class="string">&#x27;D&#x27;</span>] = <span class="variable">$excelExport</span>[<span class="string">&#x27;D&#x27;</span>];</span><br><span class="line">    <span class="variable">$excelExports</span>[<span class="string">&#x27;E&#x27;</span>] = <span class="variable">$excelExport</span>[<span class="string">&#x27;E&#x27;</span>];</span><br><span class="line">    <span class="variable">$excelExports</span>[<span class="string">&#x27;F&#x27;</span>] = <span class="variable">$excelExport</span>[<span class="string">&#x27;F&#x27;</span>];</span><br><span class="line">    <span class="variable">$excelExports</span>[<span class="string">&#x27;G&#x27;</span>] = <span class="variable">$excelExport</span>[<span class="string">&#x27;G&#x27;</span>];</span><br><span class="line">    <span class="variable">$excelExports</span>[<span class="string">&#x27;H&#x27;</span>] = <span class="variable">$excelExport</span>[<span class="string">&#x27;H&#x27;</span>];</span><br><span class="line">    <span class="variable">$list</span>[] = <span class="variable">$excelExports</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$filename</span> = <span class="string">&quot;文件名称-&quot;</span>.date(<span class="string">&#x27;Y-m-d H-i-s&#x27;</span>);</span><br><span class="line"><span class="variable">$column_width</span> = <span class="keyword">array</span>(<span class="string">&quot;A&quot;</span>=&gt;<span class="number">50</span>,<span class="string">&quot;B&quot;</span>=&gt;<span class="number">38</span>);</span><br><span class="line"><span class="variable">$exportExcel</span> = <span class="variable">$excelUtil</span>-&gt;exportExcel(<span class="variable">$excelTitle</span>,<span class="variable">$list</span>,<span class="variable">$filename</span>,<span class="variable">$column_width</span>);</span><br></pre></td></tr></table></figure>
+<p>最后一行，并没有输出我们期望的 test。这里多少有些诡异，因为如果变量没有被解释的话，输出的应该是 $name 才对。但是这里却什么都没有输出。对于引用变量的写法，可以通过bash 指定了 -c 参数方式保证变量被正确解释：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 bash -c <span class="string">&quot;&#x27;</span></span></span><br><span class="line">echo $name</span><br><span class="line">&#x27;&quot;</span><br><span class="line">test</span><br></pre></td></tr></table></figure>
 
 
       
@@ -802,7 +790,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
