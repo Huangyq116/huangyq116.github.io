@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,147 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/4.Shell/SSH%E8%BF%9C%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Home">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2.Programming/4.Shell/SSH%E8%BF%9C%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">SSH远程执行命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-16 18:28:00" itemprop="dateCreated datePublished" datetime="2019-10-16T18:28:00+08:00">2019-10-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-12 14:35:42" itemprop="dateModified" datetime="2021-03-12T14:35:42+08:00">2021-03-12</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liuxiao723846/article/details/82667482">SSH远程执行命令</a></p>
+<p>SSH 是 Linux 下进行远程连接的基本工具，不光可以登录，也可以远程操作。接下来我们详细讲解一些常用的情况。</p>
+<h2 id="执行简单的命令"><a href="#执行简单的命令" class="headerlink" title="执行简单的命令"></a>执行简单的命令</h2><p><strong>1、查看某台主机上的磁盘使用情况</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@1.113.195.138 <span class="string">&quot;df -h&quot;</span></span></span><br><span class="line">***************************************************************************</span><br><span class="line">NOTICE TO Users</span><br><span class="line"></span><br><span class="line">This computer system is the private property of ...</span><br><span class="line"></span><br><span class="line">***************************************************************************</span><br><span class="line"></span><br><span class="line">Filesystem Size Used Avail Use% Mounted on</span><br><span class="line">/dev/vda2 36G 3.2G 31G 10% /</span><br><span class="line">tmpfs 25G 0 25G 0% /dev/shm</span><br><span class="line">/dev/vdb 296G 2.0G 279G 1% /data</span><br></pre></td></tr></table></figure>
+
+<p>可以看到会把ssh远程连接的信息，以及远程执行名的返回的信息都输出到了控制台上。</p>
+<p><strong>2、保存远程执行命令结果</strong></p>
+<p>有时我们需要保存远程执行命令的结果，然后进行判断。有两种方法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">赋值的方式：result=`ssh x@B ~/command.sh`</span><br><span class="line">追加到文件：ssh root@$ip &quot;cmd&quot; &gt;&gt; ./log</span><br></pre></td></tr></table></figure>
+
+<p>详情见：<a target="_blank" rel="noopener" href="https://blog.csdn.net/liuxiao723846/article/details/55045988">https://blog.csdn.net/liuxiao723846/article/details/55045988</a></p>
+<p><strong>3、一次执行多个命令</strong></p>
+<p>在shell中单行语句一般要用到分号来区分代码块，多行的话用换行符来区分代码块，则无需用到分号。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$PS1</span>&quot;</span> ]; <span class="keyword">then</span> <span class="built_in">echo</span> <span class="built_in">test</span> is ok; <span class="keyword">fi</span></span></span><br><span class="line">test is ok</span><br><span class="line"></span><br><span class="line">如果换做多行</span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="keyword">if</span> [ <span class="string">&quot;PS1&quot;</span> ]</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">&quot;test is ok&quot;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="keyword">fi</span></span></span><br><span class="line">test is ok</span><br></pre></td></tr></table></figure>
+
+<p>所以，我们可以在ssh中用分好拼接多个命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 ssh root@$IP &quot;if [ -e /lib64/libpcre.so.1 ];then echo &#x27;file exits...&#x27;;else cd /lib64 &amp;&amp; ln -s libpcre.so.0.0.1 libpcre.so.1;fi&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="执行需要交互的命令"><a href="#执行需要交互的命令" class="headerlink" title="执行需要交互的命令"></a>执行需要交互的命令</h2><p>有时候我们需要远程执行一些有交互操作的命令，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ssh nick@xxx.xxx.xxx.xxx <span class="string">&quot;sudo ls /root&quot;</span></span><br><span class="line">$ ssh nick@xxx.xxx.xxx.xxx <span class="string">&quot;top&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20191016-3.png" alt="images"></p>
+<p>这两条命令虽然提示的失败原因不同，但它们有一个共同点：都需要与用户交互(需要 TTY)。所以它们失败的原因也是相同的：<br>默认情况下，当你执行不带命令的 ssh 连接时，会为你分配一个 TTY。因为此时你应该是想要运行一个 shell 会话。<br>但是当你通过 ssh 在远程主机上执行命令时，并不会为这个远程会话分配 TTY。此时 ssh 会立即退出远程主机，所以需要交互的命令也随之结束。<br>好在我们可以通过 -t 参数显式的告诉 ssh，我们需要一个 TTY 远程 shell 进行交互！<br>添加 -t 参数后，ssh 会保持登录状态，直到你退出需要交互的命令。</p>
+<h2 id="执行本地脚本"><a href="#执行本地脚本" class="headerlink" title="执行本地脚本"></a>执行本地脚本</h2><p>通常我们遇到的不会是上面那种简单的问题，大多数时候我们需要把若干个命令放到一个脚本里，然后分发到远程去执行。大致有两种思路：</p>
+<p>使用scp将本地脚本文件拷贝到远端，然后再通过ssh执行远端的脚本；（弊端是脚本修改后，每次都需要scp）<br>直接在本地执行脚本到远程；<br>一个scp的例子</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for IP in $&#123;IP_ARR[@]&#125;</span><br><span class="line">do</span><br><span class="line">ssh root@$IP &quot;rm -rf $MONITOR_TARGET_FILE&quot; </span><br><span class="line">ssh root@$IP &quot;mkdir -p /data/apps/scripts&quot;</span><br><span class="line">scp $MONITOR_SOURCE_FILE root@$IP:$MONITOR_TARGET_FILE</span><br><span class="line">ssh root@$IP &#x27;echo &quot;*/1 * * * * /usr/bin/python /data/apps/scripts/checkStatus.py&#x27; $BUSINESS_TYPE &#x27;&gt;/dev/null 2&gt;&amp;1&quot; &gt;&gt; /var/spool/cron/root&#x27;</span><br><span class="line"> </span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<p>重点我们在如何在本地执行脚本到远程。</p>
+<p><strong>1、执行一个简单的脚本到远程：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat test.sh</span> </span><br><span class="line">ls</span><br><span class="line">pwd</span><br><span class="line"> </span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 &lt; test.sh</span> </span><br><span class="line">anaconda-ks.cfg</span><br><span class="line">/root</span><br></pre></td></tr></table></figure>
+
+<p>通过重定向 stdin，本地的脚本 test.sh 在远程服务器上被执行。</p>
+<p><strong>2、为脚本传递参数：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat test.sh</span> </span><br><span class="line">echo $1</span><br><span class="line">echo $2</span><br><span class="line"> </span><br><span class="line">在本地执行结构如下：</span><br><span class="line"><span class="meta">$</span><span class="bash"> sh test.sh a b</span></span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line"></span><br><span class="line">通过重定向远程执行，会报错</span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 &lt; test.sh a b</span></span><br><span class="line">bash: a: command not found</span><br></pre></td></tr></table></figure>
+
+<p>看来上面的方法都无法为脚本传递参数。<br>要想在这种情况下(远程执行本地的脚本)执行带有参数的脚本，需要为 bash 指定 -s 参数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 <span class="string">&#x27;bash -s&#x27;</span> &lt; test.sh a b</span></span><br><span class="line">a</span><br><span class="line">b</span><br></pre></td></tr></table></figure>
+
+<p>除此之外，我们还可以通过替换的方式传参，然后远程执行，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat .&#x2F;rollback_remote.sh | sed -e &quot;s&#x2F;#module#&#x2F;$&#123;MODULE_NAME&#125;&#x2F;g&quot; -e &quot;s&#x2F;#runarg#&#x2F;$&#123;RUN_ARG&#125;&#x2F;g&quot; | ssh $IP</span><br></pre></td></tr></table></figure>
+
+<h2 id="执行远程服务器上的脚本"><a href="#执行远程服务器上的脚本" class="headerlink" title="执行远程服务器上的脚本"></a>执行远程服务器上的脚本</h2><p>除了执行本地的脚本，还有一种情况是脚本文件存放在远程服务器上，而我们需要远程的执行它！此时在远程服务器上用户 nick 的家目录中有一个脚本 test.sh。文件的内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">pwd</span><br><span class="line">执行下面的命令即可（注：一定是绝对路径）：</span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh nick@xxx.xxx.xxx.xxx <span class="string">&quot;/home/nick/test.sh&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>下面我们也尝试为脚本传递参数。在远程主机上的 test.sh 文件的末尾添加两行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo $0</span><br><span class="line">echo $1</span><br><span class="line">然后尝试执行下面的命令：</span><br><span class="line"> </span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh nick@xxx.xxx.xxx.xxx /home/nick/test.sh helloworld</span></span><br></pre></td></tr></table></figure>
+
+<p>可以正确得到结果。</p>
+<h2 id="执行多行命令"><a href="#执行多行命令" class="headerlink" title="执行多行命令"></a>执行多行命令</h2><p>有时候我们可能需要随手写几行简单的逻辑，这也没有问题，ssh 能轻松搞定！</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 <span class="string">&quot;</span></span> </span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> ls</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="built_in">pwd</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="string">&quot;</span></span></span><br><span class="line">anaconda-ks.cfg</span><br><span class="line">/root</span><br></pre></td></tr></table></figure>
+
+<p>你可以用单引号或双引号开头，然后写上几行命令，最后再用相同的引号来结束。</p>
+<p>当我们在命令中引用了变量时会怎么样呢？</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> name=<span class="built_in">test</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 <span class="string">&quot;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="built_in">echo</span> <span class="variable">$name</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="string">&quot;</span></span></span><br><span class="line">test</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 <span class="string">&#x27;</span></span></span><br><span class="line">echo $name</span><br><span class="line">&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>最后一行，并没有输出我们期望的 test。这里多少有些诡异，因为如果变量没有被解释的话，输出的应该是 $name 才对。但是这里却什么都没有输出。对于引用变量的写法，可以通过bash 指定了 -c 参数方式保证变量被正确解释：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 bash -c <span class="string">&quot;&#x27;</span></span></span><br><span class="line">echo $name</span><br><span class="line">&#x27;&quot;</span><br><span class="line">test</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -631,93 +772,6 @@
 <p><strong>3、redirect接受一个URL参数，表示跳转到指定的URL</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> redirect</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>(<span class="params">request</span>):</span></span><br><span class="line">    <span class="comment"># 业务逻辑代码</span></span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">&quot;/home/&quot;</span>)</span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/Django%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Home">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/1.Python/Django%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Django总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-10-01 15:40:00" itemprop="dateCreated datePublished" datetime="2019-10-01T15:40:00+08:00">2019-10-01</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-13 13:28:37" itemprop="dateModified" datetime="2021-03-13T13:28:37+08:00">2021-03-13</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/djangocn/p/9538551.html">centos7下部署django详细步骤</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zengjielin/p/8487077.html">快速入门</a></p>
-<p><a href="%5Bhttps://cnblogs.com/aylin/p/5608175.html">基础知识</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gaosai/p/10322924.html">日志总结</a></p>
 
       
     </div>
