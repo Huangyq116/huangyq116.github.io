@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,107 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/4.Shell/%E4%BD%BF%E7%94%A8Shell%E7%99%BB%E5%BD%95%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8C%E5%A4%9A%E6%9D%A1%E5%91%BD%E4%BB%A4%EF%BC%8CSSH%E7%99%BB%E5%BD%95%E4%B9%8B%E5%90%8E%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Home">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2.Programming/4.Shell/%E4%BD%BF%E7%94%A8Shell%E7%99%BB%E5%BD%95%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8C%E5%A4%9A%E6%9D%A1%E5%91%BD%E4%BB%A4%EF%BC%8CSSH%E7%99%BB%E5%BD%95%E4%B9%8B%E5%90%8E%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">使用Shell登录远程服务器执行多条命令，SSH登录之后执行脚本文件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-16 18:32:00" itemprop="dateCreated datePublished" datetime="2019-10-16T18:32:00+08:00">2019-10-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-12 11:50:40" itemprop="dateModified" datetime="2021-03-12T11:50:40+08:00">2021-03-12</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36622490/article/details/100773589">使用Shell登录远程服务器执行多条命令，SSH登录之后执行脚本文件</a></p>
+<p>这个需求主要是我在jenkins中pipeline的代码里，需要使用shell语言执行远程连接并且部署的工作，但是大多数的shell和服务器交互是使用expect解释器 就是之前我写过的那个关于expect有关的文章，问题是jenkins中默认的shell解释器只有bash，不能更改解释器的。所以就很难受，国内的百度基本都是搬运过来的内容，毫无意义，浪费时间，在国外博客浪荡几天之后终于找到了解决方案。</p>
+<p>下面我来分享一下，大致意思呢就是执行完ssh 连接远程主机之后需要执行的命令，可以进行如下操作，命令不要照抄，换成你自己的user名和ip地址。</p>
+<p><strong>【我在我自己电脑和服务器之间都配置了ssh免密码登录 直接使用ssh IP地址就可以登录了，强烈建议配置ssh，非常方便】</strong></p>
+<h4 id="登录远程主机执行单条命令"><a href="#登录远程主机执行单条命令" class="headerlink" title="登录远程主机执行单条命令"></a>登录远程主机执行单条命令</h4><p>登录完主机之后执行一条命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh USER@HOST <span class="string">&#x27;COMMAND&#x27;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>获取远程主机的最新更新时间</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@192.168.1.1 <span class="string">&#x27;uptime&#x27;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>登录完远程主机就进行重启远程主机</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@192.168.1.1 <span class="string">&#x27;reboot&#x27;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>那么问题出来了，上面的都是执行一条命令，那如果我需要执行多条命令怎么办呢？之前困扰我最大的问题就是这个，执行多条命令，虽然直接堆叠多条ssh 登录的语句 那些前缀也可以，但是看着就恶心。这样我们就可以使用以下几个方案,原内容如下，我做了备注，这样比较一目了然。</p>
+<h4 id="登录远程主机执行多条命令"><a href="#登录远程主机执行多条命令" class="headerlink" title="登录远程主机执行多条命令"></a>登录远程主机执行多条命令</h4><p><img src="/images/20191016-1.png" alt="images"></p>
+<p> 可能还有小伙伴会问，如果需要ssh登录远程之后执行指定的脚本文件怎么做？</p>
+<h4 id="登录远程主机执行指定脚本文件"><a href="#登录远程主机执行指定脚本文件" class="headerlink" title="登录远程主机执行指定脚本文件"></a>登录远程主机执行指定脚本文件</h4><p><img src="/images/20191016-2.png" alt="images"></p>
+<p>由此来看，英文还是非常重要的。不然遇到问题你都不知道怎么去搜了，不是我埋汰百度，确实国内搬运回答问题现象太严重，点进去一个除了站点不一样 内容都一样 连错别字都一样，如果你是经常和计算机打交道的一定下载个谷歌浏览器，必须可以使用谷歌，可以配置插件或者配置翻墙设备。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -680,99 +781,6 @@
 
 <p><strong>3、模糊查询返回数据集, 并去重</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Article.objects.<span class="built_in">filter</span>(title__icontains=<span class="string">&#x27;python&#x27;</span>).distinct()</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/Django%E4%B8%89%E4%BB%B6%E5%A5%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Home">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/1.Python/Django%E4%B8%89%E4%BB%B6%E5%A5%97/" class="post-title-link" itemprop="url">Django三件套</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-10-01 16:48:00" itemprop="dateCreated datePublished" datetime="2019-10-01T16:48:00+08:00">2019-10-01</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-13 14:10:31" itemprop="dateModified" datetime="2021-03-13T14:10:31+08:00">2021-03-13</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="Django基础必备三件套"><a href="#Django基础必备三件套" class="headerlink" title="Django基础必备三件套:"></a>Django基础必备三件套:</h4><p><strong>1、HttpResponse 内部传入一个字符串参数，返回给浏览器</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>(<span class="params">request</span>):</span></span><br><span class="line">    <span class="comment"># 业务逻辑代码</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">&quot;OK&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p><strong>2、render除request参数外还接受一个待渲染的模板文件和一个保存具体数据的字典参数。</strong></p>
-<p><strong>将数据填充进模板文件,最后把结果返回给浏览器。</strong>　　　</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>(<span class="params">request</span>):</span></span><br><span class="line">    <span class="comment"># 业务逻辑代码</span></span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&quot;index.html&quot;</span>, &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;alex&quot;</span>, <span class="string">&quot;hobby&quot;</span>: [<span class="string">&quot;烫头&quot;</span>, <span class="string">&quot;泡吧&quot;</span>]&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><strong>3、redirect接受一个URL参数，表示跳转到指定的URL</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> redirect</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>(<span class="params">request</span>):</span></span><br><span class="line">    <span class="comment"># 业务逻辑代码</span></span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">&quot;/home/&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-
       
     </div>
 
