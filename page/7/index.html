@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,125 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Jenkins/%E8%8E%B7%E5%8F%96Jenkins%E6%9E%84%E5%BB%BA%E6%97%B6GitChangeLog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Home">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/4.ToolsNotes/Jenkins/%E8%8E%B7%E5%8F%96Jenkins%E6%9E%84%E5%BB%BA%E6%97%B6GitChangeLog/" class="post-title-link" itemprop="url">获取Jenkins构建时GitChangeLog</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-18 10:55:00" itemprop="dateCreated datePublished" datetime="2019-10-18T10:55:00+08:00">2019-10-18</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-12 11:29:37" itemprop="dateModified" datetime="2021-03-12T11:29:37+08:00">2021-03-12</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/4-ToolsNotes/Jenkins/" itemprop="url" rel="index"><span itemprop="name">Jenkins</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/HYanqing/p/11697097.html">获取Jenkins构建时Git Change Log</a></p>
+<p>在基于Jenkins进行CI持续集成的工作，在构建后上传蒲公英时想将本次版本的git commit信息同步到蒲公英的下载页面。Jenkins每次构建都会根据Git 的提交记录生成一个Web页面来显示自上次构建之后的提交记录列表（如图1），但是Jenkins却并没有提供可以获取这个Strings的功能。 </p>
+<p><img src="/images/20191018-1.png" alt="images"></p>
+<h4 id="Maven安装"><a href="#Maven安装" class="headerlink" title="Maven安装"></a>Maven安装</h4><p>  下载地址：<a target="_blank" rel="noopener" href="https://maven.apache.org/download.cgi%EF%BC%88%E5%A6%82%E5%9B%BE%EF%BC%89%E3%80%82">https://maven.apache.org/download.cgi（如图）。</a></p>
+<p>  将下载的压缩包解压到某个目录下，例如：/Users/用户名/apache-maven-3.5.3。</p>
+<p>  在终端执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vi ~/.bash_profile</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">export</span> M2_HOME=/Users/用户名/apache-maven-3.5.3</span> </span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$M2_HOME</span>/bin</span></span><br></pre></td></tr></table></figure>
+
+<p>  最后在终端执行如下命令来使.bash_profile生效：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> ~/.bash_profile</span></span><br></pre></td></tr></table></figure>
+
+<p>  可以输入mvn -v来检查Maven是否生效</p>
+<p><img src="/images/20191018-2.png" alt="images"></p>
+<h4 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h4><p> Jenkins里面同样有人反馈了同样的需求，有人给出了一个插件解决获取git change log的需求，插件开源地址（<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/daniel-beck/changelog-environment-plugin">https://github.com/daniel-beck/changelog-environment-plugin</a>）</p>
+<ol>
+<li><p>因作者并没有将插件编译上传，所以我们需要将项目Clone到本地</p>
+</li>
+<li><p>然后在项目根目录下执行 <em>mvn verify</em> ，因为依赖较多，第一次build时间会比较漫长，需耐心等待</p>
+</li>
+<li><p>build完成之后项目根目录中“target”文件夹中会出现“changelog-environment.hpi”这个文件</p>
+</li>
+</ol>
+<p>（注：<em>mvn verify</em> 是Maven命令，文章最后简单说明如何安装），插件现已上传到GitHub上（<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/KrisMarko/kr-changelog">https://github.com/KrisMarko/kr-changelog</a>）。</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>  在Jenkins的系统管理-&gt; 管理插件-&gt; 高级-&gt;上传插件，将刚刚编译生成的“changelog-environment.hpi”文件上传并安装到Jenkins中，安装完成后，会在“构建环境”中有“Add Changelog Information to Environment”选项，选中后会有Entry Format、File Item Format、Date Format三个可配置项，第一个就是填写提交日志输出格式的地方，采用的是Java String.format占位符的形式。其中可以使用四个参数，分别是：</p>
+<ol>
+<li><p>提交的作者</p>
+</li>
+<li><p>提交的 ID</p>
+</li>
+<li><p>提交信息</p>
+</li>
+<li><p>提交时间(通过 Date Format 控制格式)</p>
+</li>
+</ol>
+<p>  例，我在Entry Format输入 %3$s (via %1$s)\n，然后有一条提交记录，提交信息为「fix bug」，提交者为 Kris.Marko，那么输出到环境变量的字符串就是 “fix bug (via Kris.Marko)\n” (后面的 \n 是为了多层转义，视使用情况请自行调整)。</p>
+<p>  通过如上设置之后，在构建时就可以在shell中来获得SCM_CHANGELOG变量来取到更新日志了。比如自动上传更新信息到内测平台（如蒲公英）。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -649,138 +768,6 @@
 
 <h2 id="when判断"><a href="#when判断" class="headerlink" title="when判断"></a>when判断</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zoujiaojiao/p/13219057.html">参考</a></p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/Django%E6%95%B0%E6%8D%AEModel%E5%B1%82%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Home">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/1.Python/Django%E6%95%B0%E6%8D%AEModel%E5%B1%82%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Django数据Model层总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-10-03 09:56:00" itemprop="dateCreated datePublished" datetime="2019-10-03T09:56:00+08:00">2019-10-03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-13 14:57:46" itemprop="dateModified" datetime="2021-03-13T14:57:46+08:00">2021-03-13</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vlaues:</span><br><span class="line">单条记录 - &lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">dict</span>&#x27;&gt;</span></span><br><span class="line"><span class="class">多条记录 - &lt;<span class="title">class</span> &#x27;<span class="title">django</span>.<span class="title">db</span>.<span class="title">models</span>.<span class="title">query</span>.<span class="title">QuerySet</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">vlaues_list</span>:</span></span><br><span class="line">单条记录 - &lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">tuple</span>&#x27;&gt;</span></span><br><span class="line"><span class="class">多条记录 - &lt;<span class="title">class</span> &#x27;<span class="title">django</span>.<span class="title">db</span>.<span class="title">models</span>.<span class="title">query</span>.<span class="title">QuerySet</span>&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>Django的抽象模型Models可以直接对数据库进行增删改查，不需要你自己写SQL语言来进行相关数据库操作。今天我们就以博客blog为例，看下Django是如何对数据库进行增删改查的。</p>
-<p>我们将会用到如下这个简单的Article模型: </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Article</span>(<span class="params">models.Model</span>):</span></span><br><span class="line">   title = models.CharField(<span class="string">&#x27;标题&#x27;</span>, max_length=<span class="number">200</span>, unique=<span class="literal">True</span>)</span><br><span class="line">   body = models.TextField(<span class="string">&#x27;正文&#x27;</span>)</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__str__</span>(<span class="params">self</span>):</span></span><br><span class="line">       <span class="keyword">return</span> self.title</span><br></pre></td></tr></table></figure>
-
-<h2 id="增"><a href="#增" class="headerlink" title="增"></a>增</h2><p>增即创建新的对象或添加新的条目。如果我们要给数据库添加一篇新的文章，Django提供了2种常见操作方式。</p>
-<p><strong>1、传统save方法</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">obj = Article(title=<span class="string">&quot;My first article&quot;</span>, body=<span class="string">&quot;My first article body&quot;</span>)</span><br><span class="line">obj.save()</span><br></pre></td></tr></table></figure>
-
-<p>注意: 该方法如果不选择save(), 创建的对象将不会保存到数据库中去。正因为如此，Django还提供了更便捷的create方法。</p>
-<p><strong>2、快捷的create方法</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Article.objects.create(title=<span class="string">&quot;My first article&quot;</span>, body=<span class="string">&quot;My first article body&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>注意: 对Django自带auth模块中的User模型操作，比如创建新的用户时，请用create_user方法。该方法会将密码自动加Hash存储到数据库中。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> User</span><br><span class="line">user = User.objects.create_user(username=<span class="string">&#x27;john&#x27;</span>,</span><br><span class="line">                                email=<span class="string">&#x27;john@gmail.com&#x27;</span>,</span><br><span class="line">                                password=<span class="string">&#x27;somepwd&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="删"><a href="#删" class="headerlink" title="删"></a>删</h2><p>删即删除一个已有对象或从表中删除一个已有条目。Django也允许同时删除多个对象或条目。</p>
-<p><strong>1、删除所有文章 （请慎用！！）</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Article.objects.<span class="built_in">all</span>().delete()</span><br></pre></td></tr></table></figure>
-
-<p><strong>2、删除标题里含有python的所有文章（不区分大小写)</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Article.objects.<span class="built_in">filter</span>(title__icontains=<span class="string">&quot;python&quot;</span>).delete()</span><br></pre></td></tr></table></figure>
-
-<h2 id="改"><a href="#改" class="headerlink" title="改"></a>改</h2><p>改既可以用save方法，也可以用update方法。其区别在于save方法不仅可以更新数据中现有对象数据，还可以创建新的对象。而update方法只能用于更新已有对象数据。一般来说，如果要同时更新多个对象数据，用update方法更合适。</p>
-<p><strong>1、利用save方法更新某一文章标题</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">article = Article.objects.get(<span class="built_in">id</span>=<span class="number">1</span>)</span><br><span class="line">article.title = <span class="string">&quot;New article title&quot;</span></span><br><span class="line">article.save()</span><br></pre></td></tr></table></figure>
-
-<p><strong>2、利用update方法更新某一文章标题</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">article = Article.objects.get(<span class="built_in">id</span>=<span class="number">1</span>).update(title=<span class="string">&#x27;new title&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p><strong>3、利用update方法更新多篇文章标题</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">article = Article.objects.<span class="built_in">filter</span>(title__icontains=<span class="string">&#x27;python&#x27;</span>).update(title=<span class="string">&#x27;Django&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="查"><a href="#查" class="headerlink" title="查"></a>查</h2><p>Django对于数据库的查询主要是get和filter等方法。我们来看几个案例。</p>
-<p><strong>1、查询所有数据</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Article.objects.<span class="built_in">all</span>()</span><br><span class="line">Article.objects.<span class="built_in">all</span>().values()</span><br></pre></td></tr></table></figure>
-
-<p># 只获取title列表-字典形式</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Article.objects.<span class="built_in">all</span>().values(<span class="string">&#x27;title&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p># 只获取title列表- 元组形式，只有value，没有key</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Article.objects.<span class="built_in">all</span>().values_list(<span class="string">&#x27;title&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>注意：使用values和values_list可以减少数据库查询工作量。如果只需要在模板中使用某些字段，而不是全部字段，建议使用values和values_list。</p>
-<p><strong>2、查询某一条数据</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Article.objects.get(<span class="built_in">id</span>=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-<p><strong>3、模糊查询返回数据集, 并去重</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Article.objects.<span class="built_in">filter</span>(title__icontains=<span class="string">&#x27;python&#x27;</span>).distinct()</span><br></pre></td></tr></table></figure>
       
     </div>
 

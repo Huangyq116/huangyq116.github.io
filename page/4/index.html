@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,99 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/uWSGI%E5%90%AF%E5%8A%A8Django%E9%A1%B9%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Home">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2.Programming/1.Python/uWSGI%E5%90%AF%E5%8A%A8Django%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">uWSGI启动Django项目</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-11 15:39:00" itemprop="dateCreated datePublished" datetime="2020-08-11T15:39:00+08:00">2020-08-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-13 14:38:39" itemprop="dateModified" datetime="2021-03-13T14:38:39+08:00">2021-03-13</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="/images/20200811-1.png" alt="uwsgi"></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install uwsgi</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>新增文件uwsgi.ini；跟manage.py 同一级目录</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"> 1 [uwsgi]</span><br><span class="line"> 2 ; 监听的端口</span><br><span class="line"> 3 http &#x3D; :8000</span><br><span class="line"> 4 </span><br><span class="line"> 5 ; 指定和nginx进行套接字通信的方式：端口或文件</span><br><span class="line"> 6 ; socket &#x3D; 127.0.0.1:8001</span><br><span class="line"> 7 ; socket &#x3D; &#x2F;home&#x2F;kzzf&#x2F;project&#x2F;OfferHelp&#x2F;OfferHelp.sock</span><br><span class="line"> 8 </span><br><span class="line"> 9 ; 项目所在目录，和manage.py同级</span><br><span class="line">10 chdir &#x3D; &#x2F;home&#x2F;kzzf&#x2F;project&#x2F;OfferHelp</span><br><span class="line">11 </span><br><span class="line">12 ; 虚拟环境所在目录</span><br><span class="line">13 home&#x3D;&#x2F;home&#x2F;kzzf&#x2F;env&#x2F;OfferHelp-env</span><br><span class="line">14 PYTHONHOME &#x3D; &#x2F;home&#x2F;kzzf&#x2F;env&#x2F;OfferHelp-env&#x2F;bin&#x2F;</span><br><span class="line">15 </span><br><span class="line">16 ; 主应用中的wsgi文件</span><br><span class="line">17 wsgi-file &#x3D; OfferHelp&#x2F;wsgi.py</span><br><span class="line">18 </span><br><span class="line">19 ; 使用路由代理静态资源，但失败了</span><br><span class="line">20 ; static-safe&#x3D;&#x2F;home&#x2F;kzzf&#x2F;project&#x2F;OfferHelp&#x2F;static&#x2F;</span><br><span class="line">21 ; route &#x3D; &#x2F;static&#x2F;(.*) static:&#x2F;home&#x2F;kzzf&#x2F;project&#x2F;OfferHelp&#x2F;static&#x2F;$1</span><br><span class="line">22 </span><br><span class="line">23 ; 代理静态资源：路径映射</span><br><span class="line">24 static-map &#x3D; &#x2F;static&#x3D;&#x2F;home&#x2F;kzzf&#x2F;project&#x2F;OfferHelp&#x2F;collect_static</span><br><span class="line">25 </span><br><span class="line">26 ; 启动一个master进程，来管理其余的子进程</span><br><span class="line">27 master&#x3D;True</span><br><span class="line">28 processes &#x3D; 4</span><br><span class="line">29 threads &#x3D; 2</span><br><span class="line">30 </span><br><span class="line">31 ; 保存主进程的pid，用来控制uwsgi服务</span><br><span class="line">32 pidfile&#x3D;&#x2F;home&#x2F;kzzf&#x2F;project&#x2F;OfferHelp&#x2F;uwsgi.pid</span><br><span class="line">33 ; 启动项目  uwsgi uwsgi.ini</span><br><span class="line">34 ; uwsgi --stop&#x2F;reload xxx.pid  停止&#x2F;重启uwsgi</span><br><span class="line">35 </span><br><span class="line">36 ; 设置后台运行，保存日志</span><br><span class="line">37 daemonize&#x3D;&#x2F;home&#x2F;kzzf&#x2F;project&#x2F;OfferHelp&#x2F;log&#x2F;uwsgi.log</span><br><span class="line">38 ; deamonize&#x3D;1  ; 用来配置background运行</span><br><span class="line">39 </span><br><span class="line">40 ; 设置每个工作进程处理请求的上限，达到上限时，将回收（重启）该进程。可以预防内存泄漏</span><br><span class="line">41 max-requests&#x3D;5000</span><br><span class="line">42 </span><br><span class="line">43 # 服务停止时自动移除unix Socket和pid文件</span><br><span class="line">44 vacuum&#x3D;true</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1 uwsgi uwsgi.ini</span><br><span class="line">2 </span><br><span class="line">3 # 停止</span><br><span class="line">4 uwsgi --stop uwsgi.pid</span><br><span class="line">5 pkill -f uwsgi -9</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -733,93 +826,6 @@
 <td></td>
 </tr>
 </tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/4.Shell/Shell%E5%A2%9E%E5%8A%A0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Home">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/4.Shell/Shell%E5%A2%9E%E5%8A%A0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">Shell增加定时任务</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-01-19 12:02:00" itemprop="dateCreated datePublished" datetime="2020-01-19T12:02:00+08:00">2020-01-19</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-12 14:39:37" itemprop="dateModified" datetime="2021-03-12T14:39:37+08:00">2021-03-12</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="增加定时任务"><a href="#增加定时任务" class="headerlink" title="增加定时任务"></a>增加定时任务</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">CRON_FILE=<span class="string">&quot;/var/spool/cron/root&quot;</span> （centos系统）</span></span><br><span class="line">CRON_FILE=&quot;/var/spool/cron/crontabs/root&quot;（ubantu系统）</span><br><span class="line">grep &quot;cron_one_min.sh&quot; $&#123;CRON_FILE&#125;|| echo &quot;01 * * * * bash /data/server/cron/one_min.sh&quot; &gt;&gt; $&#123;CRON_FILE&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="查看定时任务"><a href="#查看定时任务" class="headerlink" title="查看定时任务"></a>查看定时任务</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">crontab -l</span></span><br></pre></td></tr></table></figure>
-
 
       
     </div>

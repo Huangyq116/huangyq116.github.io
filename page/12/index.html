@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,102 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/3.MySQL/MySQL%E5%AD%98%E5%82%A8%E5%85%B3%E8%81%94%E6%95%B0%E7%BB%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Home">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2.Programming/3.MySQL/MySQL%E5%AD%98%E5%82%A8%E5%85%B3%E8%81%94%E6%95%B0%E7%BB%84/" class="post-title-link" itemprop="url">MySQL存储关联数组</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-06-07 15:56:00" itemprop="dateCreated datePublished" datetime="2018-06-07T15:56:00+08:00">2018-06-07</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-07 12:44:34" itemprop="dateModified" datetime="2021-03-07T12:44:34+08:00">2021-03-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>关联数组：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$fruits</span>= <span class="keyword">array</span>(<span class="string">&quot;apple&quot;</span> =&gt; <span class="string">&quot;苹果&quot;</span>, <span class="string">&quot;banana&quot;</span> =&gt; <span class="string">&quot;香蕉&quot;</span>,<span class="string">&quot;oriange&quot;</span> =&gt; <span class="string">&quot;橘子&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>对于这样的数据，MySQL数据库因存储类型是无法直接写入的，那有什么办法呢？</p>
+<p><strong>解决方案：使用PHP自带的serialize()或者json_encode()函数序列化数据成字符串，之后从数据库里面读出来的数据还是字符串格式的，用unserialize()和json_decode()函数转换成数组就可以了</strong></p>
+<p><strong>写入数据库之前</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$fruits_serialize</span> = serialize(<span class="variable">$fruits</span>); <span class="comment">// 序列化成字符串</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$fruits_json</span> = json_encode(<span class="variable">$fruits</span>); <span class="comment">// JSON编码数组成字符串</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>读取数据库后</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$fruits</span> _restore = unserialize(<span class="variable">$fruits_serialize</span>); <span class="comment">// 反序列化成数组</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$fruits</span> _dejson = json_decode(<span class="variable">$fruits_json</span>, <span class="literal">true</span>); <span class="comment">// JSON解码成数组</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

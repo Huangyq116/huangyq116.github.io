@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,91 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Docker/docker-compose%20%E7%AE%A1%E7%90%86docker%E7%9A%84%E5%A4%9A%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Home">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/4.ToolsNotes/Docker/docker-compose%20%E7%AE%A1%E7%90%86docker%E7%9A%84%E5%A4%9A%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">docker-compose 管理docker的多容器配置</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-23 12:14:00" itemprop="dateCreated datePublished" datetime="2019-12-23T12:14:00+08:00">2019-12-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-07 17:41:05" itemprop="dateModified" datetime="2021-03-07T17:41:05+08:00">2021-03-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/4-ToolsNotes/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">version: &#x27;3.4&#x27;</span><br><span class="line">x-defaults: &amp;defaults</span><br><span class="line">  restart: unless-stopped#启动模式，当值为always时，容器总是重新启动；当值为no-failure时，即出现报错容器退出时，容器重新启动；unless-stopped为容器自启模式</span><br><span class="line">  network_mode: &quot;host&quot;</span><br><span class="line">services:</span><br><span class="line">  mysql: #服务名</span><br><span class="line">    hostname: mysql   #主机名</span><br><span class="line">    image: mysql/mysql:latest  #镜像</span><br><span class="line">    container_name: mysql  #容器名称</span><br><span class="line">    environment:</span><br><span class="line">     - TZ=Asia/Shanghai #时区</span><br><span class="line">    ports:  #端口</span><br><span class="line">      - 80:80</span><br><span class="line">      - 3000:3000</span><br><span class="line">    volumes:</span><br><span class="line">      - &quot;/etc/localtime:/etc/localtime:ro&quot; # 设置容器时区与宿主机保持一致</span><br><span class="line">      - /home/用户名/mysql/data:/data</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -584,125 +669,6 @@
 <p><strong>2、获取项目提交信息</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-*-coding:utf-8-*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span>  re</span><br><span class="line">url = <span class="string">&#x27;http://192.168.199.184/api/v3/projects?private_token=oMJwN5ErC8_n1QvTsyDR&amp;per_page=10&#x27;</span></span><br><span class="line">r =requests.get(url)</span><br><span class="line">p_group = [<span class="string">&#x27;HJ&#x27;</span>]</span><br><span class="line">data = r.json()</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;项目名称&quot;</span>,<span class="string">&#x27; &#x27;</span>*<span class="number">20</span>,<span class="string">&#x27;最近提交时间&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">    <span class="keyword">if</span> i[<span class="string">&#x27;ssh_url_to_repo&#x27;</span>].split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>].split(<span class="string">&#x27;/&#x27;</span>)[<span class="number">0</span>] <span class="keyword">in</span> p_group:</span><br><span class="line">        r1 = requests.get(<span class="string">&#x27;http://192.168.199.184/api/v3/projects/15/repository/commits/master?private_token=gqv1hvjbGCLs6uAUmBV8&amp;per_page=10&#x27;</span></span><br><span class="line">            % i[<span class="string">&#x27;id&#x27;</span>])</span><br><span class="line">        data2 = r1.json()</span><br><span class="line">        <span class="keyword">if</span> data2[<span class="string">&#x27;message&#x27;</span>].strip() == <span class="string">&#x27;404 Commit Not Found&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span> (i[<span class="string">&#x27;ssh_url_to_repo&#x27;</span>].split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>],<span class="string">&#x27; &#x27;</span>*<span class="number">11</span>,<span class="string">&#x27;未提交任何代码&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(i[<span class="string">&#x27;ssh_url_to_repo&#x27;</span>].split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>], <span class="string">&#x27; &#x27;</span> * <span class="number">11</span>, data2[<span class="string">&#x27;committed_date&#x27;</span>][:<span class="number">10</span>])</span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Jenkins/%E8%8E%B7%E5%8F%96Jenkins%E6%9E%84%E5%BB%BA%E6%97%B6GitChangeLog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Home">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/4.ToolsNotes/Jenkins/%E8%8E%B7%E5%8F%96Jenkins%E6%9E%84%E5%BB%BA%E6%97%B6GitChangeLog/" class="post-title-link" itemprop="url">获取Jenkins构建时GitChangeLog</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-10-18 10:55:00" itemprop="dateCreated datePublished" datetime="2019-10-18T10:55:00+08:00">2019-10-18</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-12 11:29:37" itemprop="dateModified" datetime="2021-03-12T11:29:37+08:00">2021-03-12</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/Jenkins/" itemprop="url" rel="index"><span itemprop="name">Jenkins</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/HYanqing/p/11697097.html">获取Jenkins构建时Git Change Log</a></p>
-<p>在基于Jenkins进行CI持续集成的工作，在构建后上传蒲公英时想将本次版本的git commit信息同步到蒲公英的下载页面。Jenkins每次构建都会根据Git 的提交记录生成一个Web页面来显示自上次构建之后的提交记录列表（如图1），但是Jenkins却并没有提供可以获取这个Strings的功能。 </p>
-<p><img src="/images/20191018-1.png" alt="images"></p>
-<h4 id="Maven安装"><a href="#Maven安装" class="headerlink" title="Maven安装"></a>Maven安装</h4><p>  下载地址：<a target="_blank" rel="noopener" href="https://maven.apache.org/download.cgi%EF%BC%88%E5%A6%82%E5%9B%BE%EF%BC%89%E3%80%82">https://maven.apache.org/download.cgi（如图）。</a></p>
-<p>  将下载的压缩包解压到某个目录下，例如：/Users/用户名/apache-maven-3.5.3。</p>
-<p>  在终端执行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vi ~/.bash_profile</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">export</span> M2_HOME=/Users/用户名/apache-maven-3.5.3</span> </span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$M2_HOME</span>/bin</span></span><br></pre></td></tr></table></figure>
-
-<p>  最后在终端执行如下命令来使.bash_profile生效：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> ~/.bash_profile</span></span><br></pre></td></tr></table></figure>
-
-<p>  可以输入mvn -v来检查Maven是否生效</p>
-<p><img src="/images/20191018-2.png" alt="images"></p>
-<h4 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h4><p> Jenkins里面同样有人反馈了同样的需求，有人给出了一个插件解决获取git change log的需求，插件开源地址（<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/daniel-beck/changelog-environment-plugin">https://github.com/daniel-beck/changelog-environment-plugin</a>）</p>
-<ol>
-<li><p>因作者并没有将插件编译上传，所以我们需要将项目Clone到本地</p>
-</li>
-<li><p>然后在项目根目录下执行 <em>mvn verify</em> ，因为依赖较多，第一次build时间会比较漫长，需耐心等待</p>
-</li>
-<li><p>build完成之后项目根目录中“target”文件夹中会出现“changelog-environment.hpi”这个文件</p>
-</li>
-</ol>
-<p>（注：<em>mvn verify</em> 是Maven命令，文章最后简单说明如何安装），插件现已上传到GitHub上（<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/KrisMarko/kr-changelog">https://github.com/KrisMarko/kr-changelog</a>）。</p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>  在Jenkins的系统管理-&gt; 管理插件-&gt; 高级-&gt;上传插件，将刚刚编译生成的“changelog-environment.hpi”文件上传并安装到Jenkins中，安装完成后，会在“构建环境”中有“Add Changelog Information to Environment”选项，选中后会有Entry Format、File Item Format、Date Format三个可配置项，第一个就是填写提交日志输出格式的地方，采用的是Java String.format占位符的形式。其中可以使用四个参数，分别是：</p>
-<ol>
-<li><p>提交的作者</p>
-</li>
-<li><p>提交的 ID</p>
-</li>
-<li><p>提交信息</p>
-</li>
-<li><p>提交时间(通过 Date Format 控制格式)</p>
-</li>
-</ol>
-<p>  例，我在Entry Format输入 %3$s (via %1$s)\n，然后有一条提交记录，提交信息为「fix bug」，提交者为 Kris.Marko，那么输出到环境变量的字符串就是 “fix bug (via Kris.Marko)\n” (后面的 \n 是为了多层转义，视使用情况请自行调整)。</p>
-<p>  通过如上设置之后，在构建时就可以在shell中来获得SCM_CHANGELOG变量来取到更新日志了。比如自动上传更新信息到内测平台（如蒲公英）。</p>
 
       
     </div>

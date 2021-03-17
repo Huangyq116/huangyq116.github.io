@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,93 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/4.Shell/Shell%E5%A2%9E%E5%8A%A0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Home">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2.Programming/4.Shell/Shell%E5%A2%9E%E5%8A%A0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">Shell增加定时任务</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-01-19 12:02:00" itemprop="dateCreated datePublished" datetime="2020-01-19T12:02:00+08:00">2020-01-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-12 14:39:37" itemprop="dateModified" datetime="2021-03-12T14:39:37+08:00">2021-03-12</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="增加定时任务"><a href="#增加定时任务" class="headerlink" title="增加定时任务"></a>增加定时任务</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">CRON_FILE=<span class="string">&quot;/var/spool/cron/root&quot;</span> （centos系统）</span></span><br><span class="line">CRON_FILE=&quot;/var/spool/cron/crontabs/root&quot;（ubantu系统）</span><br><span class="line">grep &quot;cron_one_min.sh&quot; $&#123;CRON_FILE&#125;|| echo &quot;01 * * * * bash /data/server/cron/one_min.sh&quot; &gt;&gt; $&#123;CRON_FILE&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看定时任务"><a href="#查看定时任务" class="headerlink" title="查看定时任务"></a>查看定时任务</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">crontab -l</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -642,91 +729,6 @@
 
 <p><strong>全部参数</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">“api-cors-header”:&quot;&quot;, ——————在引擎API中设置CORS标头</span><br><span class="line">“authorization-plugins”:[], ——————要加载的授权插件</span><br><span class="line">“bridge”:&quot;&quot;, ————将容器附加到网桥</span><br><span class="line">“cgroup-parent”:&quot;&quot;, ——————为所有容器设置父cgroup</span><br><span class="line">“cluster-store”:&quot;&quot;, ——————分布式存储后端的URL</span><br><span class="line">“cluster-store-opts”:&#123;&#125;, ————————设置集群存储选项（默认map []）</span><br><span class="line">“cluster-advertise”:&quot;&quot;, ————————要通告的地址或接口名称</span><br><span class="line">“debug”: true, ————————启用调试模式，启用后，可以看到很多的启动信息。默认false</span><br><span class="line">“default-gateway”:&quot;&quot;, ——————容器默认网关IPv4地址</span><br><span class="line">“default-gateway-v6”:&quot;&quot;, ——————容器默认网关IPv6地址</span><br><span class="line">“default-runtime”:“runc”, ————————容器的默认OCI运行时（默认为“ runc”）</span><br><span class="line">“default-ulimits”:&#123;&#125;, ——————容器的默认ulimit（默认[]）</span><br><span class="line">“dns”: [“192.168.1.1”], ——————设定容器DNS的地址，在容器的 /etc/resolv.conf文件中可查看。</span><br><span class="line">“dns-opts”: [], ————————容器 /etc/resolv.conf 文件，其他设置</span><br><span class="line">“dns-search”: [], ————————设定容器的搜索域，当设定搜索域为 .example.com 时，在搜索一个名为 host 的 主机时，DNS不仅搜索host，还会搜</span><br><span class="line">索host.example.com 。 注意：如果不设置， Docker 会默认用主机上的 /etc/resolv.conf 来配置容器。</span><br><span class="line">“exec-opts”: [], ————————运行时执行选项</span><br><span class="line">“exec-root”:&quot;&quot;, ————————执行状态文件的根目录（默认为’/var/run/docker‘）</span><br><span class="line">“fixed-cidr”:&quot;&quot;, ————————固定IP的IPv4子网</span><br><span class="line">“fixed-cidr-v6”:&quot;&quot;, ————————固定IP的IPv6子网</span><br><span class="line">“data-root”:&quot;/var/lib/docker&quot;, ————-Docker运行时使用的根路径，默认/var/lib/docker</span><br><span class="line">“group”: “”, ——————UNIX套接字的组（默认为“docker”）</span><br><span class="line">“hosts”: [], ——————设置容器hosts</span><br><span class="line">“icc”: false, ——————启用容器间通信（默认为true）</span><br><span class="line">“ip”:“0.0.0.0”, ————————绑定容器端口时的默认IP（默认0.0.0.0）</span><br><span class="line">“iptables”: false, ———————启用iptables规则添加（默认为true）</span><br><span class="line">“ipv6”: false, ——————启用IPv6网络</span><br><span class="line">“ip-forward”: false, ————————默认true, 启用 net.ipv4.ip_forward ,进入容器后使用 sysctl -a | grepnet.ipv4.ip_forward 查看</span><br><span class="line">“ip-masq”:false, ——————启用IP伪装（默认为true）</span><br><span class="line">“labels”:[“nodeName=node-121”], ————————docker主机的标签，很实用的功能,例如定义：–label nodeName=host-121</span><br><span class="line">“live-restore”: true, ——————在容器仍在运行时启用docker的实时还原</span><br><span class="line">“log-driver”:&quot;&quot;, ——————容器日志的默认驱动程序（默认为“ json-file”）</span><br><span class="line">“log-level”:&quot;&quot;, ——————设置日志记录级别（“调试”，“信息”，“警告”，“错误”，“致命”）（默认为“信息”）</span><br><span class="line">“max-concurrent-downloads”:3, ——————设置每个请求的最大并发下载量（默认为3）</span><br><span class="line">“max-concurrent-uploads”:5, ——————设置每次推送的最大同时上传数（默认为5）</span><br><span class="line">“mtu”: 0, ——————设置容器网络MTU</span><br><span class="line">“oom-score-adjust”:-500, ——————设置守护程序的oom_score_adj（默认值为-500）</span><br><span class="line">“pidfile”: “”, ——————Docker守护进程的PID文件</span><br><span class="line">“raw-logs”: false, ——————全时间戳机制</span><br><span class="line">“selinux-enabled”: false, ——————默认 false，启用selinux支持</span><br><span class="line">“storage-driver”:&quot;&quot;, ——————要使用的存储驱动程序</span><br><span class="line">“swarm-default-advertise-addr”:&quot;&quot;, ——————设置默认地址或群集广告地址的接口</span><br><span class="line">“tls”: true, ————————默认 false, 启动TLS认证开关</span><br><span class="line">“tlscacert”: “”, ——————默认 ~/.docker/ca.pem，通过CA认证过的的certificate文件路径</span><br><span class="line">“tlscert”: “”, ————————默认 ~/.docker/cert.pem ，TLS的certificate文件路径</span><br><span class="line">“tlskey”: “”, ————————默认~/.docker/key.pem，TLS的key文件路径</span><br><span class="line">“tlsverify”: true, ————————默认false，使用TLS并做后台进程与客户端通讯的验证</span><br><span class="line">“userland-proxy”:false, ——————使用userland代理进行环回流量（默认为true）</span><br><span class="line">“userns-remap”:&quot;&quot;, ————————用户名称空间的用户/组设置</span><br><span class="line">“bip”:“192.168.88.0/22”, ——————————指定网桥IP</span><br><span class="line">“registry-mirrors”: [“https://192.498.89.232:89”], ————————设置镜像加速</span><br><span class="line">“insecure-registries”: [“120.123.122.123:12312”], ———————设置私有仓库地址可以设为http</span><br><span class="line">“storage-opts”: [</span><br><span class="line">“overlay2.override_kernel_check=true”,</span><br><span class="line">“overlay2.size=15G”</span><br><span class="line">], ————————存储驱动程序选项</span><br><span class="line">“log-opts”: &#123;</span><br><span class="line">“max-file”: “3”,</span><br><span class="line">“max-size”: “10m”,</span><br><span class="line">&#125;, ————————容器默认日志驱动程序选项</span><br><span class="line">“iptables”: false ————————启用iptables规则添加（默认为true）</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Docker/docker-compose%20%E7%AE%A1%E7%90%86docker%E7%9A%84%E5%A4%9A%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Home">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/4.ToolsNotes/Docker/docker-compose%20%E7%AE%A1%E7%90%86docker%E7%9A%84%E5%A4%9A%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">docker-compose 管理docker的多容器配置</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-12-23 12:14:00" itemprop="dateCreated datePublished" datetime="2019-12-23T12:14:00+08:00">2019-12-23</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-07 17:41:05" itemprop="dateModified" datetime="2021-03-07T17:41:05+08:00">2021-03-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">version: &#x27;3.4&#x27;</span><br><span class="line">x-defaults: &amp;defaults</span><br><span class="line">  restart: unless-stopped#启动模式，当值为always时，容器总是重新启动；当值为no-failure时，即出现报错容器退出时，容器重新启动；unless-stopped为容器自启模式</span><br><span class="line">  network_mode: &quot;host&quot;</span><br><span class="line">services:</span><br><span class="line">  mysql: #服务名</span><br><span class="line">    hostname: mysql   #主机名</span><br><span class="line">    image: mysql/mysql:latest  #镜像</span><br><span class="line">    container_name: mysql  #容器名称</span><br><span class="line">    environment:</span><br><span class="line">     - TZ=Asia/Shanghai #时区</span><br><span class="line">    ports:  #端口</span><br><span class="line">      - 80:80</span><br><span class="line">      - 3000:3000</span><br><span class="line">    volumes:</span><br><span class="line">      - &quot;/etc/localtime:/etc/localtime:ro&quot; # 设置容器时区与宿主机保持一致</span><br><span class="line">      - /home/用户名/mysql/data:/data</span><br></pre></td></tr></table></figure>
 
 
       
