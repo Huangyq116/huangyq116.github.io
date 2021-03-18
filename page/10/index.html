@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-count">60</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,103 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Docker/Docker%E4%B8%8A%E4%BC%A0%E9%95%9C%E5%83%8F%E8%87%B3Harbor/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/4.ToolsNotes/Docker/Docker%E4%B8%8A%E4%BC%A0%E9%95%9C%E5%83%8F%E8%87%B3Harbor/" class="post-title-link" itemprop="url">Docker上传镜像至Harbor</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-09-09 20:26:00" itemprop="dateCreated datePublished" datetime="2019-09-09T20:26:00+08:00">2019-09-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-07 19:57:34" itemprop="dateModified" datetime="2021-03-07T19:57:34+08:00">2021-03-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/4-ToolsNotes/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>构造镜像的两种方式：1.commit 2.Dockerfile</p>
+<p>Docker提供了一个docker commit命令，可以将容器的存储层保存下来成为镜像。换句话说，就是在原有镜像的基础上，再叠加上容器的存储层，并构成新的镜像。</p>
+<p>以后我们运行这个新镜像的时候，就会拥有原有容器的最后的文件变化。</p>
+<p>docker commit的语法格式为：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit [选项] &lt;容器ID或容器名&gt; [&lt;仓库名&gt;[:&lt;标签&gt;]]</span><br></pre></td></tr></table></figure>
+
+<p> 实例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -m &#x27;Test&#x27; -a &#x27;Tester&#x27; 14277e296feb 192.168.0.0:8888/shtest/rtmp:v2</span><br></pre></td></tr></table></figure>
+
+<p>-m ‘Test’ :记录本地修改的内容</p>
+<p>-a ‘Tester’：指定修改的作者</p>
+<p>14277e296feb：复制的基础镜像</p>
+<p>192.168.0.0:8888/shetest/rtmp：复制后的镜像</p>
+<p>v2：复制后的镜像tag</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -577,108 +674,6 @@
 <h3 id="获取变量值"><a href="#获取变量值" class="headerlink" title="获取变量值"></a>获取变量值</h3><p>在<code>Headers</code>中添加一个header，key填<code>token</code>（接口自行规定），value为<code>&#123;&#123;token&#125;&#125;</code>（刚刚在global设置的key）。鼠标移动到上面，会显示具体的value值。也可以点右上角的小眼睛，看所有的全局变量。</p>
 <p><img src="/images/20190730-6.png" alt="postman"></p>
 <h3 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h3><p>View–Show Postman Console</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/3.Testing/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/Postman%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E7%9A%84js%E7%89%87%E6%AE%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/3.Testing/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/Postman%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E7%9A%84js%E7%89%87%E6%AE%B5/" class="post-title-link" itemprop="url">Postman常用设置全局变量的js片段</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-07-30 16:16:00" itemprop="dateCreated datePublished" datetime="2019-07-30T16:16:00+08:00">2019-07-30</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-12 14:17:39" itemprop="dateModified" datetime="2021-03-12T14:17:39+08:00">2021-03-12</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/3-Testing/" itemprop="url" rel="index"><span itemprop="name">3.Testing</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/3-Testing/%E6%8E%A5%E5%8F%A3/" itemprop="url" rel="index"><span itemprop="name">接口</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="Postman知识总结"><a href="#Postman知识总结" class="headerlink" title="Postman知识总结"></a>Postman知识总结</h4><p><a target="_blank" rel="noopener" href="http://www.bayescafe.com/tools/use-postman-to-test-api-automatically.html">API自动化利器</a></p>
-<h4 id="获取环境变量内容"><a href="#获取环境变量内容" class="headerlink" title="获取环境变量内容"></a>获取环境变量内容</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ostype = pm.environment.get(<span class="string">&quot;ostype&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="设置全局变量内容"><a href="#设置全局变量内容" class="headerlink" title="设置全局变量内容"></a>设置全局变量内容</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">postman.setEnvironmentVariable(<span class="string">&quot;ts&quot;</span>,<span class="built_in">Math</span>.floor(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime()/<span class="number">1000</span>));</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="auth签名"><a href="#auth签名" class="headerlink" title="auth签名"></a>auth签名</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> auth = CryptoJS.SHA1(pm.environment.get(<span class="string">&quot;device_secret&quot;</span>),&#123;<span class="attr">asString</span>: <span class="literal">true</span>&#125;);</span><br><span class="line">postman.setEnvironmentVariable(<span class="string">&quot;auth&quot;</span>, auth);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="随机标识"><a href="#随机标识" class="headerlink" title="随机标识"></a>随机标识</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> randomInt = <span class="function">(<span class="params">min, max</span>) =&gt;</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * (max - min + <span class="number">1</span>)) + min;  <span class="comment">// 随机整数</span></span><br><span class="line"><span class="keyword">const</span> getRandomValue = <span class="function"><span class="params">list</span> =&gt;</span> list[randomInt(<span class="number">0</span>, list.length - <span class="number">1</span>)];  <span class="comment">// 随机选项</span></span><br><span class="line"><span class="keyword">const</span> chars = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>, <span class="string">&#x27;g&#x27;</span>, <span class="string">&#x27;h&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;g&#x27;</span>, <span class="string">&#x27;k&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;n&#x27;</span>, <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;1&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> identifier = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">  identifier += getRandomValue(chars);</span><br><span class="line">&#125;</span><br><span class="line">pm.environment.set(<span class="string">&quot;identifier&quot;</span>, identifier);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="schema校验"><a href="#schema校验" class="headerlink" title="schema校验"></a>schema校验</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> json;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  json = <span class="built_in">JSON</span>.parse(responseBody);</span><br><span class="line">&#125; <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">  tests[<span class="string">&#x27;服务端没返回合法的JSON格式，请检查相关服务、网络或反向代理设置（以下跳过其他断言）&#x27;</span>] = <span class="literal">false</span>;</span><br><span class="line">  tests[<span class="string">`[INFO] 返回：<span class="subst">$&#123;responseBody&#125;</span>`</span>] = <span class="literal">true</span>;</span><br><span class="line">  <span class="built_in">console</span>.error(err);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (json) &#123;</span><br><span class="line">  <span class="keyword">const</span> result = tv4.validateResult(json, schema);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">  tests[<span class="string">&#x27;JSON Schema格式正确 &#x27;</span> + result.error ] = result.valid;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(result.error);</span><br><span class="line">    <span class="built_in">console</span>.error(responseBody);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
       
     </div>
