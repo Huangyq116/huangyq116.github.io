@@ -251,7 +251,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/Python%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E4%B9%8Bcelery/">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Jenkins/Jenkins-pipeline%E5%8F%82%E6%95%B0%E5%8C%96%E6%98%BE%E7%A4%BA%E5%8F%8A%E6%8F%92%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -264,7 +264,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/1.Python/Python%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E4%B9%8Bcelery/" class="post-title-link" itemprop="url">Python异步编程之celery</a>
+          <a href="/4.ToolsNotes/Jenkins/Jenkins-pipeline%E5%8F%82%E6%95%B0%E5%8C%96%E6%98%BE%E7%A4%BA%E5%8F%8A%E6%8F%92%E4%BB%B6/" class="post-title-link" itemprop="url">Jenkins-pipeline参数化显示及插件</a>
         </h2>
 
         <div class="post-meta-container">
@@ -275,14 +275,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2019-10-07 19:48:00" itemprop="dateCreated datePublished" datetime="2019-10-07T19:48:00+08:00">2019-10-07</time>
+      <time title="创建时间：2019-10-12 11:30:00" itemprop="dateCreated datePublished" datetime="2019-10-12T11:30:00+08:00">2019-10-12</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-18 22:14:31" itemprop="dateModified" datetime="2021-03-18T22:14:31+08:00">2021-03-18</time>
+        <time title="修改时间：2021-03-12 11:31:03" itemprop="dateModified" datetime="2021-03-12T11:31:03+08:00">2021-03-12</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -290,11 +290,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
+          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+          <a href="/categories/4-ToolsNotes/Jenkins/" itemprop="url" rel="index"><span itemprop="name">Jenkins</span></a>
         </span>
     </span>
 
@@ -308,35 +308,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>最近测试的需求里有一个既要满足异步又要满足定时的功能，第一实现想法的是使用asyncio和crontab；服务端的Yago框架中有相关插件可以同时满足两个需求，不禁思考Python中是否也有相关模块，于是乎调研了一下Celery。<br>参考：<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Stitchez/p/10240387.html#top">https://www.cnblogs.com/Stitchez/p/10240387.html#top</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/skyflask/p/9865378.html">https://www.cnblogs.com/skyflask/p/9865378.html</a></p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><img src="/images/20210318-1.png" alt="images"></p>
-<p>Celery中，以上组件具体功能如下：<br>任务模块 Task：包含异步任务和定时任务。其中，异步任务通常在业务逻辑中被触发并发往任务队列，而定时任务由 Celery Beat 进程周期性地将任务发往任务队列。<br>消息中间件 Broker：即为任务调度队列，接收任务生产者发来的消息（即任务），将任务存入队列。Celery 本身不提供队列服务，官方推荐使用 RabbitMQ 和 Redis 等。<br>任务执行单元 Worker：是执行任务的处理单元，它实时监控消息队列，获取队列中调度的任务，并执行它。<br>任务结果存储 Backend ：用于存储任务的执行结果，以供查询。同消息中间件一样，存储也可使用 RabbitMQ, Redis 和 MongoDB 等。</p>
-<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><p>现就Win10环境下载相关模块和中间件：<br>redis  3.2.100<br>Python 3.9.0<br>celery 4.4.7<br>celery-with-redis  3.0<br>celery-with-redis 3.0<br>eventlet  0.22.1<br>主要的代码层面来了，我们通过流程图知道，我们需要生产任务，目录结构如下图：</p>
-<p><img src="/images/20210318-2.png" alt="images"></p>
-<p>　1、其中<code>__init__.py</code>是通过启动项目时，选择的配置文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> Celery</span><br><span class="line"></span><br><span class="line">app = Celery(<span class="string">&#x27;demo&#x27;</span>)</span><br><span class="line">app.config_from_object(<span class="string">&#x27;celery_app.celeryconfig&#x27;</span>)</span><br></pre></td></tr></table></figure>
+          <h2 id="Git-Parameter"><a href="#Git-Parameter" class="headerlink" title="Git Parameter"></a>Git Parameter</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">gitParameter branch: &#x27;&#x27;,</span><br><span class="line"></span><br><span class="line">branchFilter: &#x27;.*&#x27;,  #分支过滤</span><br><span class="line"></span><br><span class="line">defaultValue: &#x27;master&#x27;,</span><br><span class="line"></span><br><span class="line">description: &#x27;选择代码分支&#x27;,</span><br><span class="line"></span><br><span class="line">name: &#x27;branch&#x27;,</span><br><span class="line"></span><br><span class="line">quickFilterEnabled: false,   #快速搜索</span><br><span class="line"></span><br><span class="line">selectedValue: &#x27;NONE&#x27;,</span><br><span class="line"></span><br><span class="line">sortMode: &#x27;NONE&#x27;,  #排序</span><br><span class="line"></span><br><span class="line">tagFilter: &#x27;*&#x27;,   #tag过滤</span><br><span class="line"></span><br><span class="line">type: &#x27;PT_BRANCH&#x27; </span><br></pre></td></tr></table></figure>
 
-<p>2、celeryconfig.py里面主要是celery的配置</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"><span class="keyword">from</span> celery.schedules <span class="keyword">import</span> crontab</span><br><span class="line">BROKER_URL = <span class="string">&#x27;redis://localhost:6379/1&#x27;</span>  <span class="comment"># 配置broker为redis</span></span><br><span class="line">CELERY_RESULT_BACKEND = <span class="string">&#x27;redis://localhost:6379/2&#x27;</span>  <span class="comment"># 配置结果存储至redis</span></span><br><span class="line">CELERY_TIMEZONE=<span class="string">&#x27;Asia/Shanghai&#x27;</span>  <span class="comment"># 时区设置</span></span><br><span class="line"><span class="comment"># 导入任务</span></span><br><span class="line">CELERY_IMPORTS = (</span><br><span class="line">    <span class="string">&#x27;celery_app.task1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;celery_app.task2&#x27;</span>,</span><br><span class="line">    )</span><br><span class="line"><span class="comment"># 配置定时任务的调度器</span></span><br><span class="line">CELERYBEAT_SCHEDULE=&#123;</span><br><span class="line">    <span class="comment"># 任务名字</span></span><br><span class="line">    <span class="string">&#x27;task1&#x27;</span>:&#123;   </span><br><span class="line">        <span class="string">&#x27;task&#x27;</span>:<span class="string">&#x27;celery_app.task1.add&#x27;</span>,   <span class="comment"># 任务启动的函数</span></span><br><span class="line">        <span class="string">&#x27;schedule&#x27;</span>:timedelta(seconds=<span class="number">10</span>),    <span class="comment"># 定时时间设置，每10秒一次</span></span><br><span class="line">        <span class="string">&#x27;args&#x27;</span>:(<span class="number">1</span>,<span class="number">4</span>)    <span class="comment"># 传递的参数</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;task2&#x27;</span>:&#123;</span><br><span class="line">        <span class="string">&#x27;task&#x27;</span>:<span class="string">&#x27;celery_app.task2.mul&#x27;</span>,  </span><br><span class="line">        <span class="string">&#x27;schedule&#x27;</span>:crontab(hour=<span class="number">11</span>,minute=<span class="number">10</span>),   <span class="comment"># 定时时间设置，11:10</span></span><br><span class="line">        <span class="string">&#x27;args&#x27;</span>:(<span class="number">2</span>,<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>3、task1的任务</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> celery_app <span class="keyword">import</span> app</span><br><span class="line"><span class="meta">@app.task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    time.sleep(<span class="number">3</span>)    <span class="comment"># 阻塞测试</span></span><br><span class="line">    <span class="keyword">return</span> x + y</span><br></pre></td></tr></table></figure>
 
-<p>4、task2的任务</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> celery_app <span class="keyword">import</span> app</span><br><span class="line"><span class="meta">@app.task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mul</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    time.sleep(<span class="number">3</span>)</span><br><span class="line">    <span class="keyword">return</span> x * y</span><br></pre></td></tr></table></figure>
-
-<h2 id="运行任务"><a href="#运行任务" class="headerlink" title="运行任务"></a><strong>运行任务</strong></h2><p>1、启动redis服务器</p>
-<p>2、在celery_app文件的上一级 shift+右键 打开命令行窗口，win10打开powershell</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ celery worker -A celery_app --pool=solo -l INFO</span><br></pre></td></tr></table></figure>
-
-<p>3、然后打开celery beat 启动定时任务，另开一个命令行窗口</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ celery beat -A celery_app -l INFO</span><br></pre></td></tr></table></figure>
-
-<p>4、结果如下，可以看见celery beat一直在隔10秒发送任务；至11:10处执行定时任务</p>
-<p><img src="/images/20210318-3.png" alt="images"></p>
-<p>5、再来看worker</p>
-<p><img src="/images/20210318-4.png" alt="images"></p>
-<p>其他，如使用Django执行celery操作步骤可查看官网 <a target="_blank" rel="noopener" href="http://docs.jinkan.org/docs/celery/django/first-steps-with-django.html">http://docs.jinkan.org/docs/celery/django/first-steps-with-django.html</a></p>
+<h2 id="when判断"><a href="#when判断" class="headerlink" title="when判断"></a>when判断</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zoujiaojiao/p/13219057.html">参考</a></p>
 
       
     </div>

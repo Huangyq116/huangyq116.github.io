@@ -251,6 +251,106 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/%E6%95%99%E4%BD%A0%E6%80%8E%E4%B9%88%E8%B0%83%E7%94%A8GitlabAPI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2.Programming/1.Python/%E6%95%99%E4%BD%A0%E6%80%8E%E4%B9%88%E8%B0%83%E7%94%A8GitlabAPI/" class="post-title-link" itemprop="url">教你怎么调用GitlabAPI</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-05 20:18:00" itemprop="dateCreated datePublished" datetime="2019-12-05T20:18:00+08:00">2019-12-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-13 15:17:45" itemprop="dateModified" datetime="2021-03-13T15:17:45+08:00">2021-03-13</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="官方文档："><a href="#官方文档：" class="headerlink" title="官方文档："></a><strong>官方文档：</strong></h2><p><a target="_blank" rel="noopener" href="https://docs.gitlab.com/ce/api/">参考1</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/api/branches.html#list-repository-branches">参考2</a></p>
+<h2 id="生成Personal-Access-Tokens"><a href="#生成Personal-Access-Tokens" class="headerlink" title="生成Personal Access Tokens"></a><strong>生成Personal Access Tokens</strong></h2><p>   选择右上角用户信息setting—&gt;Access Tokens</p>
+<h2 id="常用Gitlab-API"><a href="#常用Gitlab-API" class="headerlink" title="常用Gitlab API"></a><strong>常用Gitlab API</strong></h2><p><strong>1、获取所有的项目信息</strong></p>
+<p><a target="_blank" rel="noopener" href="http://192.168.199.184/api/v3/projects?private_token=gqv1hvjbGCLs6uAUmBV8&per_page=10">private_token来自Access Tokens</a></p>
+<p><strong>2、获取项目信息</strong></p>
+<p><a target="_blank" rel="noopener" href="http://192.168.199.184/api/v3/projects/15">15 为项目ID，来自所有的项目信息</a></p>
+<p><strong>3、查看用户信息</strong></p>
+<p><a target="_blank" rel="noopener" href="http://192.168.199.184/api/v3/projects/15/users?private_token=gqv1hvjbGCLs6uAUmBV8&amp;per_page=10">http://192.168.199.184/api/v3/projects/15/users?private_token=gqv1hvjbGCLs6uAUmBV8&amp;per_page=10</a></p>
+<p><strong>4、获取commits提交信息</strong>:</p>
+<p><a target="_blank" rel="noopener" href="http://192.168.199.184/api/v3/projects/15/repository/commits/master?private_token=gqv1hvjbGCLs6uAUmBV8&per_page=10">15 为项目ID，来自所有的项目信息</a></p>
+<h2 id="实战案例"><a href="#实战案例" class="headerlink" title="实战案例"></a><strong>实战案例</strong></h2><p><strong>1、获取项目信息</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#-*-coding:utf-8-*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&#x27;http://192.168.199.184/api/v3/projects?private_token=oMJwN5ErC8_n1QvTsyDR&amp;per_page=50&#x27;</span>　　　　</span><br><span class="line">user_url= <span class="string">&#x27;http://192.168.199.184/api/v3/projects/15/users?private_token=oMJwN5ErC8_n1QvTsyDR&amp;per_page=10&#x27;</span>　　</span><br><span class="line"><span class="comment">#获取项目id和项目名称</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GetProject_id</span>(<span class="params">project_url</span>):</span>　　</span><br><span class="line">    r = requests.get(project_url)</span><br><span class="line">    data = r.json()</span><br><span class="line">    ProjectId_list = []</span><br><span class="line">    ProjectName_list = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">        ProjectId_list.append(i[<span class="string">&#x27;id&#x27;</span>])</span><br><span class="line">        ProjectName_list.append(i[<span class="string">&#x27;name&#x27;</span>])</span><br><span class="line">    <span class="keyword">return</span> ProjectId_list,ProjectName_list</span><br><span class="line"><span class="comment">#根据项目id获取项目下的用户信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GetProject_userlist</span>():</span></span><br><span class="line">    IdList = GetProject_id(url)</span><br><span class="line">    project_id = IdList[<span class="number">0</span>]</span><br><span class="line">    project_name = IdList[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">id</span> <span class="keyword">in</span> project_id:</span><br><span class="line">        l = []</span><br><span class="line">        project_user = requests.get(user_url.<span class="built_in">format</span>(<span class="built_in">id</span>))　　        <span class="comment">#生成完整的用于显示项目下所有user的连接</span></span><br><span class="line">        req_data = project_user.json()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> req_data:</span><br><span class="line">            l.append(i[<span class="string">&#x27;name&#x27;</span>])</span><br><span class="line">        <span class="built_in">print</span> (project_name[project_id.index(<span class="built_in">id</span>)],l)</span><br><span class="line">GetProject_userlist()</span><br></pre></td></tr></table></figure>
+
+<p><strong>2、获取项目提交信息</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-*-coding:utf-8-*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span>  re</span><br><span class="line">url = <span class="string">&#x27;http://192.168.199.184/api/v3/projects?private_token=oMJwN5ErC8_n1QvTsyDR&amp;per_page=10&#x27;</span></span><br><span class="line">r =requests.get(url)</span><br><span class="line">p_group = [<span class="string">&#x27;HJ&#x27;</span>]</span><br><span class="line">data = r.json()</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;项目名称&quot;</span>,<span class="string">&#x27; &#x27;</span>*<span class="number">20</span>,<span class="string">&#x27;最近提交时间&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">    <span class="keyword">if</span> i[<span class="string">&#x27;ssh_url_to_repo&#x27;</span>].split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>].split(<span class="string">&#x27;/&#x27;</span>)[<span class="number">0</span>] <span class="keyword">in</span> p_group:</span><br><span class="line">        r1 = requests.get(<span class="string">&#x27;http://192.168.199.184/api/v3/projects/15/repository/commits/master?private_token=gqv1hvjbGCLs6uAUmBV8&amp;per_page=10&#x27;</span></span><br><span class="line">            % i[<span class="string">&#x27;id&#x27;</span>])</span><br><span class="line">        data2 = r1.json()</span><br><span class="line">        <span class="keyword">if</span> data2[<span class="string">&#x27;message&#x27;</span>].strip() == <span class="string">&#x27;404 Commit Not Found&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span> (i[<span class="string">&#x27;ssh_url_to_repo&#x27;</span>].split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>],<span class="string">&#x27; &#x27;</span>*<span class="number">11</span>,<span class="string">&#x27;未提交任何代码&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(i[<span class="string">&#x27;ssh_url_to_repo&#x27;</span>].split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>], <span class="string">&#x27; &#x27;</span> * <span class="number">11</span>, data2[<span class="string">&#x27;committed_date&#x27;</span>][:<span class="number">10</span>])</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Jenkins/%E8%8E%B7%E5%8F%96Jenkins%E6%9E%84%E5%BB%BA%E6%97%B6GitChangeLog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -679,94 +779,6 @@
 <p>文件名（* .c）中的通配符扩展为文件列表由 shell 在运行 rsync 之前处理，而不是由 rsync 本身处理</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 复制当前路径下所有以 .c 结尾的文件至远程计算机 foo 的 /src 目录中</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 对于远程系统上已存在的文件，会使用 rsync 远程更新协议，通过仅发送数据中的差异来更新文件</span></span><br><span class="line">rsync -t *.c foo:/src/</span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Jenkins/Jenkins-pipeline%E5%8F%82%E6%95%B0%E5%8C%96%E6%98%BE%E7%A4%BA%E5%8F%8A%E6%8F%92%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/4.ToolsNotes/Jenkins/Jenkins-pipeline%E5%8F%82%E6%95%B0%E5%8C%96%E6%98%BE%E7%A4%BA%E5%8F%8A%E6%8F%92%E4%BB%B6/" class="post-title-link" itemprop="url">Jenkins-pipeline参数化显示及插件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-10-12 11:30:00" itemprop="dateCreated datePublished" datetime="2019-10-12T11:30:00+08:00">2019-10-12</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-12 11:31:03" itemprop="dateModified" datetime="2021-03-12T11:31:03+08:00">2021-03-12</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/Jenkins/" itemprop="url" rel="index"><span itemprop="name">Jenkins</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Git-Parameter"><a href="#Git-Parameter" class="headerlink" title="Git Parameter"></a>Git Parameter</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">gitParameter branch: &#x27;&#x27;,</span><br><span class="line"></span><br><span class="line">branchFilter: &#x27;.*&#x27;,  #分支过滤</span><br><span class="line"></span><br><span class="line">defaultValue: &#x27;master&#x27;,</span><br><span class="line"></span><br><span class="line">description: &#x27;选择代码分支&#x27;,</span><br><span class="line"></span><br><span class="line">name: &#x27;branch&#x27;,</span><br><span class="line"></span><br><span class="line">quickFilterEnabled: false,   #快速搜索</span><br><span class="line"></span><br><span class="line">selectedValue: &#x27;NONE&#x27;,</span><br><span class="line"></span><br><span class="line">sortMode: &#x27;NONE&#x27;,  #排序</span><br><span class="line"></span><br><span class="line">tagFilter: &#x27;*&#x27;,   #tag过滤</span><br><span class="line"></span><br><span class="line">type: &#x27;PT_BRANCH&#x27; </span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="when判断"><a href="#when判断" class="headerlink" title="when判断"></a>when判断</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zoujiaojiao/p/13219057.html">参考</a></p>
 
       
     </div>

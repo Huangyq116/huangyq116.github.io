@@ -251,6 +251,92 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Jenkins/Jenkins%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%9A%84stage%E4%B9%8B%E9%97%B4%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/4.ToolsNotes/Jenkins/Jenkins%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%9A%84stage%E4%B9%8B%E9%97%B4%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">Jenkins在不同的stage之间共享文件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-23 14:10:00" itemprop="dateCreated datePublished" datetime="2020-12-23T14:10:00+08:00">2020-12-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-07 12:44:35" itemprop="dateModified" datetime="2021-03-07T12:44:35+08:00">2021-03-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/4-ToolsNotes/Jenkins/" itemprop="url" rel="index"><span itemprop="name">Jenkins</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在使用 k8s 或者 docker 作为 jenkins 的 slave 的时候，会出现一个问题：两个 stage 可能不再同一个机器，或者不再同一个目录上，stage A 中编译的 dist 文件， stage B 中部署需要用到的时候当前目录无法找到 dist 文件。解决方式是使用 stash 和 unstash。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">stage(&quot;npm build&quot;) &#123;</span><br><span class="line">    when &#123;</span><br><span class="line">        branch &quot;dev&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    steps &#123;</span><br><span class="line">        sh  &quot;&quot;&quot;</span><br><span class="line">            npm run deploy</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        stash includes: &#x27;dist/**/*&#x27;, name:&#x27;npm_dist&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">stage(&quot;ansible deploy&quot;) &#123;</span><br><span class="line">    when &#123;</span><br><span class="line">        branch &quot;dev&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    agent  &#123;</span><br><span class="line">        docker &#123;</span><br><span class="line">            image &quot;ansible:1.2.11&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    steps &#123;</span><br><span class="line">       unstash &#x27;npm_dist&#x27;</span><br><span class="line">       script  &#123;</span><br><span class="line">           if (fileExists(&#x27;dist.zip&#x27;)) &#123;</span><br><span class="line">               sh(&#x27;rm -f  dist.zip&#x27;)</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       zip zipFile: &#x27;dist.zip&#x27;,archive: false,dir: &#x27;dist&#x27;</span><br><span class="line">       sh &quot;&quot;&quot;</span><br><span class="line">           ansible-playbook ansible-deploy.yml --inventory-file=hosts  -e target=dev --timeout=120</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Jenkins/Jenkins%E8%A7%A6%E5%8F%91%E5%85%B6%E4%BB%96%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -589,152 +675,6 @@
     <div class="post-body" itemprop="articleBody">
           <h3 id="Jenkins-pipeline-使用邮件扩展发送邮件"><a href="#Jenkins-pipeline-使用邮件扩展发送邮件" class="headerlink" title="Jenkins pipeline 使用邮件扩展发送邮件"></a>Jenkins pipeline 使用邮件扩展发送邮件</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/imyalost/p/8781759.html">参考</a></p>
 <h3 id="Jenkins配置邮件通知"><a href="#Jenkins配置邮件通知" class="headerlink" title="Jenkins配置邮件通知"></a>Jenkins配置邮件通知</h3><p><a target="_blank" rel="noopener" href="https://blog.51cto.com/5766902/2317533">参考</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/Python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/1.Python/Python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="post-title-link" itemprop="url">Python基础知识</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-10-08 21:33:00" itemprop="dateCreated datePublished" datetime="2020-10-08T21:33:00+08:00">2020-10-08</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-12 12:01:20" itemprop="dateModified" datetime="2021-03-12T12:01:20+08:00">2021-03-12</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Python垃圾回收机制"><a href="#Python垃圾回收机制" class="headerlink" title="Python垃圾回收机制"></a>Python垃圾回收机制</h2><ol>
-<li>引用计数：在每次分配和释放内存的时候，加入引用计数的动作；当引用计数为0时，该内存就会被销毁</li>
-<li>标记清除：标记活动对象，回收非活动对象</li>
-<li>分带收集：Python将内存根据对象的存活时间分为不同的集合，每个集合成为一个代，共有3代，他们各对应一个链表，当年轻链表的总数达到上限时，垃圾回收机制就会被触发，把可以回收的对象回收掉，不可回收的对象则移到中年代去，以此类推。</li>
-</ol>
-<h2 id="Python缓冲池"><a href="#Python缓冲池" class="headerlink" title="Python缓冲池"></a>Python缓冲池</h2><p>用于存储高频使用的对象，降低内存的使用；主要对象是不可变对象；</p>
-<ol>
-<li>字符串和整型对象都是不可变对象，因此Python会很高效的缓存它们</li>
-<li>元组tuple是不可变累类型，但是元组不支持缓存</li>
-</ol>
-<h2 id="Python中的可变参数和关键字参数"><a href="#Python中的可变参数和关键字参数" class="headerlink" title="Python中的可变参数和关键字参数"></a>Python中的可变参数和关键字参数</h2><p>func(*args,**kw)</p>
-<ol>
-<li>*args是可变参数，args接收的是一个tuple；既可以直接传入func(1,2,3)，又可以先组装成list或tuple，在通过args传入</li>
-<li>**kw是关键字参数，kw接收的是一个dict；既可以直接传入func(a=1,b=2)，又可以先组装成dict，再通过kw传入</li>
-</ol>
-<h2 id="Python的匿名函数"><a href="#Python的匿名函数" class="headerlink" title="Python的匿名函数"></a>Python的匿名函数</h2><p>关键字lambda表示匿名函数，只有一个表达式，不用写return，返回值就是该表达式的结果。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">匿名表达式：</span><br><span class="line"><span class="keyword">lambda</span> x: x*x</span><br><span class="line"></span><br><span class="line">函数式：</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">x</span>):</span></span><br><span class="line">	<span class="keyword">return</span> x*x</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Python装饰器"><a href="#Python装饰器" class="headerlink" title="Python装饰器"></a>Python装饰器</h2><p>本质是函数，主要用来修饰其他函数，也就是为其他函数添加附加功能。</p>
-<p>可以让其他函数在不增加代码的前提下增加额外功能，其返回值也是一个函数对象。</p>
-<p>原则：</p>
-<ol>
-<li>装饰器不能修改被装饰的函数的源代码</li>
-<li>装饰器不能修改被装饰的函数的调用方式</li>
-</ol>
-<p>常用于有切面需求的场景，如：插入日志、事务处理、缓存、权限校验等</p>
-<h2 id="Python的深拷贝和浅拷贝"><a href="#Python的深拷贝和浅拷贝" class="headerlink" title="Python的深拷贝和浅拷贝"></a>Python的深拷贝和浅拷贝</h2><ol>
-<li>深拷贝是将对象本身复制给另一个对象，意味着对对象的副本进行修改不会影响原对象；在Python中，使用deepcopy()函数实现</li>
-<li>浅拷贝是将对象的引用复制给另一个对象，则对对象的副本进行修改会影响原对象；在Python中，使用copy()函数实现</li>
-</ol>
-<h2 id="Python的进程和线程理解"><a href="#Python的进程和线程理解" class="headerlink" title="Python的进程和线程理解"></a>Python的进程和线程理解</h2><table>
-<thead>
-<tr>
-<th>进程</th>
-<th>Linux/Unix：fork()</th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td>跨平台：multiprocessing()         POOL（大量）</td>
-</tr>
-<tr>
-<td>线程</td>
-<td>threading</td>
-</tr>
-</tbody></table>
-<p>Thread类中的 start()和run()方法的区别：</p>
-<ol>
-<li>通过调用线程类的start()方法可以直接启动一个线程，是线程处于就绪状态；JVM通过调用线程类的run()方法来完成实际的业务逻辑，当run()方法结束后，此线程就会终止；</li>
-<li>直接调用线程的run()方法，则会被当成是一个普通的函数调用，程序中仍然只有主线程这一个线程</li>
-</ol>
-<p>即start()方法可以异步的调用run()方法；直接调用run()方法是同步的，无法达到多线程的目的</p>
-<h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><ol>
-<li>进程是资源分配的最小单位，线程是程序执行的最小单位</li>
-<li>进程有自己独立的地址空间，而线程是共享进程中的数据的，使用相同的地址空间；因此CPU切换一个线程的花费比进程要小很多，同时创建一个线程的开销也比进程小很多</li>
-<li>线程之间通信更方便，同一进程下的线程共享全局变量静态变量等，而进程之间的通信需要以通信（IPC）的方式进行</li>
-<li>多进程程序更健壮，多线程程序只要有一个死掉，整个进程就死掉了，而一个进程死掉不会对另一个进程造成影响</li>
-</ol>
-<p>多进程的去掉就是创建进程的代价大，操作系统能同时运行的进程数是有限的；在内存和CPU的限制下，如果进程数较多，操作系统的调度会有问题</p>
-<h2 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h2><p>所谓同步就是一个任务的完成需要依赖另外一个任务时，只有等待被依赖的任务完成后，依赖的任务才能算完成，这是一种可靠的任务序列。要么成功都成功，失败都失败，两个任务的状态可以保持一致。</p>
-<p>所谓异步是不需要等待被依赖的任务完成，只是通知被依赖的任务要完成什么工作，依赖的任务也立即执行，只要自己完成了整个任务就算完成了。至于被依赖的任务最终是否真正完成，依赖它的任务无法确定，所以它是不可靠的任务序列。</p>
 
       
     </div>
