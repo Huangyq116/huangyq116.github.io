@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,132 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Docker/Harbor%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/4.ToolsNotes/Docker/Harbor%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Harbor安装及使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-02-14 16:54:00" itemprop="dateCreated datePublished" datetime="2020-02-14T16:54:00+08:00">2020-02-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-13 15:09:49" itemprop="dateModified" datetime="2021-03-13T15:09:49+08:00">2021-03-13</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/4-ToolsNotes/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="Harbor简介"><a href="#Harbor简介" class="headerlink" title="Harbor简介"></a>Harbor简介</h4><p>Harbor是一个用于存储和分发Docker镜像的企业级私有Registry服务器。</p>
+<h4 id="Harbor安装"><a href="#Harbor安装" class="headerlink" title="Harbor安装"></a>Harbor安装</h4><h5 id="选择Harbor版本"><a href="#选择Harbor版本" class="headerlink" title="选择Harbor版本"></a>选择Harbor版本</h5><p>官网地址：<a target="_blank" rel="noopener" href="https://github.com/goharbor/harbor/releases">https://github.com/goharbor/harbor/releases</a></p>
+<p>下载harbor-online-installer-v1.7.5.tgz</p>
+<p><img src="/images/20200214-1.png" alt="harbot"></p>
+<h5 id="下载软件"><a href="#下载软件" class="headerlink" title="下载软件"></a>下载软件</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /data/harbor/</span><br><span class="line"></span><br><span class="line">wget https://storage.googleapis.com/harbor-releases/release-1.7.0/harbor-online-installer-v1.7.5.tgz</span><br><span class="line"></span><br><span class="line">sudo tar xf harbor-online-installer-v1.7.5.tgz</span><br></pre></td></tr></table></figure>
+
+<h5 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@qa02v harbor]# [root@qa02v harbor]# </span><br><span class="line">&lt;code class=&quot;hljs coffeescript&quot;&gt;docker-compose pull&lt;/code&gt;</span><br><span class="line"></span><br><span class="line">[root@qa02v harbor]# [root@qa02v harbor]# ./install.sh</span><br><span class="line">总用量 1588</span><br><span class="line">drwxr-xr-x 4 root root      35 1月  20 12:16 common</span><br><span class="line">-rw-r--r-- 1 root root     727 11月  9 2018 docker-compose.chartmuseum.yml</span><br><span class="line">-rw-r--r-- 1 root root     777 11月  9 2018 docker-compose.clair.yml</span><br><span class="line">-rw-r--r-- 1 root root    1258 11月  9 2018 docker-compose.notary.yml</span><br><span class="line">-rw-r--r-- 1 root root    3591 1月  20 12:35 docker-compose.yml</span><br><span class="line">drwxr-xr-x 3 root root     131 11月  9 2018 ha</span><br><span class="line">-rw-r--r-- 1 root root    7908 1月  20 12:14 harbor.cfg</span><br><span class="line">-rwxr-xr-x 1 root root    6162 11月  9 2018 install.sh</span><br><span class="line">-rw-r--r-- 1 root root   10768 11月  9 2018 LICENSE</span><br><span class="line">-rw-r--r-- 1 root root     482 11月  9 2018 NOTICE</span><br><span class="line">-rw-r--r-- 1 root root 1535603 11月  9 2018 open_source_license</span><br><span class="line">-rwxr-xr-x 1 root root   39496 11月  9 2018 prepare</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">######################################################</span></span></span><br><span class="line">harbor.cfg               #这就是harbor的配置文件了</span><br><span class="line">install.sh               #安装脚本</span><br><span class="line">docker-compose.yml       #docker-compose启动文件</span><br></pre></td></tr></table></figure>
+
+<p>#修改配置文件</p>
+<p><strong># sudo vi /data/harbor/harbor.cfg</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hostname = XXX.XXX.XXX.XXX #如果端口冲突则增加端口信息 hostname = XXX.XXX.XXX.XXX:XXX</span><br><span class="line"></span><br><span class="line">harbor_admin_password = xxxxxxx （备注：密码自己设置8位，默认Harbor12345）</span><br></pre></td></tr></table></figure>
+
+<p> <strong># sudo vi docker-compose.yml</strong></p>
+<p>如果端口冲突，就更改端口： 80改成：8080</p>
+<p><img src="/images/20200214-2.png" alt="harbor"></p>
+<h5 id="启动harbor"><a href="#启动harbor" class="headerlink" title="启动harbor"></a>启动harbor</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">nulige@harbor:/nulige/tools/harbor$ sudo docker-compose up -d</span><br><span class="line">harbor-log is up-to-date</span><br><span class="line">harbor-adminserver is up-to-date</span><br><span class="line">harbor-db is up-to-date</span><br><span class="line">registry is up-to-date</span><br><span class="line">redis is up-to-date</span><br><span class="line">registryctl is up-to-date</span><br><span class="line">harbor-core is up-to-date</span><br><span class="line">harbor-portal is up-to-date</span><br><span class="line">harbor-jobservice is up-to-date</span><br><span class="line">Recreating nginx ...</span><br><span class="line">Recreating nginx ... done　</span><br></pre></td></tr></table></figure>
+
+<h5 id="登录首页"><a href="#登录首页" class="headerlink" title="登录首页"></a>登录首页</h5><p><a href="http://XXX.XXX.XXX.XXX:XXX">http://XXX.XXX.XXX.XXX:XXX</a></p>
+<p>账号： admin</p>
+<p>密码：xxxxxxxx (自已设置的密码)</p>
+<h5 id="修改daemon-json"><a href="#修改daemon-json" class="headerlink" title="修改daemon.json"></a>修改daemon.json</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@qa02v harbor]# cat /etc/docker/daemon.json</span><br><span class="line">&#123;&quot;insecure-registries&quot;:[&quot;XXX.XXX.XXX.XXX:XXX&quot;] &#125;</span><br><span class="line">&#123;</span><br><span class="line">     &quot;credsStore&quot;: &quot;pass&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="重启docker"><a href="#重启docker" class="headerlink" title="重启docker"></a>重启docker</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@qa02v harbor]# systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<h5 id="登录docker"><a href="#登录docker" class="headerlink" title="登录docker"></a>登录docker</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker login -u admin -p Harbor12345 http://XXX.XXX.XXX.XXX:XXX</span><br></pre></td></tr></table></figure>
+
+<h5 id="修改tag"><a href="#修改tag" class="headerlink" title="修改tag"></a>修改tag</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag docker.io/jrottenberg/ffmpeg XXX.XXX.XXX.XXX:XXX/shtest/ffmpeg:v1.0</span><br></pre></td></tr></table></figure>
+
+<h5 id="上传镜像至Harbor"><a href="#上传镜像至Harbor" class="headerlink" title="上传镜像至Harbor"></a>上传镜像至Harbor</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push  XXX.XXX.XXX.XXX:XXX/shtest/ffmpeg:v1.0</span><br></pre></td></tr></table></figure>
+
+<h5 id="下载镜像至本地"><a href="#下载镜像至本地" class="headerlink" title="下载镜像至本地"></a>下载镜像至本地</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull  XXX.XXX.XXX.XXX:XXX/shtest/ffmpeg:v1.0</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="docker-login-遇到的问题"><a href="#docker-login-遇到的问题" class="headerlink" title="docker login 遇到的问题"></a>docker login 遇到的问题</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Username: yanshinian</span><br><span class="line">Password:</span><br><span class="line">Error saving credentials: error storing credentials - err: exit status 1, out: `The user name or passphrase you entered is not correct.`</span><br></pre></td></tr></table></figure>
+
+<p>参考链接：<a target="_blank" rel="noopener" href="https://github.com/docker/docker-credential-helpers/issues/65">https://github.com/docker/docker-credential-helpers/issues/65</a></p>
+<p>解决办法：rm /usr/local/bin/docker-credential-osxkeychain</p>
+<h5 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h5><p><a target="_blank" rel="noopener" href="https://blog.51cto.com/bigboss/2316525">Docker私有仓库Harbor v1.6.1安装</a><a target="_blank" rel="noopener" href="https://blog.51cto.com/bigboss/2317324?source=drh">
+</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/nulige/p/10778554.html"><a target="_blank" rel="noopener" href="https://www.cnblogs.com/nulige/p/10778554.html">安装Harbor之http版本</a></a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -572,7 +698,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-13 15:44:45" itemprop="dateModified" datetime="2021-03-13T15:44:45+08:00">2021-03-13</time>
+        <time title="修改时间：2021-03-22 15:47:10" itemprop="dateModified" datetime="2021-03-22T15:47:10+08:00">2021-03-22</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -774,94 +900,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Jenkins/Jenkins%E8%87%AA%E5%8A%A8%E6%9D%80%E6%8E%89%E8%A1%8D%E7%94%9F%E7%A8%8B%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/4.ToolsNotes/Jenkins/Jenkins%E8%87%AA%E5%8A%A8%E6%9D%80%E6%8E%89%E8%A1%8D%E7%94%9F%E7%A8%8B%E5%BA%8F/" class="post-title-link" itemprop="url">Jenkins自动杀掉衍生程序</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-12-26 11:30:00" itemprop="dateCreated datePublished" datetime="2019-12-26T11:30:00+08:00">2019-12-26</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-07 12:44:35" itemprop="dateModified" datetime="2021-03-07T12:44:35+08:00">2021-03-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/Jenkins/" itemprop="url" rel="index"><span itemprop="name">Jenkins</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在执行 shell输入框中加入<code>BUILD_ID=dontKillMe</code> ，即可防止jenkins杀死启动的进程</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">export BUILD_ID=dontKillMe</span><br><span class="line">PROJECT_LOCATION=&quot;/usr/local/project/&quot;</span><br><span class="line">HOST=$HOST</span><br><span class="line"></span><br><span class="line">rsync -avz --delete --progress --exclude &quot;config*&quot; --exclude &quot;db&quot; $&#123;WORKSPACE&#125;/  root@$&#123;HOST&#125;:$PROJECT_LOCATION</span><br><span class="line"> </span><br><span class="line">ssh -tt root@$&#123;HOST&#125;  &quot;    </span><br><span class="line">     cd $PROJECT_LOCATION</span><br><span class="line">     nohup ./server &gt;server.log 2&gt;&amp;1 &amp;</span><br><span class="line">     sleep 10</span><br><span class="line">     exit     </span><br><span class="line">&quot;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

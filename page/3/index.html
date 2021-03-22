@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -371,6 +371,124 @@
 <p>多进程的去掉就是创建进程的代价大，操作系统能同时运行的进程数是有限的；在内存和CPU的限制下，如果进程数较多，操作系统的调度会有问题</p>
 <h2 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h2><p>所谓同步就是一个任务的完成需要依赖另外一个任务时，只有等待被依赖的任务完成后，依赖的任务才能算完成，这是一种可靠的任务序列。要么成功都成功，失败都失败，两个任务的状态可以保持一致。</p>
 <p>所谓异步是不需要等待被依赖的任务完成，只是通知被依赖的任务要完成什么工作，依赖的任务也立即执行，只要自己完成了整个任务就算完成了。至于被依赖的任务最终是否真正完成，依赖它的任务无法确定，所以它是不可靠的任务序列。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/Python%E4%B8%AD%E8%A3%85%E9%A5%B0%E5%99%A8%E7%9A%84%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2.Programming/1.Python/Python%E4%B8%AD%E8%A3%85%E9%A5%B0%E5%99%A8%E7%9A%84%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">Python中装饰器的理解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-08 16:48:00" itemprop="dateCreated datePublished" datetime="2020-10-08T16:48:00+08:00">2020-10-08</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-22 15:43:53" itemprop="dateModified" datetime="2021-03-22T15:43:53+08:00">2021-03-22</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>装饰器的本质是函数，主要用来修饰其他函数，也就是为其他函数添加附加功能。可以让其他函数在不增加代码的前提下增加额外功能，其返回值也是一个函数对象。常用于有切面需求的场景，如：插入日志、事务处理、缓存、权限校验等。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44141532/article/details/87211683?spm=1001.2014.3001.5501">Python装饰器</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44141532/article/details/87116038?spm=1001.2014.3001.5501">Python中的闭包</a></p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><h3 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h3><p>我们可以将闭包理解为一种特殊的函数，这种函数由两个函数的嵌套组成，且称之为外函数和内函数，外函数返回值是内函数的引用，此时就构成了闭包。</p>
+<h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> 外层函数(<span class="params">参数</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> 内层函数():</span></span><br><span class="line">        print(<span class="string">&quot;内层函数执行&quot;</span>, 参数)</span><br><span class="line">    <span class="keyword">return</span> 内层函数</span><br><span class="line"></span><br><span class="line">内层函数的引用 = 外层函数(<span class="string">&quot;传入参数&quot;</span>)</span><br><span class="line">内层函数的引用()</span><br></pre></td></tr></table></figure>
+
+<p>外层函数中的参数，不一定要有，据情况而定，但是一般情况下都会有并在内函数中使用到。</p>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span>(<span class="params">a, b</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">line</span>(<span class="params">x</span>):</span></span><br><span class="line">        <span class="keyword">return</span> a * x - b</span><br><span class="line">    <span class="keyword">return</span> line</span><br><span class="line"></span><br><span class="line">line = func(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">print(line(<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p>结果得到 7<br>在这个案例中，外函数func有接收参数 a=2，b=3，内函数line接收参数x=5，在内函数体中计算了a*x-b 即 2×5-3的值作为返回值，外函数返回内函数的引用，这里的引用指的是内函数line在内存中的起始地址，最终调用内函数line()得到返回值7</p>
+<h3 id="内函数中修改外函数的值"><a href="#内函数中修改外函数的值" class="headerlink" title="内函数中修改外函数的值"></a>内函数中修改外函数的值</h3><p>一般在函数结束时，会释放临时变量，但在闭包中，由于外函数的临时变量在内函数中用到，此时外函数会把临时变量与内函数绑定到一起，这样虽然外函数结束了，但调用内函数时依旧能够使用临时变量，即闭包外层的参数可以在内存中进行保留<br>如果想要在内函数中修改外函数的值，需要使用 nonlocal 关键字声明变量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span>(<span class="params">a, b</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">line</span>(<span class="params">x</span>):</span></span><br><span class="line">        <span class="keyword">nonlocal</span> a</span><br><span class="line">        a = <span class="number">3</span></span><br><span class="line">        <span class="keyword">return</span> a * x - b</span><br><span class="line">    <span class="keyword">return</span> line</span><br><span class="line"></span><br><span class="line">line = func(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">print(line(<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p>此时运行结果为：12</p>
+<h2 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h2><h3 id="装包-拆包"><a href="#装包-拆包" class="headerlink" title="装包/拆包"></a>装包/拆包</h3><p>装包：把位置参数放到元组中，把关键字参数放到字典中<br>拆包：还原到最初的数据样貌</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func1</span>(<span class="params">*args, **kwargs</span>):</span>  <span class="comment"># 装包</span></span><br><span class="line">    print(<span class="string">&quot;args:&quot;</span>, args)</span><br><span class="line">    print(<span class="string">&quot;kwargs:&quot;</span>, kwargs)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">&quot;拆包:&quot;</span>, *args)</span><br><span class="line">    func2(**kwargs)   <span class="comment"># **kwargs无法直接打印出来</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func2</span>(<span class="params">**kwargs</span>):</span>   <span class="comment"># func2(a=1)再次装包 得到字典</span></span><br><span class="line">    print(<span class="string">&quot;字典:&quot;</span>, kwargs)</span><br><span class="line"></span><br><span class="line">func1(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, a=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="装饰器导入"><a href="#装饰器导入" class="headerlink" title="装饰器导入"></a>装饰器导入</h3><p>装饰器可以用闭包和类来实现，首先介绍使用闭包完成装饰器。<br>我们装饰的函数有四种：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 无参数，无返回值</span><br><span class="line">2. 有参数，无返回值</span><br><span class="line">3. 无参数，有返回值</span><br><span class="line">4. 有参数，有返回值</span><br></pre></td></tr></table></figure>
+
+<h4 id="1、无参数，无返回值"><a href="#1、无参数，无返回值" class="headerlink" title="1、无参数，无返回值"></a>1、无参数，无返回值</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func1</span>(<span class="params">func</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func2</span>():</span>  <span class="comment"># 内函数中，完成对额外功能的添加，调用原来的函数</span></span><br><span class="line">        print(<span class="string">&quot;无参，无返回值&quot;</span>)</span><br><span class="line">        func()</span><br><span class="line">    <span class="keyword">return</span> func2</span><br><span class="line"></span><br><span class="line"><span class="meta">@func1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    print(<span class="string">&quot;test&quot;</span>)</span><br><span class="line"></span><br><span class="line">test()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 输出结果--- #</span></span><br><span class="line">无参，无返回值</span><br><span class="line">test</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、有参数，无返回值"><a href="#2、有参数，无返回值" class="headerlink" title="2、有参数，无返回值"></a>2、有参数，无返回值</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func1</span>(<span class="params">func</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func2</span>(<span class="params">args</span>):</span></span><br><span class="line">        print(<span class="string">&quot;有参，无返回&quot;</span>)</span><br><span class="line">        func(args)  <span class="comment"># 返回用户传的参数</span></span><br><span class="line">    <span class="keyword">return</span> func2</span><br><span class="line"></span><br><span class="line"><span class="meta">@func1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>(<span class="params">args</span>):</span></span><br><span class="line">    print(args)</span><br><span class="line"></span><br><span class="line">test(<span class="number">123</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 输出结果--- #</span></span><br><span class="line">有参，无返回</span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3、无参数，有返回值"><a href="#3、无参数，有返回值" class="headerlink" title="3、无参数，有返回值"></a>3、无参数，有返回值</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func1</span>(<span class="params">func</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func2</span>():</span></span><br><span class="line">        print(<span class="string">&quot;无参，有返回值&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> func()  <span class="comment"># return返回函数的返回值</span></span><br><span class="line">    <span class="keyword">return</span> func2</span><br><span class="line"></span><br><span class="line"><span class="meta">@func1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">print(test())</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 输出结果--- #</span></span><br><span class="line">无参，有返回值</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4、有参数，有返回值"><a href="#4、有参数，有返回值" class="headerlink" title="4、有参数，有返回值"></a>4、有参数，有返回值</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func1</span>(<span class="params">func</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func2</span>(<span class="params">args</span>):</span></span><br><span class="line">        print(<span class="string">&quot;有参，有返回&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> func(args)</span><br><span class="line">    <span class="keyword">return</span> func2</span><br><span class="line"></span><br><span class="line"><span class="meta">@func1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>(<span class="params">args</span>):</span></span><br><span class="line">    <span class="keyword">return</span> args</span><br><span class="line"></span><br><span class="line">print(test(<span class="number">45</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 输出结果--- #</span></span><br><span class="line">有参，有返回</span><br><span class="line"><span class="number">45</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5、参数不定长"><a href="#5、参数不定长" class="headerlink" title="5、参数不定长"></a>5、参数不定长</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_fun</span>(<span class="params">func</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">call_fun</span>(<span class="params">*args, **kwargs</span>):</span></span><br><span class="line">        print(<span class="string">&quot;添加额外功能&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> call_fun</span><br><span class="line"></span><br><span class="line"><span class="meta">@set_fun</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>(<span class="params">*args, **kwargs</span>):</span></span><br><span class="line">    print(args)</span><br><span class="line">    print(kwargs)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">100</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(test(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, m=<span class="number">10</span>, n=<span class="number">20</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 输出结果--- #</span></span><br><span class="line">添加额外功能</span><br><span class="line">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">&#123;<span class="string">&#x27;n&#x27;</span>:<span class="number">20</span>,<span class="string">&#x27;m&#x27;</span>:<span class="number">10</span>&#125;</span><br><span class="line"><span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+<p>这种格式的装饰器，是万能的，即它适用于不同的函数（有无参数，返回值都适用）<br>在上面的装饰器中，@set_fun 是Python中的一种语法糖，当程序执行到这里时，其实底层做了 test = set_fun(test) 这样的转化，所以我们的func指向test的引用，于是当我们在内函数中调用函数func时，实际上是在调用函数test，此时我们便可以做到在不更改原代码的情况下，给我们的代码添加其他的功能！</p>
+<h3 id="类装饰器"><a href="#类装饰器" class="headerlink" title="类装饰器"></a>类装饰器</h3><p>其实使用我们的类也可以实现装饰器的效果，当你理解了使用闭包完成装饰器时，类装饰器会非常好理解，它们的原理是相似的，只不过类有它自己的操作~</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyObject</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, func</span>):</span></span><br><span class="line">        self.func = func</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span>(<span class="params">self, *args, **kwargs</span>):</span></span><br><span class="line">        <span class="comment"># 在这里完成额外功能的添加以及调用原函数</span></span><br><span class="line">        print(<span class="string">&quot;添加额外的功能&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> self.func(*args, **kwargs)  <span class="comment"># 拆包</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@MyObject  </span><span class="comment"># test = MyObject(test) 创建实例对象调用魔法方法__init__</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>(<span class="params">*args, **kwargs</span>):</span></span><br><span class="line">    print(<span class="string">&quot;test&quot;</span>, args)</span><br><span class="line">    print(<span class="string">&quot;test&quot;</span>, kwargs)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">test(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, a=<span class="number">3</span>)  <span class="comment"># 实例对象()　调用魔法方法__call__</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 输出结果--- #</span></span><br><span class="line">添加额外功能</span><br><span class="line">test(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line">test&#123;<span class="string">&#x27;a&#x27;</span>:<span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在@MyObject时，底层同样做了转化，test = MyObject(test)，这时创建了实例对象test ，并传入参数test，所以会执行我们类中的__init__魔法方法时，此时test(1, 2, 3, 4, a=3)就等于是我们创建的实例对象test()，这时会执行我们类中的__call__方法，在__call__方法中实现我们对功能的添加，以及原函数的调用，是不是与闭包非常相似呢 ˙ ω ˙</p>
 
       
     </div>
@@ -731,128 +849,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Jenkins/Jenkins%E6%9B%B4%E6%96%B0%E4%B8%BB%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/4.ToolsNotes/Jenkins/Jenkins%E6%9B%B4%E6%96%B0%E4%B8%BB%E9%A2%98/" class="post-title-link" itemprop="url">Jenkins更新主题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-09-10 11:42:00" itemprop="dateCreated datePublished" datetime="2020-09-10T11:42:00+08:00">2020-09-10</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-12 11:40:03" itemprop="dateModified" datetime="2021-03-12T11:40:03+08:00">2021-03-12</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/Jenkins/" itemprop="url" rel="index"><span itemprop="name">Jenkins</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="选择主题"><a href="#选择主题" class="headerlink" title="选择主题"></a>选择主题</h2><p>主题制作网站 jenkins-material-theme</p>
-<p><strong>1、选择主题颜色</strong><br>可以选择自己喜欢的任何颜色,这里紫色只做演示</p>
-<p><img src="/images/20200910-1.png" alt="color"></p>
-<p><strong>2、上传logo</strong></p>
-<p>要求png格式图片,最小高度40px</p>
-<p><img src="/images/20200910-2.png" alt="color"></p>
-<p><strong>3、下载主题</strong></p>
-<p>上传好logo后就可以下载插件主题</p>
-<ol>
-<li>下载的主题文件名为: <code>jenkins-material-theme.css</code></li>
-</ol>
-<p><img src="/images/20200910-3.png" alt="color"></p>
-<p><strong>4、配置css文件</strong></p>
-<p>在Jenkins安装路径的userContent目录下新建layout文件夹</p>
-<ol>
-<li>将<code>jenkins-material-theme.css</code>文件复制到该目录下</li>
-<li>在该目录下新建title.css文件,其中修改代码里面的content就可以改变Jenkins的Title</li>
-</ol>
-<p><img src="/images/20200910-4.png" alt="color"></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#title</span><span class="selector-class">.css</span>内容如下：</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#jenkins-name-icon</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.logo</span>:after &#123;</span><br><span class="line">    content: <span class="string">&quot;Jenkins of Chaos-Notebook&quot;</span>;</span><br><span class="line">    <span class="attribute">text-transform</span>:none;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">color</span>: White;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="主题插件配置"><a href="#主题插件配置" class="headerlink" title="主题插件配置"></a>主题插件配置</h2><p><strong>1、 安装插件</strong></p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://plugins.jenkins.io/simple-theme-plugin/">Simple Theme</a></p>
-</blockquote>
-<p><strong>2、配置插件</strong></p>
-<p>Configure System -&gt; Theme, 新增两个Css Url</p>
-<p><img src="/images/20200910-5.png" alt="color"></p>
-<p>添加<code>jenkins-material-theme.css</code>和<code>Title.css</code>的url</p>
-<ol>
-<li><a target="_blank" rel="noopener" href="http://localhost:8080/userContent/layout/jenkins-material-theme.css">http://localhost:8080/userContent/layout/jenkins-material-theme.css</a></li>
-<li><a target="_blank" rel="noopener" href="http://localhost:8080/userContent/layout/title.css">http://localhost:8080/userContent/layout/title.css</a></li>
-</ol>
-<p><img src="/images/20200910-6.png" alt="color"></p>
-<h2 id="新的主题"><a href="#新的主题" class="headerlink" title="新的主题"></a>新的主题</h2><p>查看新的主题效果</p>
-<p><strong>1、界面整体UI</strong></p>
-<p><img src="/images/20200910-7.png" alt="color"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

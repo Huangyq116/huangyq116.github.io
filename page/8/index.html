@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,99 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/4.Shell/rsync%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2.Programming/4.Shell/rsync%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">rsync使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-16 14:28:00" itemprop="dateCreated datePublished" datetime="2019-10-16T14:28:00+08:00">2019-10-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-07 18:57:39" itemprop="dateModified" datetime="2021-03-07T18:57:39+08:00">2021-03-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在使用jenkins当跳板机的场景下，有使用git pull 代码到jenkins机器后，需要将代码复制到另一台机器上，常用的复制命令有scp和rsync；现就使用到了rsync进行详解：</p>
+<p>rsync是一种快速且通用的文件复制工具，以其Delta传输算法，通过仅发送源文件和目标文件中现有文件之间的差异来减少网络发送的数据量。</p>
+<h3 id="常用参数："><a href="#常用参数：" class="headerlink" title="常用参数："></a>常用参数：</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-z：传输时进行压缩提高效率</span><br><span class="line">-v：显示rsync过程中详细信息。可以使用&quot;-vvvv&quot;获取更详细信息</span><br><span class="line">-P：显示文件传输的进度信息</span><br><span class="line">-a --archive：归档模式，表示递归传输并保持文件属性，等同于&quot;-rtopgDl&quot;</span><br><span class="line">-r --recursive：以递归模式拷贝目录</span><br><span class="line">-R --relative：使用相对路径</span><br><span class="line">-l --links：如果文件是软链接，则拷贝软链接本身而非软链接所指向的文件</span><br><span class="line">-L --copy-links：如果文件是软链接，拷贝软链接指向的文件</span><br><span class="line">-W --whole-file：拷贝文件时不进行增量检测</span><br><span class="line">-t --times：保持 mtime 属性</span><br><span class="line"></span><br><span class="line">rsync 默认用&quot;quick check&quot;算法决定哪些文件需要增量传输。此算法只比较文件的大小和 mtime，即使其它属性不同也会认为它们是完全相同的文件，从而不需要增量传输</span><br><span class="line">建议任何时候都加上&quot;-t&quot;，否则目标文件 mtime 会设置为系统时间，导致下次更新检查出 mtime 不同而导致增量传输无效</span><br><span class="line"></span><br><span class="line">实际工作中使用-avz即可 </span><br></pre></td></tr></table></figure>
+
+<h3 id="使用（重要）："><a href="#使用（重要）：" class="headerlink" title="使用（重要）："></a>使用（重要）：</h3><p>源路径如果为目录，不带斜线表示目录本身和目录中的文件，带斜线表示目录中的文件，不包括本身</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 复制远程计算机 foo 上的 /src/bar/ 目录中的文件到本地 /data/tmp 目录中</span></span><br><span class="line">rsync -avz foo:/src/bar/ /data/tmp</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 复制远程计算机 foo 上的 /src/bar/ 目录到本地 /data/tmp 目录中</span></span><br><span class="line">rsync -avz foo:/src/bar /data/tmp</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 以下命令等效</span></span><br><span class="line">rsync -av /src/foo /dest</span><br><span class="line">rsync -av /src/foo/ /dest/foo</span><br></pre></td></tr></table></figure>
+
+<p>文件名（* .c）中的通配符扩展为文件列表由 shell 在运行 rsync 之前处理，而不是由 rsync 本身处理</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 复制当前路径下所有以 .c 结尾的文件至远程计算机 foo 的 /src 目录中</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 对于远程系统上已存在的文件，会使用 rsync 远程更新协议，通过仅发送数据中的差异来更新文件</span></span><br><span class="line">rsync -t *.c foo:/src/</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -643,103 +736,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/Django%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/1.Python/Django%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Django问题总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-10-01 15:40:00" itemprop="dateCreated datePublished" datetime="2019-10-01T15:40:00+08:00">2019-10-01</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-13 14:16:10" itemprop="dateModified" datetime="2021-03-13T14:16:10+08:00">2021-03-13</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong>1、python manage.py makemigrations No changes detected</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">在修改了models.py后，有些用户会喜欢用python manage.py makemigrations生成对应的py代码。</span><br><span class="line"></span><br><span class="line">但有时执行python manage.py makemigrations命令(也可能人比较皮，把migrations文件夹给删了)，会提示&quot;Nochangesdetected.&quot;可能有用的解决方式如下：</span><br><span class="line"></span><br><span class="line">先python manage.py makemigrations --empty yourappname生成一个空的initial.py</span><br><span class="line"></span><br><span class="line">再python manage.py makemigrations生成原先的model对应的migrationfile</span><br></pre></td></tr></table></figure>
-
-<p><strong>2、Django使用migrations迁移版本和数据库中报错解决方案</strong></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/a599174211/article/details/82795206">参考</a></p>
-<p><strong>3、Django-关于manage.py migrate无效的问题</strong></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25730711/article/details/60327344">参考</a></p>
-<p><strong>4、解决在vscode中用python操作数据库模型时出现的Class “xxx” has no ‘objects’ member错误提示</strong></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36272282/article/details/89416663">参考</a></p>
-<p><strong>5、关于线上部署admin后台样式没有生效的问题</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、在settings.py尾部：</span><br><span class="line">STATIC_ROOT  = os.path.join(BASE_DIR, &#x27;static&#x27;)#指定样式收集目录</span><br><span class="line"><span class="meta">#</span><span class="bash">或</span></span><br><span class="line">STATIC_ROOT = &#x27;/www/mysite/mysite/static&#x27;  #指定样式收集目录</span><br><span class="line"></span><br><span class="line">2、收集CSS样式，在终端输入：</span><br><span class="line">python manage.py collectstatic</span><br><span class="line">运行这个命令之后，就会自动把后台CSS样式收集到/static/目录下。刷新页面就能恢复样式！</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
