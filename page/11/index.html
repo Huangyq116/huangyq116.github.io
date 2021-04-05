@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,92 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Others/Nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/4.ToolsNotes/Others/Nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">Nginx配置文件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-07-30 18:39:00" itemprop="dateCreated datePublished" datetime="2019-07-30T18:39:00+08:00">2019-07-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-07 12:44:35" itemprop="dateModified" datetime="2021-03-07T12:44:35+08:00">2021-03-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/4-ToolsNotes/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="学习网址"><a href="#学习网址" class="headerlink" title="学习网址"></a>学习网址</h3><p><a target="_blank" rel="noopener" href="https://devdocs.io/nginx/">nginx documentation — DevDocs</a> </p>
+<h3 id="配置文件信息"><a href="#配置文件信息" class="headerlink" title="配置文件信息"></a>配置文件信息</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">   <span class="attribute">listen</span>   <span class="number">80</span> ;</span><br><span class="line">   <span class="attribute">listen</span>   [::]:<span class="number">80</span>  ipv6only=<span class="literal">on</span>;</span><br><span class="line">   <span class="attribute">listen</span>   <span class="number">443</span> default ssl;</span><br><span class="line">   <span class="attribute">listen</span>   [::]:<span class="number">443</span> default ssl;</span><br><span class="line">   <span class="comment">#listen   [::]:443 ssl ;</span></span><br><span class="line">   <span class="comment">#listen   443 ssl;</span></span><br><span class="line">   <span class="attribute">ssl</span> <span class="literal">off</span>; </span><br><span class="line">   <span class="attribute">ssl_certificate</span>     /etc/nginx/sslkey/kcs.default.crt;</span><br><span class="line">   <span class="attribute">ssl_certificate_key</span> /etc/nginx/sslkey/kcs.default.key;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">server_name</span> test1116.com;</span><br><span class="line">    <span class="comment">#max_ranges 0;</span></span><br><span class="line">    <span class="attribute">autoindex</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">autoindex_exact_size</span> <span class="literal">off</span>;</span><br><span class="line">    <span class="attribute">autoindex_localtime</span> <span class="literal">on</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">error_log</span> /var/log/nginx/error.log;</span><br><span class="line">    <span class="attribute">access_log</span> /var/log/nginx/access.log;</span><br><span class="line">    </span><br><span class="line">　　<span class="comment">#302跳转使用</span></span><br><span class="line">    <span class="attribute">location</span> = /test302.html &#123;</span><br><span class="line">        <span class="attribute">root</span> html;</span><br><span class="line">        <span class="attribute">rewrite</span><span class="regexp"> ^/(.*)$</span>  http://127.0.0.1/a/123.mp4 <span class="literal">redirect</span>;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="attribute">location</span> = /index12.html &#123;</span><br><span class="line">        <span class="attribute">root</span> /home/root/auto_test/Report/html/;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span>  /a/ &#123;</span><br><span class="line">          <span class="attribute">root</span> html;                </span><br><span class="line">          <span class="attribute">rewrite</span><span class="regexp"> ^/(.*)$</span>  http://127.0.0.1/b/123.mp4 <span class="literal">redirect</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">　　<span class="comment"># 配合html/php上传文件使用</span></span><br><span class="line">    <span class="attribute">location</span> <span class="regexp">~ .*\.(php|php5)?$</span> &#123;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span>   <span class="number">127.0.0.1:9000</span>;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">30m</span>;</span><br><span class="line">    <span class="comment">#   fastcgi_param    HTTPS on;</span></span><br><span class="line">        <span class="attribute">fastcgi_param</span> HTTPS  $https if_not_empty;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>  SCRIPT_FILENAME    /etc/nginx/html$fastcgi_script_name;</span><br><span class="line">        <span class="attribute">include</span>        fastcgi_params; </span><br><span class="line">        <span class="comment">#include    fastcgi.conf;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="attribute">error_page</span> <span class="number">405</span> =<span class="number">200</span> $uri;</span><br><span class="line">    <span class="comment">#error_page 405 =200 @405;</span></span><br><span class="line">       <span class="comment">#location @405 &#123;</span></span><br><span class="line">    <span class="comment">#    root /etc/nginx/html;</span></span><br><span class="line">           <span class="comment">#root  /tmp/upload_tmp2;</span></span><br><span class="line">    <span class="comment">#    proxy_method GET;</span></span><br><span class="line">       <span class="comment">#&#125; </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">#location /b &#123;</span></span><br><span class="line">    <span class="comment">#      root html;</span></span><br><span class="line">    <span class="comment">#      rewrite /(.*)   http://127.0.0.1/c/yunkong.mp4 redirect;</span></span><br><span class="line">    <span class="comment"># &#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#location /c &#123;</span></span><br><span class="line">    <span class="comment">#       root html;</span></span><br><span class="line">    <span class="comment">#       rewrite /(.*)  http://127.0.0.1/d/yunkong.mp4 redirect;</span></span><br><span class="line">    <span class="comment"># &#125;</span></span><br><span class="line">         </span><br><span class="line">                </span><br><span class="line">    <span class="comment">#location /d &#123;</span></span><br><span class="line">    <span class="comment">#       root html;</span></span><br><span class="line">    <span class="comment">#&#125;</span></span><br><span class="line">    </span><br><span class="line">    <span class="attribute">location</span> /refresh30.html &#123;</span><br><span class="line">           <span class="attribute">expires</span> <span class="number">30s</span>;</span><br><span class="line">        <span class="attribute">root</span> html;        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> ~^/.* &#123;</span><br><span class="line">        <span class="attribute">root</span> /etc/nginx/html;</span><br><span class="line">        <span class="attribute">add_header</span> <span class="number">123</span> <span class="number">123</span>;   <span class="comment">#添加请求接口响应头信息        </span></span><br><span class="line">        <span class="attribute">gzip</span> <span class="literal">on</span>;  <span class="comment">#响应信息是否进行压缩</span></span><br><span class="line"><span class="comment">#       gzip_types text/html text/plain application/javascript application/x-javascript text/javascript text/xml text/css;</span></span><br><span class="line">        <span class="comment">#gzip_vary on;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -720,117 +806,6 @@
 <li>每一条TCP连接只能是点到点的；UDP支持1:1，1:N，N:1和N:N的交互通信</li>
 <li>TCP首部开销是20字节；UDP只有8字节</li>
 <li>TCP的逻辑通信信道是全双工的可靠信道；UDP则是不可靠信道</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/2.PHP/PHP%E4%BB%A3%E7%A0%81%E8%A6%86%E7%9B%96%E7%8E%87%E5%AE%9E%E8%B7%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/2.PHP/PHP%E4%BB%A3%E7%A0%81%E8%A6%86%E7%9B%96%E7%8E%87%E5%AE%9E%E8%B7%B5/" class="post-title-link" itemprop="url">PHP代码覆盖率实践</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-10-01 21:24:00" itemprop="dateCreated datePublished" datetime="2018-10-01T21:24:00+08:00">2018-10-01</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-13 14:26:25" itemprop="dateModified" datetime="2021-03-13T14:26:25+08:00">2021-03-13</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>代码覆盖率作为一个指导性指标，可以一定程度上反应测试的完备程度，虽然100%覆盖的代码并不意味着100%无bug的应用，但是较高的覆盖率一般情况下也意味着更少的bug。</p>
-<h2 id="实现说明"><a href="#实现说明" class="headerlink" title="实现说明"></a><strong>实现说明</strong></h2><h3 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h3><ol>
-<li>xdebug：php插件，用于收集覆盖率信息</li>
-<li>php-code-coverage：phpunit下的一个库，用于从xdebug收集的覆盖率信息中生成覆盖率统计报告，支持xml、html等多种格式</li>
-</ol>
-<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><p>脚本和报告生成路径：/usr/local/project/config/coverage/prepend.php</p>
-<p>单测：<a target="_blank" rel="noopener" href="http://xxx.xxx.xxx.xxx:8888/html/">http://XXX.XXX.XXX.XXX:8888/html/</a></p>
-<p>PCC：<a target="_blank" rel="noopener" href="http://xxx.xxx.xxx.xxx:8888/report/">http://XXX.XXX.XXX.XXX:8888/report/</a></p>
-<h4 id="单测脚本"><a href="#单测脚本" class="headerlink" title="单测脚本"></a>单测脚本</h4><p> 确认生成存在phpcov模块：php72 -m 查看（如无，则 #php72 /usr/local/bin/composer require “phpunit/phpcov”:”*” -vvv）</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@dev01 /usr/local/project/honghan-api]<span class="comment"># php72 ./vendor/bin/phpunit --coverage-html /usr/local/project/config/coverage/html/ ./tests/EventsLogicTest.php</span></span><br><span class="line"></span><br><span class="line">[root@dev01 /usr/local/project/honghan-api]<span class="comment"># php72 ./vendor/bin/phpunit --coverage-html /usr/local/project/config/coverage/html/ ./tests</span></span><br></pre></td></tr></table></figure>
-
-
-<h4 id="代码全量统计"><a href="#代码全量统计" class="headerlink" title="代码全量统计"></a>代码全量统计</h4><p><strong>1、PCC依靠xdebug插件，主要在php.ini文件中增加xdebug相关配置：</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@dev01 /etc/opt/remi/php72]<span class="comment"># vim php.ini</span></span><br><span class="line">[Xdebug]</span><br><span class="line">zend_extension =<span class="string">&quot;/usr/lib64/php/modules/xdebug.so&quot;</span></span><br><span class="line">xdebug.collect_params=on</span><br><span class="line">xdebug.collect_return=on</span><br><span class="line">xdebug.remote_autostart=on</span><br><span class="line">;xdebug.remote_enable=off</span><br><span class="line">;xdebug.profiler_enable = off</span><br><span class="line">;xdebug.profiler_enable_trigger = off</span><br><span class="line">;xdebug.profiler_output_name = cachegrind.out.%t</span><br><span class="line">;xdebug.profiler_output_dir =<span class="string">&quot;/home/hhzl/tmp&quot;</span></span><br><span class="line">;xdebug.show_local_vars=<span class="number">0</span></span><br><span class="line">;xdebug.profiler_enable = on</span><br><span class="line">;xdebug.trace_enable_trigger=<span class="number">1</span></span><br><span class="line">;xdebug.trace_output_dir=<span class="string">&quot;/home/hhzl/tmp&quot;</span></span><br><span class="line">;xdebug.trace_output_name=trace.%R.%u</span><br><span class="line">;xdebug.coverage_enable = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>2、[root@dev01 /usr/local/project/config/coverage]# vim prepend.php  收集全量代码覆盖率脚本</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@dev01 /usr/local/project/config/coverage]<span class="comment"># vim prepend.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">&#x27;/usr/local/project/honghan-api/vendor/autoload.php&#x27;</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">SebastianBergmann</span>\<span class="title">CodeCoverage</span>\<span class="title">CodeCoverage</span>;</span><br><span class="line"> </span><br><span class="line"><span class="variable">$coverage</span> = <span class="keyword">new</span> CodeCoverage;</span><br><span class="line"><span class="variable">$coverage</span>-&gt;filter()-&gt;addDirectoryToWhitelist(<span class="string">&#x27;/usr/local/project/honghan-api/tests/&#x27;</span>);</span><br><span class="line"><span class="variable">$coverage</span>-&gt;filter()-&gt;addDirectoryToWhitelist(<span class="string">&#x27;/usr/local/project/honghan-api/app/&#x27;</span>);</span><br><span class="line"><span class="variable">$coverage</span>-&gt;filter()-&gt;addDirectoryToWhitelist(<span class="string">&#x27;/usr/local/project/honghan-api/public/&#x27;</span>);</span><br><span class="line"><span class="variable">$coverage</span>-&gt;start(<span class="string">&#x27;&lt;Site coverage&gt;&#x27;</span>);<span class="comment">#开始统计</span></span><br><span class="line">register_shutdown_function(<span class="string">&#x27;__coverage_stop&#x27;</span>,<span class="variable">$coverage</span>);<span class="comment">#注册关闭方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">__coverage_stop</span>(<span class="params">CodeCoverage <span class="variable">$coverage</span></span>)</span>&#123;</span><br><span class="line">    <span class="variable">$coverage</span>-&gt;stop();</span><br><span class="line">     </span><br><span class="line">    ini_set(<span class="string">&#x27;date.timezone&#x27;</span>, <span class="string">&#x27;Asia/Shanghai&#x27;</span>);</span><br><span class="line">    writer = <span class="keyword">new</span> \SebastianBergmann\CodeCoverage\Report\Html\Facade;</span><br><span class="line">    writer-&gt;process(<span class="variable">$coverage</span>,<span class="string">&#x27;/usr/local/project/config/coverage/html&#x27;</span>.date(<span class="string">&#x27;Y_m_d_H_i_s&#x27;</span>));</span><br><span class="line"> </span><br><span class="line">   <span class="variable">$htmlWriter</span>-&gt;process(<span class="variable">$coverage</span>, <span class="string">&#x27;/usr/local/project/honghan-api/coverage_html/&#x27;</span> . date(<span class="string">&#x27;Y_m_d_H_i_s&#x27;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>3、index.php文件中引用</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@dev01 /usr/local/project/honghan-api/<span class="keyword">public</span>]<span class="comment"># cat index.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">ini_set(<span class="string">&#x27;memory_limit&#x27;</span>, <span class="string">&#x27;1024M&#x27;</span>);</span><br><span class="line">ini_set(<span class="string">&#x27;date.timezone&#x27;</span>,<span class="string">&#x27;Asia/Shanghai&#x27;</span>);</span><br><span class="line"><span class="variable">$app</span> = <span class="keyword">require</span> <span class="keyword">__DIR__</span>.<span class="string">&#x27;/../bootstrap/app.php&#x27;</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">#require &#x27;/usr/local/project/config/coverage/prepend.php&#x27;;</span></span><br><span class="line"> </span><br><span class="line"><span class="variable">$app</span>-&gt;run();</span><br></pre></td></tr></table></figure>
-
-<p><strong>4、执行php72 index.php即可</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@dev01 /usr/local/project/honghan-api/<span class="keyword">public</span>]<span class="comment"># php72 index.php</span></span><br><span class="line">Lumen (<span class="number">5.8</span><span class="number">.4</span>) (Laravel Components <span class="number">5.8</span>.*)</span><br></pre></td></tr></table></figure>
-
-<p><strong>5、配置nginx访问即可</strong></p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a><strong>注意</strong></h2><ol>
-<li>执行# php72 index.php 文件的用户非apache，php-fpm的启动用户和组为apache，会存在统计数据写不到报告的情况；更新执行脚本用户或php-fpm的用户组</li>
 </ol>
 
       

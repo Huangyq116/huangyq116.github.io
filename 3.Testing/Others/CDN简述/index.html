@@ -23,28 +23,37 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"huangyq116.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":true}};
   </script>
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zero&#39; Blog">
-<meta property="og:url" content="https://huangyq116.github.io/page/10/index.html">
+<meta name="description" content="简介CDN全称Content Delivery Network，即内容分发网络；其工作原理是在全国各地增加节点机器，当用户访问源站时，就近选择最近的缓存节点机器，从而减少访问时间，也可避免源站承受巨大压力。 加速对象：利用HTTP或FTP下载方式进行下载的各类文件。 工作原理借用阿里云官网的例子，介绍CDN的工作原理：  从这个例子可以了解到： （1）CDN的加速资源是跟域名绑定的。 （2）通过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CDN简述">
+<meta property="og:url" content="https://huangyq116.github.io/3.Testing/Others/CDN%E7%AE%80%E8%BF%B0/index.html">
 <meta property="og:site_name" content="Zero&#39; Blog">
+<meta property="og:description" content="简介CDN全称Content Delivery Network，即内容分发网络；其工作原理是在全国各地增加节点机器，当用户访问源站时，就近选择最近的缓存节点机器，从而减少访问时间，也可避免源站承受巨大压力。 加速对象：利用HTTP或FTP下载方式进行下载的各类文件。 工作原理借用阿里云官网的例子，介绍CDN的工作原理：  从这个例子可以了解到： （1）CDN的加速资源是跟域名绑定的。 （2）通过">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://huangyq116.github.io/images/20190901-1.png">
+<meta property="og:image" content="https://huangyq116.github.io/images/20190901-2.png">
+<meta property="og:image" content="https://huangyq116.github.io/images/20190901-3.png">
+<meta property="article:published_time" content="2019-09-01T12:42:00.000Z">
+<meta property="article:modified_time" content="2021-04-05T10:35:41.286Z">
 <meta property="article:author" content="Zero">
+<meta property="article:tag" content="总结">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huangyq116.github.io/images/20190901-1.png">
 
 
-<link rel="canonical" href="https://huangyq116.github.io/page/10/">
+<link rel="canonical" href="https://huangyq116.github.io/3.Testing/Others/CDN%E7%AE%80%E8%BF%B0/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
-<title>Zero' Blog</title>
+<title>CDN简述 | Zero' Blog</title>
   
 
 
@@ -170,7 +179,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -183,6 +192,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6"><span class="nav-number">3.</span> <span class="nav-text">框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">4.</span> <span class="nav-text">测试</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -241,207 +251,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Jenkins/Jenkins%E7%9F%A5%E8%AF%86%E7%82%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/4.ToolsNotes/Jenkins/Jenkins%E7%9F%A5%E8%AF%86%E7%82%B9/" class="post-title-link" itemprop="url">Jenkins知识点</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-09-14 11:30:00" itemprop="dateCreated datePublished" datetime="2019-09-14T11:30:00+08:00">2019-09-14</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-07 12:44:35" itemprop="dateModified" datetime="2021-03-07T12:44:35+08:00">2021-03-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/Jenkins/" itemprop="url" rel="index"><span itemprop="name">Jenkins</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="凭据"><a href="#凭据" class="headerlink" title="凭据"></a>凭据</h2><p><strong>1、目的</strong></p>
-<p>与第三方网站或应用程序进行交互，如代码仓库、云存储系统和服务等</p>
-<p><strong>2、操作</strong></p>
-<p>Jenkins-凭据-系统-全局凭据</p>
-<p><strong>3、权限</strong></p>
-<p>Jenkins 中保存的凭证可以用于：</p>
-<ul>
-<li>任何适用于 Jenkins 的任何地方（即全局证书）</li>
-<li>特定的 Pipeline 项目</li>
-<li>特定的 Jenkins 用户</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Docker/Docker%E4%B8%8A%E4%BC%A0%E9%95%9C%E5%83%8F%E8%87%B3Harbor/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/4.ToolsNotes/Docker/Docker%E4%B8%8A%E4%BC%A0%E9%95%9C%E5%83%8F%E8%87%B3Harbor/" class="post-title-link" itemprop="url">Docker上传镜像至Harbor</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-09-09 20:26:00" itemprop="dateCreated datePublished" datetime="2019-09-09T20:26:00+08:00">2019-09-09</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-07 19:57:34" itemprop="dateModified" datetime="2021-03-07T19:57:34+08:00">2021-03-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>构造镜像的两种方式：1.commit 2.Dockerfile</p>
-<p>Docker提供了一个docker commit命令，可以将容器的存储层保存下来成为镜像。换句话说，就是在原有镜像的基础上，再叠加上容器的存储层，并构成新的镜像。</p>
-<p>以后我们运行这个新镜像的时候，就会拥有原有容器的最后的文件变化。</p>
-<p>docker commit的语法格式为：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit [选项] &lt;容器ID或容器名&gt; [&lt;仓库名&gt;[:&lt;标签&gt;]]</span><br></pre></td></tr></table></figure>
-
-<p> 实例：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -m &#x27;Test&#x27; -a &#x27;Tester&#x27; 14277e296feb 192.168.0.0:8888/shtest/rtmp:v2</span><br></pre></td></tr></table></figure>
-
-<p>-m ‘Test’ :记录本地修改的内容</p>
-<p>-a ‘Tester’：指定修改的作者</p>
-<p>14277e296feb：复制的基础镜像</p>
-<p>192.168.0.0:8888/shetest/rtmp：复制后的镜像</p>
-<p>v2：复制后的镜像tag</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/3.Testing/Others/CDN%E7%AE%80%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -454,9 +274,9 @@
       <meta itemprop="name" content="Zero' Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/3.Testing/Others/CDN%E7%AE%80%E8%BF%B0/" class="post-title-link" itemprop="url">CDN简述</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          CDN简述
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -499,7 +319,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>CDN全称Content Delivery Network，即内容分发网络；其工作原理是在全国各地增加节点机器，当用户访问源站时，就近选择最近的缓存节点机器，从而减少访问时间，也可避免源站承受巨大压力。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>CDN全称Content Delivery Network，即内容分发网络；其工作原理是在全国各地增加节点机器，当用户访问源站时，就近选择最近的缓存节点机器，从而减少访问时间，也可避免源站承受巨大压力。</p>
 <p>加速对象：利用HTTP或FTP下载方式进行下载的各类文件。</p>
 <h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>借用阿里云官网的例子，介绍CDN的工作原理： <img src="/images/20190901-1.png" alt="images"></p>
 <p>从这个例子可以了解到：</p>
@@ -519,7 +339,6 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;errno&quot;: 0, // 接口错误状态码</span><br><span class="line">    &quot;errmsg&quot;: &quot;&quot;, // 接口错误描述信息</span><br><span class="line">    &quot;data&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">    &quot;version&quot;: 142258770700001, //必须有，无默认值</span><br><span class="line">    &quot;id&quot;: 12345, //必须配置，无默认值,域名ID</span><br><span class="line">    </span><br><span class="line">    &quot;prefix_cache_first&quot;: false, // 前缀缓存优先,默认值false</span><br><span class="line">    </span><br><span class="line">    &quot;prefix_cache&quot;: &#123; // 前缀匹配缓存策略,不配置为null</span><br><span class="line">    &quot;\/doc&quot;: 86400,</span><br><span class="line">    &quot;\/dox\/aaa&quot;: 86400</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    &quot;suffix_cache&quot;: &#123; // 后缀匹配缓存策略,不配置为null</span><br><span class="line">    &quot;png&quot;: 86400,</span><br><span class="line">    &quot;jpeg&quot;: 86400</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    &quot;full_cache&quot;: &#123; // 精确匹配缓存策略,在没有配置的时候为null</span><br><span class="line">    &quot;\/index.html&quot;: 86400</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    &quot;http_code_cache&quot;: &#123; // 特殊状态码缓存策略，只允许填写 &gt; 400 状态码,不需要配置时为null</span><br><span class="line">    &quot;404&quot;: 300, // 最多 10 条策略</span><br><span class="line">    &quot;502&quot;: 60</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    &quot;ip_filter_type&quot;: &quot;black&quot;, // IP 防盗链策略 [off|black|white]默认值off</span><br><span class="line">    &quot;ip_filter_list&quot;: [</span><br><span class="line">    &quot;127.0.1.1&quot;,</span><br><span class="line">    &quot;128.0.1.2/24&quot;</span><br><span class="line">    ],</span><br><span class="line">    </span><br><span class="line">    &quot;referer_filter_type&quot;: &quot;black&quot;, // Referer 防盗链控制 [off|black|white],默认值off</span><br><span class="line">    &quot;referer_filter_list&quot;: [ //当referer_filter_type不为off时，此list必须有值，referer_filter_type为off时，可以为null</span><br><span class="line">    &quot;http:\/\/www.baidu.com\/&quot;,</span><br><span class="line">    &quot;ALLOW_EMPTY_REFERER&quot; // 普通防盗链列表 &quot;ALLOW_EMPTY_REFERER&quot; 表示允许空 referer</span><br><span class="line">    ],</span><br><span class="line">    </span><br><span class="line">    &quot;ftag_list&quot;: &#123; // ftag 防盗链,不配置为null</span><br><span class="line">    &quot;enable&quot;: false, // 策略开关</span><br><span class="line">    &quot;expire&quot;: 60000, // 使用过期验证时的过期时间，单位为秒</span><br><span class="line">    &quot;secret_key&quot;: &quot;xxx&quot;, // 加密的 key，值为字符串 最大长度 64</span><br><span class="line">    &quot;regexp&quot;: [ // uri正则表达式，默认忽略大小写。如果配置成null表示域名下所有uri都生效</span><br><span class="line">    &quot;^/abc*123&quot; // 默认 4 条策略</span><br><span class="line">    ]，</span><br><span class="line">    &quot;ip_filter_list&quot;: [ //IP白名单，默认值为null</span><br><span class="line">    &quot;127.0.1.1&quot;,</span><br><span class="line">    &quot;128.0.1.2/24&quot;</span><br><span class="line">    ]</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    // response_header_replace替换响应头，默认值null,为null不做处理，</span><br><span class="line">    &quot;response_header_replace&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">    // request_url即请求url的正则表达式列表，最多包含有6个正则表达式，</span><br><span class="line">    // 默认值为null(request_url:null),如果为null则对当前域名下的请求都生效</span><br><span class="line">    &quot;request_url&quot; : [&quot;http://abc.com/.*&quot;, &quot;http://123.com/.*&quot;,...],</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    // replace_header即要替换的响应头及值,</span><br><span class="line">    // 默认值null 替换请求头：name 最长 128 个字符；</span><br><span class="line">    // value ，最长 256 个字符；</span><br><span class="line">    // 最多支持6组</span><br><span class="line">    &quot;replace_header&quot; : &#123;</span><br><span class="line">    &quot;name1&quot;: &quot;value1&quot;,</span><br><span class="line">    &quot;name2&quot;: &quot;value2&quot;</span><br><span class="line">    ...</span><br><span class="line">    &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    ],</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    &quot;purge_dir&quot;: &#123; // 默认值null, 目录刷新，最多 10 条策略</span><br><span class="line">    &quot;/1/2/3/&quot;: 1466680047,</span><br><span class="line">    &quot;/a/&quot;: 1466680047,</span><br><span class="line">    &quot;/b/b/b/&quot;: 1478056899,</span><br><span class="line">    &quot;/1/1/&quot;: 1478057169</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
@@ -527,8 +346,24 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-tags">
+              <a href="/tags/%E6%80%BB%E7%BB%93/" rel="tag"># 总结</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2.Programming/4.Shell/Linux%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E4%B8%A2%E5%8C%85%E6%93%8D%E4%BD%9C/" rel="prev" title="Linux设置网络延迟丢包操作">
+                  <i class="fa fa-chevron-left"></i> Linux设置网络延迟丢包操作
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/4.ToolsNotes/Docker/Docker%E4%B8%8A%E4%BC%A0%E9%95%9C%E5%83%8F%E8%87%B3Harbor/" rel="next" title="Docker上传镜像至Harbor">
+                  Docker上传镜像至Harbor <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
 </div>
@@ -536,182 +371,7 @@
 
 
 
-    
 
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/4.Shell/Linux%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E4%B8%A2%E5%8C%85%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/4.Shell/Linux%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E4%B8%A2%E5%8C%85%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">Linux设置网络延迟丢包操作</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-07-30 20:37:00" itemprop="dateCreated datePublished" datetime="2019-07-30T20:37:00+08:00">2019-07-30</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-12 11:51:26" itemprop="dateModified" datetime="2021-03-12T11:51:26+08:00">2021-03-12</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="tc方式"><a href="#tc方式" class="headerlink" title="tc方式"></a>tc方式</h2><p>* 清除设备策略：tc qdisc del root dev eth2 2&gt;/dev/null<br>* 设置设备策略：tc qdisc add dev eth0 root netem loss 5%</p>
-<p>tc qdisc add dev eth2 root netem loss 5%<br>tc qdisc add dev eth2 root netem delay 200ms<br>tc qdisc add dev eth2 root netem delay 200ms loss 5%<br>tc qdisc add dev eth2 root netem delay 400ms</p>
-<h2 id="comcast方式"><a href="#comcast方式" class="headerlink" title="comcast方式"></a>comcast方式</h2><p><a target="_blank" rel="noopener" href="https://github.com/tylertreat/comcast">https://github.com/tylertreat/comcast</a></p>
-<h2 id="iptables方式"><a href="#iptables方式" class="headerlink" title="iptables方式"></a>iptables方式</h2>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Others/OpenResty%E5%AD%A6%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/4.ToolsNotes/Others/OpenResty%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">OpenResty学习</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-07-30 18:40:00" itemprop="dateCreated datePublished" datetime="2019-07-30T18:40:00+08:00">2019-07-30</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-12 14:18:30" itemprop="dateModified" datetime="2021-03-12T14:18:30+08:00">2021-03-12</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="学习网址"><a href="#学习网址" class="headerlink" title="学习网址"></a>学习网址</h3><p><a target="_blank" rel="noopener" href="https://moonbingbing.gitbooks.io/openresty-best-practices/content/">1、OpenResty最佳实践</a></p>
-<p><a target="_blank" rel="noopener" href="http://openresty.org/cn/">2、OpenResty中文官网</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.runoob.com/lua/lua-tutorial.html">3、Lua入门教程</a></p>
-<p><a target="_blank" rel="noopener" href="http://www.nginx.cn/doc/">4、Nginx中文文档</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 <script>
