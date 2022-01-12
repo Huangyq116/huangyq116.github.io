@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">63</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,143 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/HttprunnerManager%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2.Programming/1.Python/HttprunnerManager%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0/" class="post-title-link" itemprop="url">HttprunnerManager接口测试平台</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-30 15:02:00" itemprop="dateCreated datePublished" datetime="2020-09-30T15:02:00+08:00">2020-09-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-13 21:21:18" itemprop="dateModified" datetime="2021-03-13T21:21:18+08:00">2021-03-13</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="说名"><a href="#说名" class="headerlink" title="说名"></a>说名</h2><p>部门业务成立之初，便开始使用HttpRunner进行接口自动化的维护；根据平台维护用例较通过xml维护用例的好处是可以查看当前模块对应的用例个数、负责人和历史报告等信息，且使用数据库维护，所以在业务测试空隙进行了用例迁移。</p>
+<h2 id="HttpRunner"><a href="#HttpRunner" class="headerlink" title="HttpRunner"></a>HttpRunner</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>HttpRunner 是一款面向 HTTP(S) 协议的通用测试框架，只需编写维护一份 <code>YAML/JSON</code> 脚本，即可实现自动化测试、性能测试、线上监控、持续集成等多种测试需求。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/HttpRunner/HttpRunner">项目地址</a></p>
+<p><a href="%5Bhttp://cn.httprunner.org">中文手册</a></p>
+<h2 id="HttpRunnerManager"><a href="#HttpRunnerManager" class="headerlink" title="HttpRunnerManager"></a>HttpRunnerManager</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>HttpRunnerManager是基于<code>HttpRunner</code>的接口自动化测试平台,该工具是对 <code>HttpRunner</code>的包装和Web图形化, 另外还增加了一些新概念(项目/模块)用来组织用例。<br>如果对yaml语法格式不熟悉，以及对于httprunner命令不熟悉的可以使用该平台执行接口自动化测试。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/HttpRunner/HttpRunnerManager">项目地址</a></p>
+<h3 id="核心特性"><a href="#核心特性" class="headerlink" title="核心特性"></a>核心特性</h3><ol>
+<li><p>项目管理：新增项目、列表展示及相关操作，支持用例批量上传(标准化的HttpRunner json和yaml用例脚本)</p>
+</li>
+<li><p>模块管理：为项目新增模块，用例和配置都归属于module，module和project支持同步和异步方式</p>
+</li>
+<li><p>用例管理：分为添加config与test子功能，config定义全部变量和request等相关信息 request可以为公共参数和请求头，也可定义全部变量</p>
+</li>
+<li><p>场景管理：可以动态加载可引用的用例，跨项目、跨模块，依赖用例列表支持拖拽排序和删除</p>
+</li>
+<li><p>运行方式：可单个test，单个module，单个project，也可选择多个批量运行，支持自定义测试计划，运行时可以灵活选择配置和环境</p>
+</li>
+<li><p>分布执行：单个用例和批量执行结果会直接在前端展示，模块和项目执行可选择为同步或者异步方式，</p>
+</li>
+<li><p>环境管理：可添加运行环境，运行用例时可以一键切换环境</p>
+</li>
+<li><p>报告查看：所有异步执行的用例均可在线查看报告，可自主命名，为空默认时间戳保存，</p>
+</li>
+<li><p>定时任务：可设置定时任务，遵循<code>crontab</code>表达式，可在线开启、关闭，完毕后支持邮件通知</p>
+</li>
+<li><p>持续集成：jenkins对接，开发中。。。</p>
+</li>
+</ol>
+<h3 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h3><p><strong>1、安装docker、mysql、rabbitmq并启动</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">docker search mysql</span><br><span class="line"></span><br><span class="line">docker pull mysql:5.7</span><br><span class="line"></span><br><span class="line">docker images |grep mysql</span><br><span class="line"></span><br><span class="line">docker run -p 3306:3306 --name bj_qa_mysql -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7</span><br><span class="line"></span><br><span class="line">docker ps</span><br><span class="line"></span><br><span class="line">sudo docker exec -it bj_qa_mysql bash</span><br><span class="line"></span><br><span class="line">mysql -h 127.0.0.1 -u root -p   #密码123456</span><br><span class="line"></span><br><span class="line">CREATE DATABASE HttpRunner DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">docker search rabbitMq</span><br><span class="line"></span><br><span class="line">docker pull rabbitmq:3.7-management</span><br><span class="line"></span><br><span class="line">docker run -d --name rabbitmq -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password -p 15672:15672 -p 5672:5672 rabbitmq:3.7-management</span><br><span class="line"></span><br><span class="line">cd /var/lib/docker</span><br><span class="line"></span><br><span class="line">sudo docker exec -it rabbitmq bash</span><br><span class="line"></span><br><span class="line">rabbitmqctl add_user admin 123456</span><br><span class="line"></span><br><span class="line">rabbitmqctl set_permissions -p / admin &#x27;.*&#x27; &#x27;.*&#x27; &#x27;.*&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2、安装git，拉取代码</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/HttpRunner/HttpRunnerManager.git</span><br></pre></td></tr></table></figure>
+
+<p><strong>3、修改配置</strong></p>
+<ul>
+<li>   修改:HttpRunnerManager/HttpRunnerManager/settings.py里DATABASES字典和邮件发送账号相关配置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    DATABASES &#x3D; &#123;</span><br><span class="line">        &#39;default&#39;: &#123;</span><br><span class="line">        &#39;ENGINE&#39;: &#39;django.db.backends.mysql&#39;,</span><br><span class="line">        &#39;NAME&#39;: &#39;HttpRunner&#39;,  # 新建数据库名</span><br><span class="line">        &#39;USER&#39;: &#39;root&#39;,  # 数据库登录名</span><br><span class="line">        &#39;PASSWORD&#39;: &#39;lcc123456&#39;,  # 数据库登录密码</span><br><span class="line">        &#39;HOST&#39;: &#39;127.0.0.1&#39;,  # 数据库所在服务器ip地址</span><br><span class="line">        &#39;PORT&#39;: &#39;3306&#39;,  # 监听端口 默认3306即可</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">EMAIL_SEND_USERNAME &#x3D; &#39;username@163.com&#39;  # 定时任务报告发送邮箱，支持163,qq,sina,企业qq邮箱等，注意需要开通smtp服务</span><br><span class="line">EMAIL_SEND_PASSWORD &#x3D; &#39;password&#39;     # 邮箱密码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>   修改:HttpRunnerManager/HttpRunnerManager/settings.py里worker相关配置</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">    djcelery.setup_loader()</span><br><span class="line">    CELERY_ENABLE_UTC = True</span><br><span class="line">    CELERY_TIMEZONE = &#x27;Asia/Shanghai&#x27;</span><br><span class="line">    BROKER_URL = &#x27;amqp://guest:guest@127.0.0.1:5672//&#x27;  # 127.0.0.1即为rabbitmq-server所在服务器ip地址</span><br><span class="line">    CELERYBEAT_SCHEDULER = &#x27;djcelery.schedulers.DatabaseScheduler&#x27;</span><br><span class="line">    CELERY_RESULT_BACKEND = &#x27;djcelery.backends.database:DatabaseBackend&#x27;</span><br><span class="line">    CELERY_ACCEPT_CONTENT = [&#x27;application/json&#x27;]</span><br><span class="line">    CELERY_TASK_SERIALIZER = &#x27;json&#x27;</span><br><span class="line">    CELERY_RESULT_SERIALIZER = &#x27;json&#x27;</span><br><span class="line"></span><br><span class="line">    CELERY_TASK_RESULT_EXPIRES = 7200  # celery任务执行结果的超时时间，</span><br><span class="line">    CELERYD_CONCURRENCY = 10  # celery worker的并发数 也是命令行-c指定的数目 根据服务器配置实际更改 默认10</span><br><span class="line">    CELERYD_MAX_TASKS_PER_CHILD = 100  # 每个worker执行了多少任务就会死掉，我建议数量可以大一些，默认100</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">4、执行pip install -r requirements.txt 安装工程所依赖的库文件</span><br><span class="line">5、切换到HttpRunnerManager目录(cd /home/HttpRunnerManager) 生成数据库迁移脚本,并生成表结构</span><br><span class="line">    python manage.py makemigrations ApiManager #生成数据迁移脚本</span><br><span class="line">    python manage.py migrate  #应用到db生成数据表</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">6、创建超级用户，用户后台管理数据库，并按提示输入相应用户名，密码，邮箱。 如不需用，可跳过此步骤</span><br><span class="line">    python manage.py createsuperuser</span><br><span class="line">7、启动服务</span><br><span class="line">    python manage.py runserver </span><br><span class="line">    python manage.py runserver &amp;          &amp;作用：回到linux控制台服务不会停掉</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">8、访问并使用</span><br><span class="line"></span><br><span class="line">浏览器输入：http://192.168.3.143:8000/api/register/ 注册用户，开始尽情享用平台</span><br><span class="line"></span><br><span class="line">浏览器输入：http://192.168.3.143:8000/admin/ 输入步骤6设置的用户名、密码，登录后台运维管理系统，可后台管理数据</span><br></pre></td></tr></table></figure>
+
+<h2 id="异步生成测试报告"><a href="#异步生成测试报告" class="headerlink" title="异步生成测试报告"></a>异步生成测试报告</h2><p><strong>1、RebbitMQ信息</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">浏览器输入：http://192.168.3.143:15672 默认的登陆账号为：guest，密码为：guest </span><br></pre></td></tr></table></figure>
+
+<p><strong>2、进入到HttpRunnerManager目录，启动worker</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py celery -A HttpRunnerManager worker --loglevel=info</span><br></pre></td></tr></table></figure>
+
+<p><strong>3、启动任务监控后台</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery flower</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -635,97 +772,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/4.ToolsNotes/Others/CentOS7.X%E6%9B%B4%E6%96%B0yum%E6%BA%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/4.ToolsNotes/Others/CentOS7.X%E6%9B%B4%E6%96%B0yum%E6%BA%90/" class="post-title-link" itemprop="url">CentOS7.X更新yum源</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-04-20 17:46:00" itemprop="dateCreated datePublished" datetime="2020-04-20T17:46:00+08:00">2020-04-20</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-12 11:41:35" itemprop="dateModified" datetime="2021-03-12T11:41:35+08:00">2021-03-12</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/" itemprop="url" rel="index"><span itemprop="name">4. ToolsNotes</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/4-ToolsNotes/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="备份原来的yum源"><a href="#备份原来的yum源" class="headerlink" title="备份原来的yum源"></a>备份原来的yum源</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sudo cp &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo-backup</span><br></pre></td></tr></table></figure>
-
-<h4 id="设置aliyun的yum源"><a href="#设置aliyun的yum源" class="headerlink" title="设置aliyun的yum源"></a>设置aliyun的yum源</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sudo wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-7.repo</span><br></pre></td></tr></table></figure>
-
-<h4 id="添加EPEL源"><a href="#添加EPEL源" class="headerlink" title="添加EPEL源"></a>添加EPEL源</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sudo wget -P &#x2F;etc&#x2F;yum.repos.d&#x2F; http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;epel-7.repo</span><br></pre></td></tr></table></figure>
-
-<h4 id="清理缓存，生成新缓存，执行yum系统更新"><a href="#清理缓存，生成新缓存，执行yum系统更新" class="headerlink" title="清理缓存，生成新缓存，执行yum系统更新"></a>清理缓存，生成新缓存，执行yum系统更新</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$sudo yum clean all</span><br><span class="line"></span><br><span class="line">$sudo yum makecache</span><br><span class="line"></span><br><span class="line">$sudo yum update（可选）</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -761,7 +807,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

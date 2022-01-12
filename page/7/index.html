@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">63</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,92 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/1.Python/%E9%80%9A%E8%BF%87Python%E8%B0%83%E7%94%A8Jenkins%E5%B8%B8%E7%94%A8api%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2.Programming/1.Python/%E9%80%9A%E8%BF%87Python%E8%B0%83%E7%94%A8Jenkins%E5%B8%B8%E7%94%A8api%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">通过Python调用Jenkins 常用api操作</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-11 17:31:00" itemprop="dateCreated datePublished" datetime="2019-12-11T17:31:00+08:00">2019-12-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-07 17:55:12" itemprop="dateModified" datetime="2021-03-07T17:55:12+08:00">2021-03-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2-Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/L-O-N/p/11608220.html">原文参考</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> jenkins</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestJenkins</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span>(<span class="params">cls, *args, **kwargs</span>):</span></span><br><span class="line">        server = <span class="string">&#x27;http://1.1.1.1:8080/jenkins&#x27;</span></span><br><span class="line">        username = <span class="string">&#x27;admin&#x27;</span></span><br><span class="line">　　　　 <span class="comment"># 对应用户的token信息,不是明文的密码信息</span></span><br><span class="line">        password = <span class="string">&#x27;fljljdfladoweurojlsjdfasd123&#x27;</span></span><br><span class="line">        server = jenkins.Jenkins(url=server, username=username, password=password)</span><br><span class="line">        instance = <span class="built_in">super</span>(TestJenkins, cls).__new__(cls, *args, **kwargs)</span><br><span class="line">        instance.server = server</span><br><span class="line">        <span class="keyword">return</span> instance</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment">#这里的api_token是针对远程执行任务时,jenkins要验证的token的信息</span></span><br><span class="line">        self.api_token = <span class="string">&#x27;okfine&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jobs_count</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(self.server.jobs_count())</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">server_info</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(self.server.server)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_jobs_info</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> self.server.get_all_jobs():</span><br><span class="line">            print(<span class="string">&#x27;name: %s&#x27;</span> % item[<span class="string">&#x27;name&#x27;</span>], <span class="string">&#x27;URL: &#x27;</span>, item[<span class="string">&#x27;url&#x27;</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_whoami</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(self.server.get_whoami(depth=<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_auth</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(self.server.auth)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_debug_job_info</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        print(self.server.debug_job_info(name))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">check_job_exists</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        print(self.server.job_exists(name))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_all_jobs</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(self.server.get_all_jobs())</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_job</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(self.server.create_job(<span class="string">&#x27;API-1&#x27;</span>, jenkins.RECONFIG_XML))</span><br><span class="line">        print(self.server.create_job(<span class="string">&#x27;API-2&#x27;</span>, jenkins.RECONFIG_XML))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete_job</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        print(self.server.delete_job(name))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">copy_job</span>(<span class="params">self, name, new_name</span>):</span></span><br><span class="line">        print(self.server.copy_job(name, new_name))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enable_job</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        print(self.server.enable_job(name))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">disable_job</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        print(self.server.disable_job(name))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reconfig_job</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        print(self.server.reconfig_job(name, jenkins.RECONFIG_XML))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rename_job</span>(<span class="params">self, name, new_name</span>):</span></span><br><span class="line">        print(self.server.rename_job(name, new_name))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build_job</span>(<span class="params">self, name, parameters</span>):</span></span><br><span class="line">        print(self.server.build_job(name, parameters, token=self.api_token))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_job_info</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        <span class="comment"># 主要是通过任务的信息,来得到需要传入的参数信息,jenkins 各种自定义选项信息,单凭肉眼是很难辨别出参数信息的,</span></span><br><span class="line">        <span class="comment"># 任务相关参数信息都是在property这个参数里面</span></span><br><span class="line">        build_arg = self.server.get_job_info(name)[<span class="string">&quot;property&quot;</span>]</span><br><span class="line">        <span class="keyword">for</span> parameter_definitions <span class="keyword">in</span> build_arg:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(parameter_definitions) &gt; <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">for</span> parameter <span class="keyword">in</span> parameter_definitions[<span class="string">&quot;parameterDefinitions&quot;</span>]:</span><br><span class="line">                    print(<span class="string">&#x27;----------------------------------&#x27;</span>)</span><br><span class="line">                    print(<span class="string">&#x27;name: %s&#x27;</span> % parameter[<span class="string">&quot;name&quot;</span>])</span><br><span class="line">                    print(<span class="string">&#x27;class: %s&#x27;</span> % parameter[<span class="string">&quot;_class&quot;</span>])</span><br><span class="line">                    print(<span class="string">&#x27;type: %s&#x27;</span> % parameter[<span class="string">&quot;type&quot;</span>])</span><br><span class="line">                    print(<span class="string">&#x27;description: %s&#x27;</span> % parameter[<span class="string">&quot;description&quot;</span>])</span><br><span class="line">                    print(<span class="string">&#x27;jenkins_arg: %s&#x27;</span> % parameter[<span class="string">&quot;defaultParameterValue&quot;</span>][<span class="string">&quot;name&quot;</span>])</span><br><span class="line">                    print(<span class="string">&#x27;default_value: %s&#x27;</span> % parameter[<span class="string">&quot;defaultParameterValue&quot;</span>][<span class="string">&quot;value&quot;</span>])</span><br><span class="line">                    <span class="keyword">if</span> parameter[<span class="string">&quot;_class&quot;</span>] == <span class="string">&#x27;hudson.model.ChoiceParameterDefinition&#x27;</span>:</span><br><span class="line">                        print(<span class="string">&#x27;can_choices: %s&#x27;</span> % parameter[<span class="string">&quot;choices&quot;</span>])</span><br><span class="line">                    print(<span class="string">&#x27;----------------------------------&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_build_log</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        last_build_number = self.server.get_job_info(name)[<span class="string">&#x27;lastCompletedBuild&#x27;</span>][<span class="string">&#x27;number&#x27;</span>]</span><br><span class="line">        print(<span class="string">&#x27;last_build_number&#x27;</span>, last_build_number)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 查看指定构建编号的输出</span></span><br><span class="line">        print(self.server.get_build_console_output(name, last_build_number))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span>(<span class="params">self, *args, **kwargs</span>):</span></span><br><span class="line">        self.get_job_info(<span class="string">&#x27;shop&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 通过特定任务的信息来得到要传入的参数信息,然后再来执行构建任务</span></span><br><span class="line">        <span class="comment"># build new job, nice  operation</span></span><br><span class="line">        <span class="comment"># 如下列所示的5个参数,就是此次构建必须提供的参数</span></span><br><span class="line">        param_dict = &#123;<span class="string">&#x27;repository&#x27;</span>: <span class="string">&#x27;ssh://git@xxxxx.com/xx/xxxx.git&#x27;</span>,</span><br><span class="line">                       <span class="string">&#x27;profile&#x27;</span>: <span class="string">&#x27;xxxx-xxx&#x27;</span>,</span><br><span class="line">                       <span class="string">&#x27;branch&#x27;</span>: <span class="string">&#x27;master&#x27;</span>,</span><br><span class="line">                       <span class="string">&#x27;upload_nexus&#x27;</span>: <span class="literal">False</span>,</span><br><span class="line">                       <span class="string">&#x27;deploy_app&#x27;</span>: <span class="literal">False</span>&#125;</span><br><span class="line"></span><br><span class="line">        self.build_job(<span class="string">&#x27;xxxxx&#x27;</span>, parameters=param_dict)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">TestJenkins()()</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -648,147 +734,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/2.Programming/4.Shell/SSH%E8%BF%9C%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2.Programming/4.Shell/SSH%E8%BF%9C%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">SSH远程执行命令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-10-16 18:28:00" itemprop="dateCreated datePublished" datetime="2019-10-16T18:28:00+08:00">2019-10-16</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-12 14:35:42" itemprop="dateModified" datetime="2021-03-12T14:35:42+08:00">2021-03-12</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/" itemprop="url" rel="index"><span itemprop="name">2.Programming</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2-Programming/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liuxiao723846/article/details/82667482">SSH远程执行命令</a></p>
-<p>SSH 是 Linux 下进行远程连接的基本工具，不光可以登录，也可以远程操作。接下来我们详细讲解一些常用的情况。</p>
-<h2 id="执行简单的命令"><a href="#执行简单的命令" class="headerlink" title="执行简单的命令"></a>执行简单的命令</h2><p><strong>1、查看某台主机上的磁盘使用情况</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@1.113.195.138 <span class="string">&quot;df -h&quot;</span></span></span><br><span class="line">***************************************************************************</span><br><span class="line">NOTICE TO Users</span><br><span class="line"></span><br><span class="line">This computer system is the private property of ...</span><br><span class="line"></span><br><span class="line">***************************************************************************</span><br><span class="line"></span><br><span class="line">Filesystem Size Used Avail Use% Mounted on</span><br><span class="line">/dev/vda2 36G 3.2G 31G 10% /</span><br><span class="line">tmpfs 25G 0 25G 0% /dev/shm</span><br><span class="line">/dev/vdb 296G 2.0G 279G 1% /data</span><br></pre></td></tr></table></figure>
-
-<p>可以看到会把ssh远程连接的信息，以及远程执行名的返回的信息都输出到了控制台上。</p>
-<p><strong>2、保存远程执行命令结果</strong></p>
-<p>有时我们需要保存远程执行命令的结果，然后进行判断。有两种方法：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">赋值的方式：result=`ssh x@B ~/command.sh`</span><br><span class="line">追加到文件：ssh root@$ip &quot;cmd&quot; &gt;&gt; ./log</span><br></pre></td></tr></table></figure>
-
-<p>详情见：<a target="_blank" rel="noopener" href="https://blog.csdn.net/liuxiao723846/article/details/55045988">https://blog.csdn.net/liuxiao723846/article/details/55045988</a></p>
-<p><strong>3、一次执行多个命令</strong></p>
-<p>在shell中单行语句一般要用到分号来区分代码块，多行的话用换行符来区分代码块，则无需用到分号。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$PS1</span>&quot;</span> ]; <span class="keyword">then</span> <span class="built_in">echo</span> <span class="built_in">test</span> is ok; <span class="keyword">fi</span></span></span><br><span class="line">test is ok</span><br><span class="line"></span><br><span class="line">如果换做多行</span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="keyword">if</span> [ <span class="string">&quot;PS1&quot;</span> ]</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">&quot;test is ok&quot;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="keyword">fi</span></span></span><br><span class="line">test is ok</span><br></pre></td></tr></table></figure>
-
-<p>所以，我们可以在ssh中用分好拼接多个命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 ssh root@$IP &quot;if [ -e /lib64/libpcre.so.1 ];then echo &#x27;file exits...&#x27;;else cd /lib64 &amp;&amp; ln -s libpcre.so.0.0.1 libpcre.so.1;fi&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="执行需要交互的命令"><a href="#执行需要交互的命令" class="headerlink" title="执行需要交互的命令"></a>执行需要交互的命令</h2><p>有时候我们需要远程执行一些有交互操作的命令，如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ssh nick@xxx.xxx.xxx.xxx <span class="string">&quot;sudo ls /root&quot;</span></span><br><span class="line">$ ssh nick@xxx.xxx.xxx.xxx <span class="string">&quot;top&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/20191016-3.png" alt="images"></p>
-<p>这两条命令虽然提示的失败原因不同，但它们有一个共同点：都需要与用户交互(需要 TTY)。所以它们失败的原因也是相同的：<br>默认情况下，当你执行不带命令的 ssh 连接时，会为你分配一个 TTY。因为此时你应该是想要运行一个 shell 会话。<br>但是当你通过 ssh 在远程主机上执行命令时，并不会为这个远程会话分配 TTY。此时 ssh 会立即退出远程主机，所以需要交互的命令也随之结束。<br>好在我们可以通过 -t 参数显式的告诉 ssh，我们需要一个 TTY 远程 shell 进行交互！<br>添加 -t 参数后，ssh 会保持登录状态，直到你退出需要交互的命令。</p>
-<h2 id="执行本地脚本"><a href="#执行本地脚本" class="headerlink" title="执行本地脚本"></a>执行本地脚本</h2><p>通常我们遇到的不会是上面那种简单的问题，大多数时候我们需要把若干个命令放到一个脚本里，然后分发到远程去执行。大致有两种思路：</p>
-<p>使用scp将本地脚本文件拷贝到远端，然后再通过ssh执行远端的脚本；（弊端是脚本修改后，每次都需要scp）<br>直接在本地执行脚本到远程；<br>一个scp的例子</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for IP in $&#123;IP_ARR[@]&#125;</span><br><span class="line">do</span><br><span class="line">ssh root@$IP &quot;rm -rf $MONITOR_TARGET_FILE&quot; </span><br><span class="line">ssh root@$IP &quot;mkdir -p /data/apps/scripts&quot;</span><br><span class="line">scp $MONITOR_SOURCE_FILE root@$IP:$MONITOR_TARGET_FILE</span><br><span class="line">ssh root@$IP &#x27;echo &quot;*/1 * * * * /usr/bin/python /data/apps/scripts/checkStatus.py&#x27; $BUSINESS_TYPE &#x27;&gt;/dev/null 2&gt;&amp;1&quot; &gt;&gt; /var/spool/cron/root&#x27;</span><br><span class="line"> </span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-
-<p>重点我们在如何在本地执行脚本到远程。</p>
-<p><strong>1、执行一个简单的脚本到远程：</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat test.sh</span> </span><br><span class="line">ls</span><br><span class="line">pwd</span><br><span class="line"> </span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 &lt; test.sh</span> </span><br><span class="line">anaconda-ks.cfg</span><br><span class="line">/root</span><br></pre></td></tr></table></figure>
-
-<p>通过重定向 stdin，本地的脚本 test.sh 在远程服务器上被执行。</p>
-<p><strong>2、为脚本传递参数：</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat test.sh</span> </span><br><span class="line">echo $1</span><br><span class="line">echo $2</span><br><span class="line"> </span><br><span class="line">在本地执行结构如下：</span><br><span class="line"><span class="meta">$</span><span class="bash"> sh test.sh a b</span></span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line"></span><br><span class="line">通过重定向远程执行，会报错</span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 &lt; test.sh a b</span></span><br><span class="line">bash: a: command not found</span><br></pre></td></tr></table></figure>
-
-<p>看来上面的方法都无法为脚本传递参数。<br>要想在这种情况下(远程执行本地的脚本)执行带有参数的脚本，需要为 bash 指定 -s 参数：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 <span class="string">&#x27;bash -s&#x27;</span> &lt; test.sh a b</span></span><br><span class="line">a</span><br><span class="line">b</span><br></pre></td></tr></table></figure>
-
-<p>除此之外，我们还可以通过替换的方式传参，然后远程执行，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat .&#x2F;rollback_remote.sh | sed -e &quot;s&#x2F;#module#&#x2F;$&#123;MODULE_NAME&#125;&#x2F;g&quot; -e &quot;s&#x2F;#runarg#&#x2F;$&#123;RUN_ARG&#125;&#x2F;g&quot; | ssh $IP</span><br></pre></td></tr></table></figure>
-
-<h2 id="执行远程服务器上的脚本"><a href="#执行远程服务器上的脚本" class="headerlink" title="执行远程服务器上的脚本"></a>执行远程服务器上的脚本</h2><p>除了执行本地的脚本，还有一种情况是脚本文件存放在远程服务器上，而我们需要远程的执行它！此时在远程服务器上用户 nick 的家目录中有一个脚本 test.sh。文件的内容如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">pwd</span><br><span class="line">执行下面的命令即可（注：一定是绝对路径）：</span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh nick@xxx.xxx.xxx.xxx <span class="string">&quot;/home/nick/test.sh&quot;</span></span></span><br></pre></td></tr></table></figure>
-
-<p>下面我们也尝试为脚本传递参数。在远程主机上的 test.sh 文件的末尾添加两行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo $0</span><br><span class="line">echo $1</span><br><span class="line">然后尝试执行下面的命令：</span><br><span class="line"> </span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh nick@xxx.xxx.xxx.xxx /home/nick/test.sh helloworld</span></span><br></pre></td></tr></table></figure>
-
-<p>可以正确得到结果。</p>
-<h2 id="执行多行命令"><a href="#执行多行命令" class="headerlink" title="执行多行命令"></a>执行多行命令</h2><p>有时候我们可能需要随手写几行简单的逻辑，这也没有问题，ssh 能轻松搞定！</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 <span class="string">&quot;</span></span> </span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> ls</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="built_in">pwd</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="string">&quot;</span></span></span><br><span class="line">anaconda-ks.cfg</span><br><span class="line">/root</span><br></pre></td></tr></table></figure>
-
-<p>你可以用单引号或双引号开头，然后写上几行命令，最后再用相同的引号来结束。</p>
-<p>当我们在命令中引用了变量时会怎么样呢？</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> name=<span class="built_in">test</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 <span class="string">&quot;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="built_in">echo</span> <span class="variable">$name</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="string">&quot;</span></span></span><br><span class="line">test</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 <span class="string">&#x27;</span></span></span><br><span class="line">echo $name</span><br><span class="line">&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>最后一行，并没有输出我们期望的 test。这里多少有些诡异，因为如果变量没有被解释的话，输出的应该是 $name 才对。但是这里却什么都没有输出。对于引用变量的写法，可以通过bash 指定了 -c 参数方式保证变量被正确解释：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh root@10.153.195.138 bash -c <span class="string">&quot;&#x27;</span></span></span><br><span class="line">echo $name</span><br><span class="line">&#x27;&quot;</span><br><span class="line">test</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -824,7 +769,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
