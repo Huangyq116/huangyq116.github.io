@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,6 +242,157 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/3.Testing/Others/Kafka%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zero' Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/3.Testing/Others/Kafka%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">Kafka性能测试</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-12-01 20:00:00" itemprop="dateCreated datePublished" datetime="2021-12-01T20:00:00+08:00">2021-12-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-01-19 15:34:17" itemprop="dateModified" datetime="2022-01-19T15:34:17+08:00">2022-01-19</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/3-Testing/" itemprop="url" rel="index"><span itemprop="name">3.Testing</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/3-Testing/%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">总结</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Kafka自带监控工具Kafka-Manager，但权限控制严格，而且只能够查询Mean、1Min、5Min、15Min的数据，无法查询一个时间段内的数据，因此需要一个可供用户查询集群和Topic监控数据的工具。</p>
+<h2 id="Kafka监控原理"><a href="#Kafka监控原理" class="headerlink" title="Kafka监控原理"></a>Kafka监控原理</h2><p><img src="/images/20211201-1.png" alt="images"></p>
+<h2 id="Kafka监控工具原理"><a href="#Kafka监控工具原理" class="headerlink" title="Kafka监控工具原理"></a>Kafka监控工具原理</h2><p>Jmxtrans：解析配置文件，通过jmx采集java应用的数据采集器，他的输出可以是Graphite、StatsD、Ganglia、InfluxDB等等<br>InfluxDB：开源的分布式时序、时间和指标数据库，使用go语言编写，无需外部依赖<br>Grafana：开源的时序性统计和监控平台，支持influxdb 等众多的数据源，界面编辑器功能强大，自带用户权限管理</p>
+<p><img src="/images/20211201-2.png" alt="images"></p>
+<p>Jmx+InfluxDB+Grafana架构的优点</p>
+<ul>
+<li>InfluxDB是时序、时间和指标数据库，非常适合存储jvm metric数据</li>
+<li>Grafana这意味U时序性统计和监控平台，对于展示jvm metric监控数据也很方便，界面编辑简单，无需适配；且Grafana有简单的用户权限管理功能，可以控制不同Dashboard的访问权限。</li>
+<li>Jmxtrans的推送数据是根据配置文件更新的，因此如果有增删的监控项，完全不需要跟新程序代码，修改配置即可。</li>
+</ul>
+<h2 id="Kafka安装工具"><a href="#Kafka安装工具" class="headerlink" title="Kafka安装工具"></a>Kafka安装工具</h2><h3 id="服务-InfluxDB"><a href="#服务-InfluxDB" class="headerlink" title="服务 InfluxDB"></a>服务 InfluxDB</h3><ul>
+<li>安装<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> wget https://dl.influxdata.com/influxdb/releases/influxdb-1.7.8.x86_64.rpm</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpm -ivh influxdb-1.7.8.x86_64.rpm</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl start influxdb.service</span></span><br></pre></td></tr></table></figure></li>
+<li>配置文件<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/influxdb/influxdb.conf</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="服务-Granfana"><a href="#服务-Granfana" class="headerlink" title="服务 Granfana"></a>服务 Granfana</h3><ul>
+<li>安装<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.5.2-1.x86_64.rpm</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpm -ivh grafana-6.0.2-1.x86_64.rpm</span></span><br><span class="line"><span class="meta">#</span><span class="bash">  service grafana-server start</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="服务-Jmxtrans"><a href="#服务-Jmxtrans" class="headerlink" title="服务 Jmxtrans"></a>服务 Jmxtrans</h3><ul>
+<li>安装<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install https://repo1.maven.org/maven2/org/jmxtrans/jmxtrans/270/jmxtrans-270.rpm</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpm -i jmxtrans-270.rpm --nodeps --force</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> /etc/init.d/jmxtrans start</span></span><br></pre></td></tr></table></figure></li>
+<li>配置文件<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> jmxtrans安装目录：/usr/share/jmxtrans</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> json文件默认目录：/var/lib/jmxtrans/</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 日志路径：/var/<span class="built_in">log</span>/jmxtrans/jmxtrans.log</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="配置文件说明"><a href="#配置文件说明" class="headerlink" title="配置文件说明"></a>配置文件说明</h2><h3 id="全局监控指标"><a href="#全局监控指标" class="headerlink" title="全局监控指标"></a>全局监控指标</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//每秒输入的流量</span><br><span class="line">&quot;obj&quot;:&quot;kafka.server:type=BrokerTopicMetrics,name=BytesInPerSec&quot;&quot;attr&quot;:[&quot;Count&quot;]&quot;resultAlias&quot;:&quot;BytesInPerSec&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;BytesInPerSec&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//每秒读出的流量</span><br><span class="line">&quot;obj&quot;:&quot;kafka.server:type=BrokerTopicMetrics,name=BytesOutPerSec&quot;&quot;attr&quot;:[&quot;Count&quot;]&quot;resultAlias&quot;:&quot;BytesOutPerSec&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;BytesOutPerSec&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//每秒输入的流量</span><br><span class="line">&quot;obj&quot;:&quot;kafka.server:type=BrokerTopicMetrics,name=BytesRejectedPerSec&quot;&quot;attr&quot;:[&quot;Count&quot;]&quot;resultAlias&quot;:&quot;BytesRejectedPerSec&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;BytesRejectedPerSec&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//每秒消息写入总量</span><br><span class="line">&quot;obj&quot;:&quot;kafka.server:type=BrokerTopicMetrics,name=MessagesInPerSec&quot;&quot;attr&quot;:[&quot;Count&quot;]&quot;resultAlias&quot;:&quot;MessagesInPerSec&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;MessagesInPerSec&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//每秒FetchFollower的请求次数</span><br><span class="line">&quot;obj&quot;:&quot;kafka.network:type=RequestMetrics,name=RequestsPerSec,request=FetchFollower&quot;&quot;attr&quot;:[&quot;Count&quot;]&quot;resultAlias&quot;:&quot;RequestsPerSec&quot;&quot;tags&quot;:&#123;&quot;request&quot;:&quot;FetchFollower&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//每秒FetchConsumer的请求次数</span><br><span class="line">&quot;obj&quot;:&quot;kafka.network:type=RequestMetrics,name=RequestsPerSec,request=FetchConsumer&quot;&quot;attr&quot;:[&quot;Count&quot;]&quot;resultAlias&quot;:&quot;RequestsPerSec&quot;&quot;tags&quot;:&#123;&quot;request&quot;:&quot;FetchConsumer&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//每秒Produce的请求次数</span><br><span class="line">&quot;obj&quot;:&quot;kafka.network:type=RequestMetrics,name=RequestsPerSec,request=Produce&quot;&quot;attr&quot;:[&quot;Count&quot;]&quot;resultAlias&quot;:&quot;RequestsPerSec&quot;&quot;tags&quot;:&#123;&quot;request&quot;:&quot;Produce&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//内存使用的使用情况</span><br><span class="line">&quot;obj&quot;:&quot;java.lang:type=Memory&quot;&quot;attr&quot;:[&quot;HeapMemoryUsage&quot;, &quot;NonHeapMemoryUsage&quot;]&quot;resultAlias&quot;:&quot;MemoryUsage&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;MemoryUsage&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//GC的耗时和次数</span><br><span class="line">&quot;obj&quot;:&quot;java.lang:type=GarbageCollector,name=*&quot;&quot;attr&quot;:[&quot;CollectionCount&quot;,&quot;CollectionTime&quot;]&quot;resultAlias&quot;:&quot;GC&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;GC&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//每秒读出的流量</span><br><span class="line">&quot;obj&quot;:&quot;kafka.server:type=BrokerTopicMetrics,name=BytesOutPerSec&quot;&quot;attr&quot;:[&quot;Count&quot;]&quot;resultAlias&quot;:&quot;BytesOutPerSec&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;BytesOutPerSec&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//线程的使用情况</span><br><span class="line">&quot;obj&quot;:&quot;java.lang:type=Threading&quot;&quot;attr&quot;:[&quot;PeakThreadCount&quot;,&quot;ThreadCount&quot;]&quot;resultAlias&quot;:&quot;Thread&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;Thread&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//副本落后主分片的最大消息数量</span><br><span class="line">&quot;obj&quot;:&quot;kafka.server:type=ReplicaFetcherManager,name=MaxLag,clientId=Replica&quot;&quot;attr&quot;:[&quot;Value&quot;]&quot;resultAlias&quot;:&quot;ReplicaFetcherManager&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;MaxLag&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//该broker上的partition的数量</span><br><span class="line">&quot;obj&quot;:&quot;kafka.server:type=ReplicaManager,name=PartitionCount&quot;&quot;attr&quot;:[&quot;Value&quot;]&quot;resultAlias&quot;:&quot;ReplicaManager&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;PartitionCount&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//正在做复制的partition的数量</span><br><span class="line">&quot;obj&quot;:&quot;kafka.server:type=ReplicaManager,name=UnderReplicatedPartitions&quot;&quot;attr&quot;:[&quot;Value&quot;]&quot;resultAlias&quot;:&quot;ReplicaManager&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;UnderReplicatedPartitions&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//Leader的replica的数量</span><br><span class="line">&quot;obj&quot;:&quot;kafka.server:type=ReplicaManager,name=LeaderCount&quot;&quot;attr&quot;:[&quot;Value&quot;]&quot;resultAlias&quot;:&quot;ReplicaManager&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;LeaderCount&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//一个请求FetchConsumer耗费的所有时间</span><br><span class="line">&quot;obj&quot;:&quot;kafka.network:type=RequestMetrics,name=TotalTimeMs,request=FetchConsumer&quot;&quot;attr&quot;:[&quot;Count&quot;,&quot;Max&quot;]&quot;resultAlias&quot;:&quot;TotalTimeMs&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;FetchConsumer&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//一个请求FetchFollower耗费的所有时间</span><br><span class="line">&quot;obj&quot;:&quot;kafka.network:type=RequestMetrics,name=TotalTimeMs,request=FetchFollower&quot;&quot;attr&quot;:[&quot;Count&quot;,&quot;Max&quot;]&quot;resultAlias&quot;:&quot;TotalTimeMs&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;FetchFollower&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//一个请求Produce耗费的所有时间</span><br><span class="line">&quot;obj&quot;:&quot;kafka.network:type=RequestMetrics,name=TotalTimeMs,request=Produce&quot;&quot;attr&quot;:[&quot;Count&quot;,&quot;Max&quot;]&quot;resultAlias&quot;:&quot;TotalTimeMs&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;Produce&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Topic监控指标"><a href="#Topic监控指标" class="headerlink" title="Topic监控指标"></a>Topic监控指标</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//topic b1f91fbe6fe54d2eaf70ef0025f1c3c2__ivc_alarm_in每秒的写入流量</span><br><span class="line">&quot;kafka.server:type=BrokerTopicMetrics,name=BytesInPerSec,topic= b1f91fbe6fe54d2eaf70ef0025f1c3c2__ivc_alarm_in&quot;&quot;attr&quot;:[&quot;Count&quot;]&quot;resultAlias&quot;:&quot; b1f91fbe6fe54d2eaf70ef0025f1c3c2__ivc_alarm_in&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;BytesInPerSec&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//topic b1f91fbe6fe54d2eaf70ef0025f1c3c2__ivc_alarm_in每秒的输出流量</span><br><span class="line">&quot;kafka.server:type=BrokerTopicMetrics,name=BytesOutPerSec,topic= b1f91fbe6fe54d2eaf70ef0025f1c3c2__ivc_alarm_in&quot;&quot;attr&quot;:[&quot;Count&quot;]&quot;resultAlias&quot;:&quot; b1f91fbe6fe54d2eaf70ef0025f1c3c2__ivc_alarm_in&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;BytesOutPerSec&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//topic b1f91fbe6fe54d2eaf70ef0025f1c3c2__ivc_alarm_in每秒写入消息的数量</span><br><span class="line">&quot;obj&quot;:&quot;kafka.server:type=BrokerTopicMetrics,name=MessagesInPerSec,topic= b1f91fbe6fe54d2eaf70ef0025f1c3c2__ivc_alarm_in&quot;&quot;attr&quot;:[&quot;Count&quot;]&quot;resultAlias&quot;:&quot; b1f91fbe6fe54d2eaf70ef0025f1c3c2__ivc_alarm_in&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;MessagesInPerSec&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//topic b1f91fbe6fe54d2eaf70ef0025f1c3c2__ivc_alarm_in在每个分区最后的Offset</span><br><span class="line">&quot;obj&quot;:&quot;kafka.log:type=Log,name=LogEndOffset,topic= b1f91fbe6fe54d2eaf70ef0025f1c3c2__ivc_alarm_in,partition=*&quot;&quot;attr&quot;:[&quot;Value&quot;]&quot;resultAlias&quot;:&quot; b1f91fbe6fe54d2eaf70ef0025f1c3c2__ivc_alarm_in&quot;&quot;tags&quot;:&#123;&quot;application&quot;:&quot;LogEndOffset&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -749,89 +900,6 @@
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_31977125/article/details/82999872">Jenkins通过Docker-plugin部署Slave</a></p>
 <p>参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/yanggd1987/article/details/105112939">从socket权限重新认识docker架构</a></p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huangyq116.github.io/1.Growth/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/%E6%88%91%E7%9A%842020%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zero">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zero' Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/1.Growth/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/%E6%88%91%E7%9A%842020%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">我的2020年终总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-03-01 17:42:00" itemprop="dateCreated datePublished" datetime="2021-03-01T17:42:00+08:00">2021-03-01</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-14 22:17:02" itemprop="dateModified" datetime="2021-03-14T22:17:02+08:00">2021-03-14</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/1-Growth/" itemprop="url" rel="index"><span itemprop="name">1.Growth</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/1-Growth/%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">总结</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
       
     </div>
 
